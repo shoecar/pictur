@@ -6,9 +6,13 @@ html {
 }
 
 .picture {
-  width: 300px;
+  width: 0;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 25%;
   transform: translateX(-50%) translateY(-50%);
+  -webkit-transition: all 700ms ease-out;
+  -moz-transition: all 700ms ease-out;
+  -o-transition: all 700ms ease-out;
+  transition: all 700ms ease-out;
 }
