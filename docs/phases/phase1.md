@@ -1,4 +1,4 @@
-# Phase 1: User Authentication, and Photos
+# Phase 1: User Authentication, and JSON views
 
 ## Rails
 ### Models

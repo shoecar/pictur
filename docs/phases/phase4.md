@@ -1,4 +1,4 @@
-# Phase 4: User Feeds
+# Phase 4: Adding Votings to Photos
 
 ## Rails
 ### Models

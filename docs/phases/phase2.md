@@ -1,4 +1,4 @@
-# Phase 2: Viewing Photos
+# Phase 2: Viewing User and Photos
 
 ## Rails
 ### Models
