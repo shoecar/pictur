@@ -1,0 +1,11 @@
+<label>
+Title
+<input type="text" name="photo[title]" value="<%= photo.escape('title') %>">
+</label>
+
+<label>
+Description
+<textarea name="photo[description]"><%= photo.escape('description') %></textarea>
+</label>
+
+<input type="submit">

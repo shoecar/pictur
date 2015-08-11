@@ -1,0 +1,18 @@
+<h1>
+  <%= photo.escape('title') %>
+</h1>
+
+<p>
+  description: <br>
+  <%= photo.escape('description') %>
+</p>
+
+<h4>
+  posted by:
+  <a href="/#user/<%= user.get('id') %>">
+    <%= user.escape('username') %>
+  </a>
+</h4>
+
+<a href="/#photo/<%= photo.get('id') %>/edit">Edit Photo</a>
+<a href="#" class='delete-photo'>Delete Photo</a>

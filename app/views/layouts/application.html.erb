@@ -9,7 +9,19 @@
 </head>
 <body>
 
-<%= yield %>
+  <% if flash[:errors] %>
+    <ul>
+    <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+    </ul>
+  <% end %>
+
+  <% if current_user %>
+    <%= button_to("Sign Out", session_url, method: :delete) %>
+  <% end %>
+
+  <%= yield %>
 
 </body>
 </html>
