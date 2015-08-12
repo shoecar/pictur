@@ -10,6 +10,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
     this.photos.each(this.addPhotoItem.bind(this));
   },
 
+
   addPhotoItem: function (photo) {
     if (this.users) {
       var user = this.users.getOrFetch(photo.get('user_id'));

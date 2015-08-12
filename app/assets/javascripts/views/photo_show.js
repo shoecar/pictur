@@ -5,7 +5,7 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
 
   initialize: function (options) {
     this.photo = options.photo;
-    this.user = options.user;
+    this.user = this.photo.user();
     this.listenTo(this.photo, 'sync', this.render);
     this.listenTo(this.user, 'sync', this.render);
   },

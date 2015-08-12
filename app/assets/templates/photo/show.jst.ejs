@@ -14,5 +14,7 @@
   </a>
 </h4>
 
-<a href="#photo/<%= photo.get('id') %>/edit">Edit Photo</a>
-<a href="#" class='delete-photo'>Delete Photo</a>
+<% if (CURRENTUSER.id === photo.get('user_id')) { %>
+  <a href="#photo/<%= photo.get('id') %>/edit">Edit Photo</a>
+  <a href="#" class='delete-photo'>Delete Photo</a>
+<% } %>

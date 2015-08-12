@@ -13,7 +13,7 @@ Pictur.Routers.Router = Backbone.Router.extend({
   routes: {
     '': 'photoIndex',
     'photo/new': 'photoNew',
-    'photo/:id': 'photoShow',
+    // 'photo/:id': 'photoShow',
     'user/:id': 'userShow',
     'photo/:id/edit': 'photoEdit'
   },
@@ -31,8 +31,7 @@ Pictur.Routers.Router = Backbone.Router.extend({
 
   photoShow: function (id) {
     var photo = this.photos.getOrFetch(id);
-    var user = this.users.getOrFetch(photo.get('user_id'));
-    var view = new Pictur.Views.PhotoShow({ photo: photo, user: user });
+    var view = new Pictur.Views.PhotoShow({ photo: photo });
     this._newWindow(view);
   },
 

@@ -1,12 +1,10 @@
-<li>
-  <a href="#photo/<%= photo.get('id') %>">
-    <%= photo.escape('title') %>
+<a href="#" class="photo-show">
+  <%= photo.escape('title') %>
+</a>
+<br>
+<% if (user) {%>
+  Submitted By:
+  <a href="#user/<%= user.get('id') %>">
+    <%= user.escape('username') %>
   </a>
-  <br>
-  <% if (user) {%>
-    Submitted By:
-    <a href="#user/<%= user.get('id') %>">
-      <%= user.escape('username') %>
-    </a>
-  <% }; %>
-</li>
+<% }; %>

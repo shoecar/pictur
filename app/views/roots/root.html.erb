@@ -1,6 +1,6 @@
 <div class="fullscreen"></div>
 
-<div class="window">
+<div class="pop-window">
   <button type="button" class="close-window">Close</button>
   <div class="content"></div>
 </div>
@@ -17,6 +17,10 @@
 </nav>
 
 <div class="root"></div>
+
+<script type="text/javascript">
+  var CURRENTUSER = { id: <%= current_user.id %>, username: '<%= current_user.username %>' };
+</script>
 
 <!-- <img src="<%= asset_path('logo.png') %>" class="picture" /> -->
 <!-- <script type="text/javascript">

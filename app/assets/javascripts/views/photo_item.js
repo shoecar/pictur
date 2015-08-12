@@ -1,4 +1,4 @@
-Pictur.Views.PhotoItem = Backbone.View.extend({
+Pictur.Views.PhotoItem = Backbone.CompositeView.extend({
   template: JST['photo/item'],
   tagName: 'li',
   className: 'photo-item',
@@ -12,8 +12,18 @@ Pictur.Views.PhotoItem = Backbone.View.extend({
     }
   },
 
+  events: {
+    'click .photo-show': 'popPhoto'
+  },
+
   render: function () {
     this.$el.html(this.template({ photo: this.photo, user: this.user }));
     return this;
+  },
+
+  popPhoto: function (e) {
+    e.preventDefault();
+    var subView = new Pictur.Views.PhotoShow({ photo: this.photo });
+    this.addSubview('.pop-window', subView);
   }
 });
