@@ -3,10 +3,10 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   className: 'photo',
 
   initialize: function (options) {
+    this.photo = options.photo;
+    this.user = options.user;
     this.listenTo(this.photo, 'sync', this.render);
     this.listenTo(this.user, 'sync', this.render);
-    this.photo = options.photo;
-    this.user = options.user
   },
 
   events: {
@@ -19,7 +19,7 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   },
 
   destroyPhoto: function () {
-    this.model.destroy();
+    this.photo.destroy();
     Backbone.history.navigate('', { trigger: true });
   }
 });

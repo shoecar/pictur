@@ -4,7 +4,7 @@ window.Pictur = {
   Views: {},
   Routers: {},
   initialize: function() {
-    new Pictur.Routers.Router({ $root: $('root') });
+    new Pictur.Routers.Router({ $root: $('.root') });
     Backbone.history.start();
   }
 };

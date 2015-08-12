@@ -45,7 +45,7 @@ Pictur.Routers.Router = Backbone.Router.extend({
     this._swapView(view);
   },
 
-  _swapView = function (view) {
+  _swapView: function (view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$root.html(view.render().$el);
