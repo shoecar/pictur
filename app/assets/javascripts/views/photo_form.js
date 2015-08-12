@@ -19,7 +19,9 @@ Pictur.Views.PhotoForm = Backbone.View.extend({
     this.model.save({}, {
       success: function () {
         this.collection.add(this.model, { merge: true });
-        Backbone.history.navigate('#photo/' + this.model.get('id'), { trigger: true });
+        this.remove();
+        var view = new Pictur.Views.PhotoShow({ model: this.model });
+        $('.pop-content').html(view.render().$el);
       }.bind(this)
     });
   },

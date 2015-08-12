@@ -19,6 +19,20 @@
 .close-window {
   float: right;
   margin: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 18px;
+  color: #000000;
+  text-shadow: 0 1px 0 #ddd;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  text-decoration: none;
+  cursor: pointer;
+}
+.close-window:hover {
+  color: #000000;
+  text-decoration: none;
+  opacity: 0.4;
 }
 
 .content {

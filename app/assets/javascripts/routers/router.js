@@ -1,8 +1,8 @@
 Pictur.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$root = options.$root;
-    this.photos = new Pictur.Collections.Photos();
-    this.users = new Pictur.Collections.Users();
+    this.photos = options.photos;
+    this.users = options.users;
 
     $('.close-window').click(this._closeWindow);
     $('.fullscreen').click(this._closeWindow);

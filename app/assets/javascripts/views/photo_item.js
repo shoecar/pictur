@@ -3,10 +3,9 @@ Pictur.Views.PhotoItem = Backbone.CompositeView.extend({
   tagName: 'li',
   className: 'photo-item',
 
-  initialize: function (options) {
-    this.photo = options.photo;
-    this.user = options.user;
-    this.listenTo(this.photo, 'sync', this.render);
+  initialize: function () {
+    this.user = this.model.user();
+    this.listenTo(this.model, 'sync', this.render);
     if (this.user) {
       this.listenTo(this.user, 'sync', this.render);
     }
@@ -17,14 +16,15 @@ Pictur.Views.PhotoItem = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({ photo: this.photo, user: this.user }));
+    this.$el.html(this.template({ photo: this.model, user: this.user }));
     return this;
   },
 
   popPhoto: function (e) {
     e.preventDefault();
-    var subView = new Pictur.Views.PhotoShow({ photo: this.photo });
-    this.addSubview('.pop-window', subView);
-    debugger
+    var view = new Pictur.Views.PhotoShow({ model: this.model, collection: this.collection });
+    $('.pop-content').html(view.render().$el);
+    $('.fullscreen').css('display', 'block');
+    $('.pop-window').css('display', 'block');
   }
 });

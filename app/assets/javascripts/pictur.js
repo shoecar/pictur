@@ -4,9 +4,12 @@ window.Pictur = {
   Views: {},
   Routers: {},
   initialize: function() {
-    var router = new Pictur.Routers.Router({ $root: $('.root') });
+    var photos = new Pictur.Collections.Photos();
+    var users = new Pictur.Collections.Users();
 
-    var nav = new Pictur.Views.MainNav({router: router });
+    var router = new Pictur.Routers.Router({ $root: $('.root'), photos: photos, users: users });
+
+    var nav = new Pictur.Views.MainNav({ router: router, photos: photos });
     $(".main-nav").html(nav.render().$el);
 
     Backbone.history.start();
