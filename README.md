@@ -7,9 +7,9 @@
 ## Minimum Viable Product
 Pictur is a clone of Imgur built on Rails and Backbone. Users can:
 
-- [ ] Create accounts
-- [ ] Create sessions (log in)
-- [ ] Create photos
+- [x] Create accounts
+- [x] Create sessions (log in)
+- [x] Create photos
 - [ ] Create comments
 - [ ] View user account (photos, comments)
 - [ ] View photos

@@ -34,6 +34,7 @@ a:hover {
 
 .root {
   clear: both;
+  margin: 10px;
 }
 
 .main-nav {
@@ -47,8 +48,8 @@ a:hover {
 
 .logo {
   float: right;
-  height: 40px;
-  margin: 5px 5px 0 0;
+  height: 36px;
+  margin: 7px 7px 0 0;
 }
 
 .main-nav li {

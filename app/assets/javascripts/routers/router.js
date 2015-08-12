@@ -4,6 +4,10 @@ Pictur.Routers.Router = Backbone.Router.extend({
     this.photos = new Pictur.Collections.Photos();
     this.users = new Pictur.Collections.Users();
     this.mainNav();
+    this.backRoute = "#";
+
+    $('.close-window').click(this._closeWindow);
+    $('.fullscreen').click(this._closeWindow);
   },
 
   routes: {
@@ -56,6 +60,8 @@ Pictur.Routers.Router = Backbone.Router.extend({
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$root.html(view.render().$el);
+    this.backRoute = '#' + Backbone.history.getFragment();
+    console.log(this.backRoute);
   },
 
   _newWindow: function (view) {
@@ -63,14 +69,17 @@ Pictur.Routers.Router = Backbone.Router.extend({
       this._currentWindow.remove();
     } else {
       $('.fullscreen').css('display', 'block');
+      $('.window').css('display', 'block');
     }
       this._currentWindow = view;
       $('.content').html(view.render().$el);
   },
 
   _closeWindow: function () {
-    this._currentWindow.remove()
+    this._currentWindow && this._currentWindow.remove()
     this._currentWindow = null;
     $('.fullscreen').css('display', 'none');
+    $('.window').css('display', 'none');
+    Backbone.history.navigate(this.backRoute, { trigger: true });
   }
 });

@@ -5,7 +5,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.photos = options.photos;
     this.users = options.users;
-    this.listenTo(this.photos, 'sync remove', this.render);
+    this.listenTo(this.photos, 'add change:created_at remove reset', this.render);
     this.listenTo(this.photos, 'add', this.addPhotoItem);
     this.photos.each(this.addPhotoItem.bind(this));
   },
