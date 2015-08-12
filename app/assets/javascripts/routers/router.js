@@ -60,8 +60,7 @@ Pictur.Routers.Router = Backbone.Router.extend({
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$root.html(view.render().$el);
-    this.backRoute = '#' + Backbone.history.getFragment();
-    console.log(this.backRoute);
+    this.backRoute = Backbone.history.getFragment();
   },
 
   _newWindow: function (view) {
