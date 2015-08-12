@@ -8,4 +8,9 @@ Description
 <textarea name="photo[description]"><%= photo.escape('description') %></textarea>
 </label>
 
+<label>
+User ID
+<input type="text" name="photo[user_id]" value="<%= photo.escape('id') %>">
+</label>
+
 <input type="submit" class="photo-submit">

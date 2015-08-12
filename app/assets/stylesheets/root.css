@@ -6,6 +6,11 @@ html {
   color: #e7e7e7;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 a {
   color: #e7e7e7;
   font-size: 16px;
@@ -25,4 +30,30 @@ a:hover {
   -moz-transition: all 700ms ease-out;
   -o-transition: all 700ms ease-out;
   transition: all 700ms ease-out;
+}
+
+.root {
+  clear: both;
+}
+
+.main-nav {
+  padding: 0;
+  margin: 0 0 20px 0;
+  list-style: none;
+  width: 100%;
+  height: 50px;
+  background-color: #666;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  right: 20px;
+  top: 10%;
+  height: 80%;
+}
+
+.main-nav li {
+  float: left;
+  margin: 15px;
 }

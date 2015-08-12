@@ -3,6 +3,7 @@ Pictur.Routers.Router = Backbone.Router.extend({
     this.$root = options.$root;
     this.photos = new Pictur.Collections.Photos();
     this.users = new Pictur.Collections.Users();
+    this.mainNav();
   },
 
   routes: {
@@ -13,9 +14,14 @@ Pictur.Routers.Router = Backbone.Router.extend({
     'photo/:id/edit': 'photoEdit'
   },
 
+  mainNav: function () {
+    var view = new Pictur.Views.MainNav();
+    $('.main-nav').append(view.render().$el);
+  },
+
   photoIndex: function () {
     this.photos.fetch();
-    var view = new Pictur.Views.PhotoIndex({ collection: this.photos });
+    var view = new Pictur.Views.PhotoIndex({ photos: this.photos, users: this.users });
     this._swapView(view);
   },
 

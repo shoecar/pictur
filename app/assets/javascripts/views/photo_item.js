@@ -3,12 +3,17 @@ Pictur.Views.PhotoItem = Backbone.View.extend({
   tagName: 'li',
   className: 'photo-item',
 
-  initialize: function () {
-    this.listenTo(this.model, 'sync', this.render);
+  initialize: function (options) {
+    this.photo = options.photo;
+    this.user = options.user;
+    this.listenTo(this.photo, 'sync', this.render);
+    if (this.user) {
+      this.listenTo(this.user, 'sync', this.render);
+    }
   },
 
   render: function () {
-    this.$el.html(this.template({ photo: this.model }));
+    this.$el.html(this.template({ photo: this.photo, user: this.user }));
     return this;
   }
 });
