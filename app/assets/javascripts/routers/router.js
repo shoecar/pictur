@@ -29,19 +29,19 @@ Pictur.Routers.Router = Backbone.Router.extend({
     var photo = this.photos.getOrFetch(id);
     var user = this.users.getOrFetch(photo.get('user_id'));
     var view = new Pictur.Views.PhotoShow({ photo: photo, user: user });
-    this._swapView(view);
+    this._newWindow(view);
   },
 
   photoNew: function () {
     var photo = new Pictur.Models.Photo();
     var view = new Pictur.Views.PhotoForm({ model: photo, collection: this.photos });
-    this._swapView(view);
+    this._newWindow(view);
   },
 
   photoEdit: function (id) {
     var photo = this.photos.getOrFetch(id);
     var view = new Pictur.Views.PhotoForm({ model: photo, collection: this.photos });
-    this._swapView(view);
+    this._newWindow(view);
   },
 
   userShow: function (id) {
@@ -52,8 +52,25 @@ Pictur.Routers.Router = Backbone.Router.extend({
   },
 
   _swapView: function (view) {
+    this._currentWindow && this._closeWindow();
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$root.html(view.render().$el);
+  },
+
+  _newWindow: function (view) {
+    if (this._currentWindow) {
+      this._currentWindow.remove();
+    } else {
+      $('.fullscreen').css('display', 'block');
+    }
+      this._currentWindow = view;
+      $('.content').html(view.render().$el);
+  },
+
+  _closeWindow: function () {
+    this._currentWindow.remove()
+    this._currentWindow = null;
+    $('.fullscreen').css('display', 'none');
   }
 });

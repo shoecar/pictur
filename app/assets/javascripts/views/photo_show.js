@@ -1,5 +1,6 @@
 Pictur.Views.PhotoShow = Backbone.View.extend({
   template: JST['photo/show'],
+  tagName: 'div',
   className: 'photo',
 
   initialize: function (options) {
@@ -10,7 +11,9 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   },
 
   events: {
-    'click .delete-photo': 'destroyPhoto'
+    'click .delete-photo': 'destroyPhoto',
+    'click .fullscreen': 'closeWindow',
+    'click .close-window': 'closeWindow'
   },
 
   render: function () {
@@ -21,5 +24,10 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   destroyPhoto: function () {
     this.photo.destroy();
     Backbone.history.navigate('', { trigger: true });
+  },
+
+  closeWindow: function () {
+    this.remove();
+    $('.fullscreen').css('display', 'none');
   }
 });
