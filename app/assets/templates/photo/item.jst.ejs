@@ -1,6 +1,13 @@
-<a href="#" class="photo-show">
-  <%= photo.escape('title') %>
+<a href="javascript:void(0)" class="photo-show">
+  <img src="<%= photo.escape('thumb_url') %>" alt="" />
 </a>
+
+<br>
+
+<h2>
+  <%= photo.escape('title') %>
+</h2>
+
 <br>
 <% if (user) {%>
   Submitted By:

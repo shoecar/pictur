@@ -8,10 +8,10 @@ Pictur.Views.PhotoForm = Backbone.View.extend({
   },
 
   events: {
-    'click .photo-submit': 'savePhoto'
+    'click .photo-submit': 'photoForm'
   },
 
-  savePhoto: function (e) {
+  photoForm: function (e) {
     e.preventDefault();
     var formData = this.$el.serializeJSON();
     formData.photo['user_id'] = CURRENTUSER.id;

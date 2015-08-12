@@ -23,10 +23,23 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
 
   popForm: function (e) {
     e.preventDefault();
+    var photos = this.photos;
     var photo = new Pictur.Models.Photo();
-    var view = new Pictur.Views.PhotoForm({ model: photo, collection: this.photos });
-    $('.pop-content').html(view.render().$el);
-    $('.fullscreen').css('display', 'block');
-    $('.pop-window').css('display', 'block');
+    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){
+      var data = result[0];
+      photo.set({
+        url: data.url,
+        thumb_url: data.thumbnail_url,
+        user_id: CURRENTUSER.id,
+        title: '.'
+        });
+      photo.save({}, {
+        success: function(){
+          photos.add(photo);
+          var view = new Pictur.Views.PhotoShow({ model: photo });
+          $('.pop-content').html(view.render().$el);
+        }
+      });
+    });
   }
 });
