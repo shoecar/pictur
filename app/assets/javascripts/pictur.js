@@ -4,7 +4,11 @@ window.Pictur = {
   Views: {},
   Routers: {},
   initialize: function() {
-    new Pictur.Routers.Router({ $root: $('.root') });
+    var router = new Pictur.Routers.Router({ $root: $('.root') });
+
+    var nav = new Pictur.Views.MainNav({router: router });
+    $(".main-nav").html(nav.render().$el);
+
     Backbone.history.start();
   }
 };

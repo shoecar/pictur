@@ -25,5 +25,6 @@ Pictur.Views.PhotoItem = Backbone.CompositeView.extend({
     e.preventDefault();
     var subView = new Pictur.Views.PhotoShow({ photo: this.photo });
     this.addSubview('.pop-window', subView);
+    debugger
   }
 });
