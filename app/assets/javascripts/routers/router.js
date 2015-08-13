@@ -32,6 +32,7 @@ Pictur.Routers.Router = Backbone.Router.extend({
   },
 
   _swapView: function (view) {
+    this._closeWindow();
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$root.html(view.render().$el);

@@ -4,6 +4,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 20;
 }
 
 .pop-window {
@@ -15,6 +16,7 @@
   top: 5%;
   background-color: #666;
   margin: 20px;
+  z-index: 25;
 }
 
 .close-window {
@@ -31,7 +33,7 @@
   filter: alpha(opacity=20);
   text-decoration: none;
   cursor: pointer;
-  z-index: 5;
+  z-index: 30;
 }
 .close-window:hover {
   color: #aaa;

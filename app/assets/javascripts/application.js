@@ -2,6 +2,8 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery.serializeJSON
+//= require masonry/masonry.min
+//= require masonry/imagesloaded.min
 //= require underscore
 //= require backbone
 //= require pictur

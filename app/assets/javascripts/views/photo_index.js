@@ -16,16 +16,28 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
       var user = this.users.getOrFetch(photo.get('user_id'));
     }
     var subView = new Pictur.Views.PhotoItem({ model: photo, collection: this.photos });
-    this.addSubview('.photos', subView);
+    this.addSubview('#masonry-container', subView);
   },
 
   removePhotoItem: function (photo) {
-    this.removeModelSubview('.photos', photo);
+    this.removeModelSubview('#masonry-container', photo);
   },
 
   render: function () {
     this.$el.html(this.template());
     this.attachSubviews();
+    this.loadMasonry();
     return this;
+  },
+
+  loadMasonry: function () {
+    var $grid = $('#masonry-container').imagesLoaded(function () {
+      $grid.masonry({
+        itemSelector: '.photo-item',
+        columnWidth: 400,
+        isFitWidth: true,
+        "gutter": 5
+      });
+    });
   }
 });

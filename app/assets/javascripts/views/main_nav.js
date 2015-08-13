@@ -31,8 +31,7 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
       photo.set({
         url: data.url,
         thumb_url: data.eager[0]['url'],
-        user_id: CURRENTUSER.id,
-        title: '.'
+        user_id: CURRENTUSER.id
       });
       photo.save({}, {
         success: function(){

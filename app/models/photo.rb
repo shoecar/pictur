@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  validates :title, :user_id, presence: true
+  validates :user_id, :url, :thumb_url, presence: true
 
   belongs_to :user
 end

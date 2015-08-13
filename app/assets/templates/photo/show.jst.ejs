@@ -1,22 +1,42 @@
-<img src="<%= photo.escape('url') %>" alt="" />
+<img src="<%= photo.escape('url') %>"/>
 
-<h1>
-  <%= photo.escape('title') %>
-</h1>
+<% if (photo.escape('title').length > 0) { %>
+  <h1>
+    <%= photo.escape('title') %>
 
-<p>
-  description: <br>
-  <%= photo.escape('description') %>
-</p>
+    <% if (CURRENTUSER.id === photo.get('user_id')) { %>
+      <button type="button" class="btn btn-lrg btn-primary">Edit Title</button>
+    <% } %>
+  </h1>
+<% } else { %>
+  <% if (CURRENTUSER.id === photo.get('user_id')) { %>
+    <button type="button" class="btn btn-lrg btn-primary">Add Title</button>
+  <% } %>
+<% } %>
 
-<h4>
-  posted by:
-  <a href="#user/<%= user.get('id') %>">
-    <%= user.escape('username') %>
-  </a>
-</h4>
+<% if (photo.escape('description').length > 0) { %>
+  <p>
+    <%= photo.escape('description') %>
+  </p>
+
+  <% if (CURRENTUSER.id === photo.get('user_id')) { %>
+    <button type="button" class="btn btn-lrg btn-primary">Edit Description</button>
+  <% } %>
+<% } else { %>
+  <% if (CURRENTUSER.id === photo.get('user_id')) { %>
+    <button type="button" class="btn btn-lrg btn-primary">Add Description</button>
+  <% } %>
+<% } %>
+
+<% if (user.escape('username').length > 0 && photo.escape('user_id') != CURRENTUSER.id) { %>
+  <h4>
+    posted by:
+    <a href="#user/<%= user.get('id') %>">
+      <%= user.escape('username') %>
+    </a>
+  </h4>
+<% } %>
 
 <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-  <a href="javascript:void(0)" class="photo-form">Edit Photo</a>
   <a href="#" class='delete-photo'>Delete Photo</a>
 <% } %>

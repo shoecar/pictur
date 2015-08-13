@@ -13,6 +13,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 gem 'cloudinary'
 gem 'figaro'
+gem 'masonry-rails'
 
 group :development, :test do
   gem 'pry-rails'

@@ -1,16 +1,15 @@
 <a href="javascript:void(0)" class="photo-thumb">
-  <div class="photo-wrap">
-    <img src="<%= photo.escape('thumb_url') %>" alt="" />
-    <div class="photo-shadow"></div>
+  <img src="<%= photo.escape('thumb_url') %>" alt="" />
+
+  <div class="info-wrap">
+    <h3 class="photo-title">
+      <%= photo.escape('title') %>
+    </h3>
+
+    <% if (user.escape('username').length > 0) {%>
+      <p class="photo-username">
+        Submitted By: <%= user.escape('username') %>
+      </p>
+    <% }; %>
   </div>
 </a>
-
-<h3 class="photo-title">
-  <%= photo.escape('title') %>
-</h3>
-
-<% if (user) {%>
-  <p class="photo-username">
-    Submitted By: <%= user.escape('username') %>
-  </p>
-<% }; %>

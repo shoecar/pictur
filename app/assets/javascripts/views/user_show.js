@@ -1,6 +1,6 @@
 Pictur.Views.UserShow = Backbone.CompositeView.extend({
   template: JST['user/show'],
-  className: 'user',
+  className: 'user-show',
 
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);

@@ -1,5 +1,9 @@
-<h1>
-  <%= user.escape('username') %>
+<h1 class="username">
+  <% if (CURRENTUSER.id === user.get('id')) { %>
+    Your Profile
+  <% } else { %>
+    <%= user.escape('username') %>'s Profile
+  <% } %>
 </h1>
 
 <div class="photos"></div>
