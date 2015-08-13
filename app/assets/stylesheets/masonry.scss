@@ -1,8 +1,7 @@
 .photo-index {
+  margin: 20px;
 
   #masonry-container {
-    margin: 0 auto;
-    margin-bottom: 20px;
     clear: both;
     z-index: 2;
     -webkit-border-radius: 5px;
@@ -10,9 +9,28 @@
             border-radius: 5px;
 
     .photo-item {
-      margin-bottom: 5px;
+      float: left;
       z-index: 13;
-      position: relative;
+
+      img {
+        padding: 3px;
+        display: block;
+        max-width: 100%;
+      }
+    }
+
+    .photo-sizer, .photo-item { width: 100%; }
+
+    @media screen and (min-width: 500px) {
+      .photo-sizer, .photo-item { width: 50%; }
+    }
+
+    @media screen and (min-width: 750px) {
+      .photo-sizer, .photo-item { width: 33.3333%; }
+    }
+
+    @media screen and (min-width: 1000px) {
+      .photo-sizer, .photo-item { width: 25%; }
     }
 
     .photo-item:hover {
@@ -24,7 +42,7 @@
       }
     }
 
-    .photo-thumb {
+    .photo-item img {
       position: relative;
       z-index: 11;
     }

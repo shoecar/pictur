@@ -4,6 +4,7 @@
 //= require jquery.serializeJSON
 //= require masonry/masonry.min
 //= require masonry/imagesloaded.min
+//= require masonry/infinitescroll.min
 //= require underscore
 //= require backbone
 //= require pictur

@@ -2,14 +2,18 @@
   <img src="<%= photo.escape('thumb_url') %>" alt="" />
 
   <div class="info-wrap">
-    <h3 class="photo-title">
-      <%= photo.escape('title') %>
-    </h3>
+    <% if (photo.escape('title').length > 0) { %>
+      <h3 class="photo-title">
+        <%= photo.escape('title') %>
+      </h3>
+    <% } %>
 
-    <% if (user.escape('username').length > 0) {%>
-      <p class="photo-username">
-        Submitted By: <%= user.escape('username') %>
-      </p>
+    <p class="photo-username">
+    <% if (user.escape('username').length > 0 && CURRENTUSER.id != user.get('id')) {%>
+      Uploaded By: <%= user.escape('username') %>
+    <% } else { %>
+      Your Upload
     <% }; %>
+    </p>
   </div>
 </a>

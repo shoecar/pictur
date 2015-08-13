@@ -1,32 +1,18 @@
 <img src="<%= photo.escape('url') %>"/>
 
-<% if (photo.escape('title').length > 0) { %>
-  <h1>
+<h1 class='photo-title'>
+  <% if (photo.escape('title').length > 0) { %>
     <%= photo.escape('title') %>
-
-    <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-      <button type="button" class="btn btn-lrg btn-primary">Edit Title</button>
-    <% } %>
-  </h1>
-<% } else { %>
-  <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-    <button type="button" class="btn btn-lrg btn-primary">Add Title</button>
   <% } %>
-<% } %>
+</h1>
 
-<% if (photo.escape('description').length > 0) { %>
-  <p>
+
+<p class='photo-description'>
+  <% if (photo.escape('description').length > 0) { %>
     <%= photo.escape('description') %>
-  </p>
+  <% } %>
+</p>
 
-  <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-    <button type="button" class="btn btn-lrg btn-primary">Edit Description</button>
-  <% } %>
-<% } else { %>
-  <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-    <button type="button" class="btn btn-lrg btn-primary">Add Description</button>
-  <% } %>
-<% } %>
 
 <% if (user.escape('username').length > 0 && photo.escape('user_id') != CURRENTUSER.id) { %>
   <h4>
@@ -36,7 +22,21 @@
     </a>
   </h4>
 <% } %>
+<div class="edit-buttons">
+  <!-- <button type="button" class="fill-screen btn btn-lrg btn-default">Fullscreen</button> -->
+  <% if (CURRENTUSER.id === photo.get('user_id')) { %>
+    <% if (photo.escape('title').length > 0) { %>
+      <button type="button" class="change-title btn btn-lrg btn-info">Edit Title</button>
+    <% } else { %>
+      <button type="button" class="change-title btn btn-lrg btn-primary">Add Title</button>
+    <% } %>
 
-<% if (CURRENTUSER.id === photo.get('user_id')) { %>
-  <a href="#" class='delete-photo'>Delete Photo</a>
-<% } %>
+    <% if (photo.escape('description').length > 0) { %>
+      <button type="button" class="change-description btn btn-lrg btn-info">Edit Description</button>
+    <% } else { %>
+      <button type="button" class="change-description btn btn-lrg btn-primary">Add Description</button>
+    <% } %>
+
+    <button type="button" class="btn btn-lrg btn-danger">Delete Photo</button>
+  <% } %>
+</div>

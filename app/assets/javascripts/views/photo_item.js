@@ -21,7 +21,5 @@ Pictur.Views.PhotoItem = Backbone.CompositeView.extend({
     e.preventDefault();
     var view = new Pictur.Views.PhotoShow({ model: this.model, collection: this.collection });
     $('.pop-content').html(view.render().$el);
-    $('.fullscreen').css('display', 'block');
-    $('.pop-window').css('display', 'block');
   }
 });
