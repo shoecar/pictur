@@ -62,8 +62,14 @@ $dropDown       : true;
         background-color: $bgHighlight; }}}
 }
 
-.logo {
-  height: 40px;
-  position: absolute;
-  top: 5px;
+.navbar-default {
+  .logo {
+    height: 40px;
+    position: absolute;
+    top: 5px;
+  }
+
+  .btn {
+    padding: 5px;
+  }
 }

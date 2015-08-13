@@ -6,11 +6,8 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
     this.photos = options.photos;
     this.listenTo(this.photos, 'add change remove reset', this.render);
     this.listenTo(this.photos, 'add', this.addPhotoItem);
+    this.listenTo(this.photos, 'remove', this.removePhotoItem);
     this.photos.each(this.addPhotoItem.bind(this));
-    if (options.users) {
-      this.users = options.users;
-      this.listenTo(this.users, 'add change remove reset', this.render);
-    }
   },
 
 
@@ -20,6 +17,10 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
     }
     var subView = new Pictur.Views.PhotoItem({ model: photo, collection: this.photos });
     this.addSubview('.photos', subView);
+  },
+
+  removePhotoItem: function (photo) {
+    this.removeModelSubview('.photos', photo);
   },
 
   render: function () {

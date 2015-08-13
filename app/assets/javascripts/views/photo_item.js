@@ -1,18 +1,15 @@
 Pictur.Views.PhotoItem = Backbone.CompositeView.extend({
   template: JST['photo/item'],
-  tagName: 'li',
+  tagName: 'div',
   className: 'photo-item',
 
   initialize: function () {
     this.user = this.model.user();
     this.listenTo(this.model, 'sync', this.render);
-    if (this.user) {
-      this.listenTo(this.user, 'sync', this.render);
-    }
   },
 
   events: {
-    'click .photo-show': 'popPhoto'
+    'click .photo-thumb': 'popPhoto'
   },
 
   render: function () {

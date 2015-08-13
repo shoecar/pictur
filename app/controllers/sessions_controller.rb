@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @photos = Photo.all
     render :new
   end
 

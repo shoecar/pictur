@@ -9,37 +9,39 @@
 .pop-window {
   display: none;
   position: absolute;
-  left: 25%;
-  width: 50%;
-  top: 25%;
-  height: 50%;
+  padding: 10px;
+  left: 20%;
+  width: 60%;
+  top: 5%;
   background-color: #666;
+  margin: 20px;
 }
 
 .close-window {
-  float: right;
+  position: absolute;
+  right: 10px;
+  top: 10px;
   margin: 10px;
   font-size: 40px;
   font-weight: bold;
   line-height: 18px;
-  color: #000000;
-  text-shadow: 0 1px 0 #ddd;
-  opacity: 0.2;
+  color: #ddd;
+  text-shadow: 0 0 2px #000;
+  opacity: 0.8;
   filter: alpha(opacity=20);
   text-decoration: none;
   cursor: pointer;
+  z-index: 5;
 }
 .close-window:hover {
-  color: #000000;
+  color: #aaa;
   text-decoration: none;
-  opacity: 0.4;
 }
 
 .pop-content {
-  position: absolute;
+  position: relative;
   left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%);
 }
 
 .pop-content img {
