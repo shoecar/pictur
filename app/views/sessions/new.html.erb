@@ -30,6 +30,14 @@
 </div>
 
 <script type="text/javascript">
+  var $grid = $('#session-photos').imagesLoaded(function () {
+    $grid.masonry({
+      itemSelector: '.photo-item',
+      percentPosition: true,
+      columnWidth: '.photo-sizer'
+    });
+  });
+
   var windowHeight = $(window).height();
-  $('.session-photos').css('max-height', windowHeight)
+  $('#session-photos').css('max-height', windowHeight)
 </script>

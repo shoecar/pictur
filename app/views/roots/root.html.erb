@@ -11,14 +11,4 @@
 
 <script type="text/javascript">
   var CURRENTUSER = { id: <%= current_user.id %>, username: '<%= current_user.username %>' };
-
-  $(function () {
-    var $grid = $('#session-photos').imagesLoaded(function () {
-      $grid.masonry({
-        itemSelector: '.photo-item',
-        percentPosition: true,
-        columnWidth: '.photo-sizer'
-      });
-    });
-  });
 </script>
