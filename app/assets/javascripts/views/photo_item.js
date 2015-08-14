@@ -1,4 +1,4 @@
-Pictur.Views.PhotoItem = Backbone.CompositeView.extend({
+Pictur.Views.PhotoItem = Backbone.View.extend({
   template: JST['photo/item'],
   tagName: 'div',
   className: 'photo-item',

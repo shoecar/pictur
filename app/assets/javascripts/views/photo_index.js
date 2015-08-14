@@ -12,9 +12,6 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
 
 
   addPhotoItem: function (photo) {
-    if (this.users) {
-      var user = this.users.getOrFetch(photo.get('user_id'));
-    }
     var subView = new Pictur.Views.PhotoItem({ model: photo, collection: this.photos });
     this.addSubview('#masonry-container', subView);
   },

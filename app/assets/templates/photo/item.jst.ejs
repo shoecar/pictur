@@ -9,10 +9,10 @@
     <% } %>
 
     <p class="photo-username">
-    <% if (user.escape('username').length > 0 && CURRENTUSER.id != user.get('id')) {%>
-      Uploaded By: <%= user.escape('username') %>
-    <% } else { %>
+    <% if (CURRENTUSER.id === user.get('id')) { %>
       Your Upload
+    <% } else if (user.escape('username').length > 0 ) { %>
+      Uploaded By: <%= user.escape('username') %>
     <% }; %>
     </p>
   </div>

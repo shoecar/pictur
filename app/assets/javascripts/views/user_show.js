@@ -8,7 +8,7 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   addPhotoView: function () {
-    var subView = new Pictur.Views.PhotoIndex({ photos: this.collection });
+    var subView = new Pictur.Views.PhotoIndex({ photos: this.model.photos() });
     this.addSubview('.photos', subView);
   },
 

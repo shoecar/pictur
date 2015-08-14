@@ -23,8 +23,11 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template({ photo: this.model, user: this.user }));
-    $('.fullscreen').css('display', 'block').css('height', $(document).height() + 'px');
-    $('.pop-window').css('display', 'block').css('top', $(window).scrollTop() + 'px');
+    $('.navbar').fadeOut('fast');
+    $('.fullscreen').fadeIn('fast');
+    $('.pop-window').imagesLoaded(function () {
+      $('.pop-window').slideDown().css('top', $(window).scrollTop() + 'px');
+    });
     return this;
   },
 
@@ -35,9 +38,11 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   },
 
   changeTitle: function (e) {
-    var text = this.model.escape('title');
-    $('.photo .photo-title').html('<input type="text" value="' + text + '">');
-    $('.photo .photo-title').find('input').focus();
+    if (CURRENTUSER.id === this.user.get('id')) {
+      var text = this.model.escape('title');
+      $('.photo .photo-title').html('<input type="text" value="' + text + '">');
+      $('.photo .photo-title').find('input').putCursorAtEnd();
+    }
   },
 
   updateTitle: function (e) {
@@ -46,9 +51,11 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   },
 
   changeDescription: function (e) {
-    var text = this.model.escape('description');
-    $('.photo .photo-description').html('<textarea rows="4">' + text + '</textarea>');
-    $('.photo .photo-description').find('textarea').focus();
+    if (CURRENTUSER.id === this.user.get('id')) {
+      var text = this.model.escape('description');
+      $('.photo .photo-description').html('<textarea rows="4">' + text + '</textarea>');
+      $('.photo .photo-description').find('textarea').putCursorAtEnd();
+    }
   },
 
   updateDescription: function (e) {
@@ -63,9 +70,9 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   },
 
   closeWindow: function () {
-    $('.fullscreen').css('display', 'none');
-    $('.pop-window').css('display', 'none');
-    $('.pop-window').css('top','').css('left', '').css('width', '').css('margin', '');
+    $('.navbar').fadeIn('fast');
+    $('.fullscreen').fadeOut('fast');
+    $('.pop-window').slideUp('fast');
     this.remove();
   }
 });

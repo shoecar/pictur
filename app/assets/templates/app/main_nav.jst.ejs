@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-bar" aria-expanded="false">
@@ -21,13 +21,13 @@
         <li class="dropdown">
           <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= CURRENTUSER.username %> <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#user/<%= CURRENTUSER.id %>">Profile</a></li>
+            <li><a href="#user/<%= CURRENTUSER.id %>"><i class="fa fa-user"></i>Profile</a></li>
             <li role="separator" class="divider"></li>
             <li>
               <form class="sign-out" action="/session" method="post">
                 <input type="hidden" name="authenticity_token" value="<%= authToken %>">
                 <input type="hidden" name="_method" value="delete">
-                <input class="btn btn-default btn-block" type="submit" value="Sign Out">
+                <button class="btn btn-link sign-out-button" type="submit"><i class="fa fa-sign-out"></i>Sign Out</button>
               </form>
             </li>
           </ul>

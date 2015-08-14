@@ -26,8 +26,7 @@ Pictur.Routers.Router = Backbone.Router.extend({
 
   userShow: function (id) {
     var user = this.users.getOrFetch(id);
-    var photos = user.photos();
-    var view = new Pictur.Views.UserShow({ model: user, collection: photos });
+    var view = new Pictur.Views.UserShow({ model: user });
     this._swapView(view);
   },
 
@@ -39,7 +38,8 @@ Pictur.Routers.Router = Backbone.Router.extend({
   },
 
   _closeWindow: function () {
-    $('.fullscreen').css('display', 'none');
-    $('.pop-window').css('display', 'none');
+    $('.navbar').fadeIn('fast');
+    $('.fullscreen').fadeOut('fast');
+    $('.pop-window').slideUp('fast');
   }
 });

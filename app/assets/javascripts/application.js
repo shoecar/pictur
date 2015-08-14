@@ -2,6 +2,7 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery.serializeJSON
+//= require jquery.cursoratend
 //= require masonry/masonry.min
 //= require masonry/imagesloaded.min
 //= require masonry/infinitescroll.min

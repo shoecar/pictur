@@ -10,5 +10,7 @@
 <div class="root"></div>
 
 <script type="text/javascript">
-  var CURRENTUSER = { id: <%= current_user.id %>, username: '<%= current_user.username %>' };
+  <% if current_user %>
+    var CURRENTUSER = { id: <%= current_user.id %>, username: '<%= current_user.username %>' };
+  <% end %>
 </script>

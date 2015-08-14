@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
   def new
     @photos = Photo.all
-    render :new
+    @toggle = "session"
+    render :combo
   end
 
   def create
@@ -10,8 +11,10 @@ class SessionsController < ApplicationController
       log_in!(user)
       redirect_to root_url
     else
-      flash.now[:errors] = ["Invalid Username or Passowrd"]
-      render :new
+      flash.now[:errors] = ["Invalid Username or Password"]
+      @photos = Photo.all
+      @toggle = "session"
+      render :combo
     end
   end
 

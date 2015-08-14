@@ -1,0 +1,101 @@
+<div class="border-shadow"></div>
+
+<div class="session-window">
+  <div class="errors">
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="sign-in<%= ' unhide' if @toggle == "session" %>">
+    <h1>Sign In</h1>
+
+    <form action="<%= session_url %>" method="post" class="col-xs-12 form-horizontal">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+      <div class="form-group">
+        <div class="col-xs-8 col-xs-offset-2">
+          <i class="fa fa-user"></i>
+          <input type="text" class="form-control" placeholder="Username" name="session[username]">
+
+          <i class="fa fa-key"></i>
+          <input type="password" class="form-control" placeholder="Password" name="session[password]">
+
+          <div class="col-xs-4 col-xs-offset-1">
+            <button type="submit" class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="bottom" title="Sign In"><i class="fa fa-sign-in"></i></button>
+          </div>
+
+          <div class="col-xs-4 col-xs-offset-2">
+            <button type="button" class="toggle-form btn btn-primary btn-block" data-toggle="tooltip" data-placement="bottom" title="New User"><i class="fa fa-user-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="new-user<%= ' unhide' if @toggle == "user" %>">
+    <h1>New User</h1>
+
+    <form action="<%= users_url %>" method="post" class="col-xs-12 form-horizontal">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+      <div class="form-group">
+        <div class="col-xs-8 col-xs-offset-2">
+          <i class="fa fa-user"></i>
+          <input type="text" class="form-control" placeholder="Username" name="user[username]">
+
+          <i class="fa fa-key"></i>
+          <input type="password" class="form-control" placeholder="Password" name="user[password]">
+
+          <i class="fa fa-unlock-alt"></i>
+          <input type="password" class="form-control" placeholder="Confirm Password" name="user[confirm_password]">
+
+          <div class="col-xs-4 col-xs-offset-1">
+            <button type="submit" class="btn btn-default btn-block" data-toggle="tooltip" data-placement="bottom" title="Create User"><i class="fa fa-user-plus"></i></button>
+          </div>
+
+          <div class="col-xs-4 col-xs-offset-2">
+            <button type="button" class="toggle-form btn btn-default btn-block" data-toggle="tooltip" data-placement="bottom" title="Sign In"><i class="fa fa-sign-in"></i></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="session-photos" class="transitions-enabled clearfix">
+  <div class="photo-sizer"></div>
+  <% @photos.each do |photo| %>
+    <div class="photo-item">
+      <img src="<%= photo.thumb_url %>"/>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $('button').tooltip({ container: 'body' });
+
+  $('.toggle-form').click(function () {
+    $('.errors').html('');
+
+    if ($('.sign-in').css('display') === "block") {
+      $('.sign-in').slideUp();
+      $('.new-user').slideDown();
+    } else {
+      $('.sign-in').slideDown();
+      $('.new-user').slideUp();
+    }
+  });
+
+  var $grid = $('#session-photos').imagesLoaded(function () {
+    $grid.masonry({
+      itemSelector: '.photo-item',
+      percentPosition: true,
+      columnWidth: '.photo-sizer'
+    });
+  });
+  var windowHeight = $(window).height();
+  $('#session-photos').css('max-height', windowHeight)
+</script>

@@ -63,6 +63,8 @@ $dropDown       : true;
 }
 
 .navbar-default {
+  z-index: 5;
+
   .logo {
     height: 40px;
     position: absolute;
@@ -71,5 +73,24 @@ $dropDown       : true;
 
   .btn {
     padding: 5px;
+  }
+
+  .sign-out-button {
+    color: #fff;
+    font-size: 16px;
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    white-space: nowrap;
+    width: 100%;
+    text-align: left;
+  }
+
+  .sign-out-button:hover {
+    color: #cccccc;
+    background-color: #333333;
+    text-decoration: none;
   }
 }
