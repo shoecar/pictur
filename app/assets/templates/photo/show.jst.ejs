@@ -2,27 +2,20 @@
   <img src="<%= photo.escape('url') %>" class="full-photo"/>
 </a>
 
-<div class="edit-buttons">
-  <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-    <% if (photo.escape('title').length > 0) { %>
-      <button type="button" class="change-title btn btn-lrg btn-info">Edit Title</button>
-    <% } else { %>
-      <button type="button" class="change-title btn btn-lrg btn-primary">Add Title</button>
-    <% } %>
-
-    <% if (photo.escape('description').length > 0) { %>
-      <button type="button" class="change-description btn btn-lrg btn-info">Edit Description</button>
-    <% } else { %>
-      <button type="button" class="change-description btn btn-lrg btn-primary">Add Description</button>
-    <% } %>
-
-    <button type="button" class="delete-photo btn btn-lrg btn-danger">Delete Photo</button>
-  <% } %>
-</div>
+<% if (CURRENTUSER.id === photo.get('user_id')) { %>
+  <button type="button" class="delete-photo btn btn-lrg btn-danger"><i class="fa fa-trash-o"></i></button>
+<% } %>
 
 <h1 class='photo-title'>
   <% if (photo.escape('title').length > 0) { %>
     <%= photo.escape('title') %>
+  <% } %>
+
+  <% if (CURRENTUSER.id === photo.get('user_id')) { %>
+    <% if (photo.escape('title').length === 0) { %>
+      Add Title
+    <% } %>
+    <i class="change-title fa fa-pencil"></i>
   <% } %>
 </h1>
 
@@ -30,6 +23,13 @@
 <p class='photo-description'>
   <% if (photo.escape('description').length > 0) { %>
     <%= photo.escape('description') %>
+  <% } %>
+
+  <% if (CURRENTUSER.id === photo.get('user_id')) { %>
+    <% if (photo.escape('description').length === 0) { %>
+      Add Description
+    <% } %>
+    <i class="change-description fa fa-pencil"></i>
   <% } %>
 </p>
 

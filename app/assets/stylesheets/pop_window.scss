@@ -40,6 +40,22 @@
     left: 50%;
     transform: translateX(-50%);
 
+    .photo-title, .photo-description {
+      cursor: pointer;
+    }
+
+    .fa {
+      margin-top: -5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .delete-photo {
+      position: absolute;
+      right: 0;
+      bottom: -40px;
+    }
+
     img {
       position: relative;
       left: 50%;
@@ -72,16 +88,6 @@
       width: 100%;
       border: none;
       resize: none;
-    }
-
-    .edit-buttons {
-      margin-top: 10px;
-      text-align: center;
-
-      button {
-        margin: 5px;
-        width: 150px;
-      }
     }
   }
 }

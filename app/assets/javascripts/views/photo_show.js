@@ -17,8 +17,7 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
     'blur .photo-title': 'updateTitle',
     'click .change-description': 'changeDescription',
     'dblclick .photo-description': 'changeDescription',
-    'keypress .photo-description input': 'ifEnter',
-    'blur .photo-description': 'updateDescription',
+    'blur .photo-description': 'updateDescription'
   },
 
   render: function () {
