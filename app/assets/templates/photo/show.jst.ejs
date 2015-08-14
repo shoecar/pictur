@@ -1,29 +1,8 @@
-<img src="<%= photo.escape('url') %>"/>
+<a href="<%= photo.escape('url') %>" target="_blank">
+  <img src="<%= photo.escape('url') %>" class="full-photo"/>
+</a>
 
-<h1 class='photo-title'>
-  <% if (photo.escape('title').length > 0) { %>
-    <%= photo.escape('title') %>
-  <% } %>
-</h1>
-
-
-<p class='photo-description'>
-  <% if (photo.escape('description').length > 0) { %>
-    <%= photo.escape('description') %>
-  <% } %>
-</p>
-
-
-<% if (user.escape('username').length > 0 && photo.escape('user_id') != CURRENTUSER.id) { %>
-  <h4>
-    posted by:
-    <a href="#user/<%= user.get('id') %>">
-      <%= user.escape('username') %>
-    </a>
-  </h4>
-<% } %>
 <div class="edit-buttons">
-  <!-- <button type="button" class="fill-screen btn btn-lrg btn-default">Fullscreen</button> -->
   <% if (CURRENTUSER.id === photo.get('user_id')) { %>
     <% if (photo.escape('title').length > 0) { %>
       <button type="button" class="change-title btn btn-lrg btn-info">Edit Title</button>
@@ -40,3 +19,26 @@
     <button type="button" class="btn btn-lrg btn-danger">Delete Photo</button>
   <% } %>
 </div>
+
+<h1 class='photo-title'>
+  <% if (photo.escape('title').length > 0) { %>
+    <%= photo.escape('title') %>
+  <% } %>
+</h1>
+
+
+<p class='photo-description'>
+  <% if (photo.escape('description').length > 0) { %>
+    <%= photo.escape('description') %>
+  <% } %>
+</p>
+
+
+<% if (user.escape('username').length > 0 && photo.escape('user_id') != CURRENTUSER.id) { %>
+  <h3>
+    posted by:
+    <a href="#user/<%= user.get('id') %>">
+      <%= user.escape('username') %>
+    </a>
+  </h3>
+<% } %>

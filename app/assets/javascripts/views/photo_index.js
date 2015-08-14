@@ -39,23 +39,23 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
         columnWidth: '.photo-sizer'
       });
 
-      $('#masonry-container').infinitescroll({
-        navSelector  : '#page-nav',
-        nextSelector : '#page-nav a',
-        itemSelector : '.photo-item',
-        loading: {
-            finishedMsg: 'No more pages to load.',
-            img: 'http://i.imgur.com/6RMhx.gif'
-          }
-        },
-        function( newElements ) {
-          var $newElems = $( newElements ).css({ opacity: 0 });
-          $newElems.imagesLoaded(function(){
-            $newElems.animate({ opacity: 1 });
-            $container.masonry( 'appended', $newElems, true );
-          });
-        }
-      );
+    //   $('#masonry-container').infinitescroll({
+    //     navSelector  : '#page-nav',
+    //     nextSelector : '#page-nav a',
+    //     itemSelector : '.photo-item',
+    //     loading: {
+    //         finishedMsg: 'No more pages to load.',
+    //         img: 'http://i.imgur.com/6RMhx.gif'
+    //       }
+    //     },
+    //     function( newElements ) {
+    //       var $newElems = $( newElements ).css({ opacity: 0 });
+    //       $newElems.imagesLoaded(function(){
+    //         $newElems.animate({ opacity: 1 });
+    //         $container.masonry( 'appended', $newElems, true );
+    //       });
+    //     }
+    //   );
     });
   }
 });

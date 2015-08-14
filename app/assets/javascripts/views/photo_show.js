@@ -11,16 +11,14 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
 
   events: {
     'click .delete-photo': 'destroyPhoto',
-    'click .photo-form': 'popForm',
     'click .change-title': 'changeTitle',
-    'click .photo-title': 'changeTitle',
+    'dblclick .photo-title': 'changeTitle',
     'keypress .photo-title input': 'ifEnter',
     'blur .photo-title': 'updateTitle',
     'click .change-description': 'changeDescription',
-    'click .photo-description': 'changeDescription',
+    'dblclick .photo-description': 'changeDescription',
     'keypress .photo-description input': 'ifEnter',
     'blur .photo-description': 'updateDescription',
-    // 'click .fill-screen': 'fillScreen'
   },
 
   render: function () {
@@ -49,7 +47,7 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
 
   changeDescription: function (e) {
     var text = this.model.escape('description');
-    $('.photo .photo-description').html('<textarea>' + text + '</textarea>');
+    $('.photo .photo-description').html('<textarea rows="4">' + text + '</textarea>');
     $('.photo .photo-description').find('textarea').focus();
   },
 
@@ -63,13 +61,6 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
       e.currentTarget.blur();
     }
   },
-
-  // fillScreen: function (e) {
-  //   $('.pop-window')
-  //     .css('width', $('img').css('width'))
-  //     .css('margin', '0')
-  //     .css('left', ($(window).width() / 2) - ($('img').width() / 2) + 'px');
-  // },
 
   closeWindow: function () {
     $('.fullscreen').css('display', 'none');

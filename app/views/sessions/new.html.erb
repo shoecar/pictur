@@ -20,9 +20,12 @@
   <%= link_to "Create New User", new_user_url %>
 </div>
 
-<div class="session-photos">
+<div id="session-photos" class="transitions-enabled clearfix">
+  <div class="photo-sizer"></div>
   <% @photos.each do |photo| %>
-    <img src="<%= photo.thumb_url %>"/>
+    <div class="photo-item">
+      <img src="<%= photo.thumb_url %>"/>
+    </div>
   <% end %>
 </div>
 

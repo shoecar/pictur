@@ -12,11 +12,20 @@
   }
 }
 
-.session-photos {
-  overflow: hidden;
+#session-photos {
+  clear: both;
+
+  .photo-item {
+    float: left;
+   }
 
   img {
-    width: 200px;
-    float: left;
+    max-width: 100%;
   }
+
+  .photo-item, .photo-sizer { width: 12.5% }
 }
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
