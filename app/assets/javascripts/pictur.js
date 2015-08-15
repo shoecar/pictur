@@ -5,9 +5,8 @@ window.Pictur = {
   Routers: {},
   initialize: function() {
     var photos = new Pictur.Collections.Photos();
-    var users = new Pictur.Collections.Users();
 
-    var router = new Pictur.Routers.Router({ $root: $('.root'), photos: photos, users: users });
+    var router = new Pictur.Routers.Router({ $root: $('.root'), photos: photos });
 
     var nav = new Pictur.Views.MainNav({ router: router, photos: photos });
     $(".main-nav").html(nav.render().$el);

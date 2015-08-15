@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="">
+      <a class="navbar-brand home-button" href="javascript:void(0)">
         <img class="logo" src="/assets/logo.png">
       </a>
     </div>
@@ -17,7 +17,8 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="javascript:void(0)" class="photo-form">Upload Photo</a></li>
+        <li><a href="javascript:void(0)" class="tool home-button" data-toggle="tooltip" data-placement="bottom" title="Home"><i class="fa fa-home"></i></a></li>
+        <li><a href="javascript:void(0)" class="tool photo-form" data-toggle="tooltip" data-placement="bottom" title="Upload Photo"><i class="fa fa-picture-o"></i></a></li>
         <li class="dropdown">
           <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= CURRENTUSER.username %> <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -36,3 +37,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<script type="text/javascript">
+  $('.tool').tooltip({ container: 'body' });
+</script>

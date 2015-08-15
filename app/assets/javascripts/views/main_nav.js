@@ -9,12 +9,19 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
   },
 
   events: {
-    'click .photo-form': 'popForm'
+    'click .photo-form': 'popForm',
+    'click .home-button': 'goHome'
   },
 
   handleRoute: function (routeName, params) {
     this.$el.find(".active").removeClass("active");
     this.$el.find("." + routeName).addClass("active");
+  },
+
+  goHome: function (e) {
+    e.preventDefault();
+    e.currentTarget.blur();
+    Backbone.history.navigate('/#', { trigger: true });
   },
 
   render: function () {

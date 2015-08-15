@@ -40,20 +40,14 @@
     left: 50%;
     transform: translateX(-50%);
 
-    .photo-title, .photo-description {
-      cursor: pointer;
-    }
-
-    .fa {
-      margin-top: -5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
     .delete-photo {
       position: absolute;
       right: 0;
-      bottom: -40px;
+      margin-top: 10px;
+    }
+
+    .row {
+      min-height: 40px;
     }
 
     img {
@@ -63,20 +57,20 @@
       max-width: 100%;
     }
 
-    h1 {
-      margin: 10px 0;
-    }
-
     h3 {
-      margin: 10px 0;
-      a {
-        font-size: 24px;
+      font-size: 14px;
+      .fa {
+        cursor: pointer;
+        position: absolute;
+        left: -10px;
+        top: 0;
+        font-size: 20px;
       }
     }
 
-    p {
-      font-size: 16px;
-      margin: 10px 0;
+    p, a {
+      margin-top: 15px;
+      font-size: 20px;
     }
 
     input, textarea {

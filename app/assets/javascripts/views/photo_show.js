@@ -12,11 +12,9 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   events: {
     'click .delete-photo': 'destroyPhoto',
     'click .change-title': 'changeTitle',
-    'dblclick .photo-title': 'changeTitle',
     'keypress .photo-title input': 'ifEnter',
     'blur .photo-title': 'updateTitle',
     'click .change-description': 'changeDescription',
-    'dblclick .photo-description': 'changeDescription',
     'blur .photo-description': 'updateDescription'
   },
 
@@ -32,12 +30,11 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
 
   destroyPhoto: function (e) {
     this.model.destroy();
-    Backbone.history.navigate('', { trigger: true });
     this.closeWindow();
   },
 
   changeTitle: function (e) {
-    if (CURRENTUSER.id === this.user.get('id')) {
+    if (CURRENTUSER.id === this.model.get('user_id')) {
       var text = this.model.escape('title');
       $('.photo .photo-title').html('<input type="text" value="' + text + '">');
       $('.photo .photo-title').find('input').putCursorAtEnd();
@@ -50,7 +47,7 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   },
 
   changeDescription: function (e) {
-    if (CURRENTUSER.id === this.user.get('id')) {
+    if (CURRENTUSER.id === this.model.get('user_id')) {
       var text = this.model.escape('description');
       $('.photo .photo-description').html('<textarea rows="4">' + text + '</textarea>');
       $('.photo .photo-description').find('textarea').putCursorAtEnd();

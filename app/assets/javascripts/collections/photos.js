@@ -4,5 +4,5 @@ Pictur.Collections.Photos = Backbone.Collection.extend({
 
   comparator: function(photo) {
     return photo.id;
-  },
+  }
 });

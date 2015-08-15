@@ -1,13 +1,16 @@
 <div class="border-shadow"></div>
 
 <div class="session-window">
-  <div class="errors">
-    <% if flash[:errors] %>
+  <% if flash[:errors] %>
+    <div class="errors alert alert-danger alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
       <% flash[:errors].each do |error| %>
-        <p><%= error %></p>
+        <%= error %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
   <div class="sign-in<%= ' unhide' if @toggle == "session" %>">
     <h1>Sign In</h1>
@@ -18,13 +21,13 @@
       <div class="form-group">
         <div class="col-xs-8 col-xs-offset-2">
           <i class="fa fa-user"></i>
-          <input type="text" class="form-control" placeholder="Username" name="session[username]">
+          <input type="text" id="session-name" class="form-control" placeholder="Username" name="session[username]">
 
           <i class="fa fa-key"></i>
-          <input type="password" class="form-control" placeholder="Password" name="session[password]">
+          <input type="password" id="session-pw" class="form-control" placeholder="Password" name="session[password]">
 
           <div class="col-xs-4 col-xs-offset-1">
-            <button type="submit" class="btn btn-primary btn-block" data-toggle="tooltip" data-placement="bottom" title="Sign In"><i class="fa fa-sign-in"></i></button>
+            <button type="submit" class="submit-button btn btn-primary btn-block" disabled data-toggle="tooltip" data-placement="bottom" title="Sign In"><i class="fa fa-sign-in"></i></button>
           </div>
 
           <div class="col-xs-4 col-xs-offset-2">
@@ -44,16 +47,16 @@
       <div class="form-group">
         <div class="col-xs-8 col-xs-offset-2">
           <i class="fa fa-user"></i>
-          <input type="text" class="form-control" placeholder="Username" name="user[username]">
+          <input type="text" id="user-name" class="form-control" placeholder="Username" name="user[username]">
 
           <i class="fa fa-key"></i>
-          <input type="password" class="form-control" placeholder="Password" name="user[password]">
+          <input type="password" id="user-pw" class="form-control" placeholder="Password" name="user[password]">
 
           <i class="fa fa-unlock-alt"></i>
-          <input type="password" class="form-control" placeholder="Confirm Password" name="user[confirm_password]">
+          <input type="password" id="user-pw-con" class="form-control" placeholder="Confirm Password" name="user[confirm_password]">
 
           <div class="col-xs-4 col-xs-offset-1">
-            <button type="submit" class="btn btn-default btn-block" data-toggle="tooltip" data-placement="bottom" title="Create User"><i class="fa fa-user-plus"></i></button>
+            <button type="submit" class="submit-button btn btn-default btn-block" disabled data-toggle="tooltip" data-placement="bottom" title="Create User"><i class="fa fa-user-plus"></i></button>
           </div>
 
           <div class="col-xs-4 col-xs-offset-2">
@@ -75,11 +78,14 @@
 </div>
 
 <script type="text/javascript">
+  // tooltips
   $('button').tooltip({ container: 'body' });
 
+  // form swap
   $('.toggle-form').click(function () {
-    $('.errors').html('');
-
+    $('#session-name, #session-pw, #user-name, #user-pw, #user-pw-con').val('');
+    $('.errors').remove();
+    $('.submit-button').prop("disabled", true);
     if ($('.sign-in').css('display') === "block") {
       $('.sign-in').slideUp();
       $('.new-user').slideDown();
@@ -89,6 +95,19 @@
     }
   });
 
+  // submit button toggle
+  $('#session-name, #session-pw, #user-name, #user-pw, #user-pw-con').on("keyup", action);
+  function action() {
+    if($('#session-name').val().length > 0 && $('#session-pw').val().length > 0) {
+      $('.submit-button').prop("disabled", false);
+    } else if ($('#user-name').val().length > 0 && $('#user-pw').val().length > 0 && $('#user-pw-con').val().length > 0) {
+      $('.submit-button').prop("disabled", false);
+    } else {
+      $('.submit-button').prop("disabled", true);
+    }
+  }
+
+  // masonry
   var $grid = $('#session-photos').imagesLoaded(function () {
     $grid.masonry({
       itemSelector: '.photo-item',

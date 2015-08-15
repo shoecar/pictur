@@ -18,13 +18,15 @@ Pictur.Routers.Router = Backbone.Router.extend({
   },
 
   photoIndex: function () {
-    this.photos.fetch();
-    var view = new Pictur.Views.PhotoIndex({ photos: this.photos });
+    var photos = new Pictur.Collections.Photos();
+    photos.fetch();
+    var view = new Pictur.Views.PhotoIndex({ photos: photos });
     this._swapView(view);
   },
 
   userShow: function (id) {
-    var user = this.users.getOrFetch(id);
+    var user = new Pictur.Models.User({ id: id });
+    user.fetch();
     var view = new Pictur.Views.UserShow({ model: user });
     this._swapView(view);
   },

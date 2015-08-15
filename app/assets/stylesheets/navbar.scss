@@ -64,6 +64,7 @@ $dropDown       : true;
 
 .navbar-default {
   z-index: 5;
+  height: 50px;
 
   .logo {
     height: 40px;
@@ -75,32 +76,53 @@ $dropDown       : true;
     padding: 5px;
   }
 
-  .sign-out-button {
-    color: #fff;
-    font-size: 16px;
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: normal;
-    line-height: 1.42857143;
-    white-space: nowrap;
-    width: 100%;
-    text-align: left;
-  }
-
-  .sign-out-button:hover {
-    color: #cccccc;
-    background-color: #333333;
-    text-decoration: none;
-  }
-
   .fa {
-    margin-top: 3px;
-    float: left;
-    margin-right: 10px;
-    color: #ccc;
+    font-size: 24px;
   }
 
   .dropdown-menu {
+    padding: 0;
+
+    .divider {
+      margin: 0;
+    }
+
+    a {
+      padding: 7px 10px;
+    }
+
+    .fa {
+      float: left;
+      margin-right: 10px;
+      color: #fff;
+    }
+
+    a:hover {
+      .fa {
+        color: #ccc;
+      }
+    }
+
+    .sign-out-button {
+      color: #fff;
+      font-size: 16px;
+      display: block;
+      padding: 6px 0 6px 10px;
+      clear: both;
+      font-weight: normal;
+      line-height: 1.42857143;
+      white-space: nowrap;
+      text-align: left;
+      width: 100%;
+    }
+
+    .sign-out-button:hover {
+      color: #ccc;
+      background-color: #333;
+      text-decoration: none;
+      .fa {
+        color: #ccc;
+      }
+    }
   }
 }

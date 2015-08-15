@@ -56,8 +56,15 @@
                           margin-bottom:  10px; }
 
   .errors {
+    position: absolute;
+    top: -65px;
+    left: 50%;
+    width: 500px;
+    transform: translateX(-50%);
     text-align: center;
     font-size: 16px;
+    border: none;
+    background-color: rgba(235, 204, 209, 0.8);
   }
 }
 
