@@ -9,7 +9,7 @@ Pictur.Views.PhotoItem = Backbone.View.extend({
   },
 
   events: {
-    'click .photo-thumb': 'popPhoto'
+    'click .photo-thumb': 'createModal'
   },
 
   render: function () {
@@ -17,9 +17,9 @@ Pictur.Views.PhotoItem = Backbone.View.extend({
     return this;
   },
 
-  popPhoto: function (e) {
+  createModal: function (e) {
     e.preventDefault();
-    var view = new Pictur.Views.PhotoShow({ model: this.model, collection: this.collection });
-    $('.pop-content').html(view.render().$el);
+    var view = new Pictur.Views.PhotoModal({ model: this.model, collection: this.collection });
+    $('body').append(view.render().$el);
   }
 });

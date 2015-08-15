@@ -4,18 +4,12 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.router = options.router;
     this.photos = options.photos;
-    this.listenTo(this.router, "route", this.handleRoute);
     this.authToken = $('meta[name=csrf-token]').attr('content');
   },
 
   events: {
-    'click .photo-form': 'popForm',
+    'click .photo-form': 'uploadPhoto',
     'click .home-button': 'goHome'
-  },
-
-  handleRoute: function (routeName, params) {
-    this.$el.find(".active").removeClass("active");
-    this.$el.find("." + routeName).addClass("active");
   },
 
   goHome: function (e) {
@@ -29,7 +23,7 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
     return this;
   },
 
-  popForm: function (e) {
+  uploadPhoto: function (e) {
     e.preventDefault();
     var photos = this.photos;
     var photo = new Pictur.Models.Photo();
@@ -43,10 +37,8 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
       photo.save({}, {
         success: function(){
           photos.add(photo);
-          var view = new Pictur.Views.PhotoShow({ model: photo });
-          $('.pop-content').html(view.render().$el);
-          $('.fullscreen').css('display', 'block');
-          $('.pop-window').css('display', 'block');
+          var view = new Pictur.Views.PhotoModal({ model: photo });
+          $('body').append(view.render().$el);
         }
       });
     });

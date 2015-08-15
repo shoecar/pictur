@@ -1,18 +1,20 @@
-Pictur.Views.PhotoShow = Backbone.View.extend({
-  template: JST['photo/show'],
+Pictur.Views.PhotoModal = Backbone.View.extend({
+  template: JST['photo/modal'],
   tagName: 'div',
-  className: 'photo',
+  className: 'photo-modal',
 
   initialize: function (options) {
     this.user = this.model.user();
-    this.listenTo(this.model, 'sync change', this.render);
+    this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.user, 'sync', this.render);
+    $(document).on('keyup', this.trackEsc.bind(this));
   },
 
   events: {
+    'click .close-window, .fullscreen': 'closeWindow',
     'click .delete-photo': 'destroyPhoto',
     'click .change-title': 'changeTitle',
-    'keypress .photo-title input': 'ifEnter',
+    'keypress .photo-title input': 'trackEnter',
     'blur .photo-title': 'updateTitle',
     'click .change-description': 'changeDescription',
     'blur .photo-description': 'updateDescription'
@@ -20,15 +22,16 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template({ photo: this.model, user: this.user }));
-    $('.navbar').fadeOut('fast');
-    $('.fullscreen').fadeIn('fast');
+    $('.navbar').fadeOut();
     $('.pop-window').imagesLoaded(function () {
-      $('.pop-window').slideDown().css('top', $(window).scrollTop() + 'px');
+      $('.pop-window').css('display', 'block').css('top', $(window).scrollTop() + 'px');
     });
+
     return this;
   },
 
   destroyPhoto: function (e) {
+    e.preventDefault();
     this.model.destroy();
     this.closeWindow();
   },
@@ -36,8 +39,8 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   changeTitle: function (e) {
     if (CURRENTUSER.id === this.model.get('user_id')) {
       var text = this.model.escape('title');
-      $('.photo .photo-title').html('<input type="text" value="' + text + '">');
-      $('.photo .photo-title').find('input').putCursorAtEnd();
+      $('.photo-modal .photo-title').html('<input type="text" value="' + text + '">');
+      $('.photo-modal .photo-title').find('input').putCursorAtEnd();
     }
   },
 
@@ -49,8 +52,8 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
   changeDescription: function (e) {
     if (CURRENTUSER.id === this.model.get('user_id')) {
       var text = this.model.escape('description');
-      $('.photo .photo-description').html('<textarea rows="4">' + text + '</textarea>');
-      $('.photo .photo-description').find('textarea').putCursorAtEnd();
+      $('.photo-modal .photo-description').html('<textarea rows="4">' + text + '</textarea>');
+      $('.photo-modal .photo-description').find('textarea').putCursorAtEnd();
     }
   },
 
@@ -59,16 +62,20 @@ Pictur.Views.PhotoShow = Backbone.View.extend({
     this.model.save();
   },
 
-  ifEnter: function (e) {
+  trackEnter: function (e) {
     if (e.keyCode === 13) {
       e.currentTarget.blur();
     }
   },
 
+  trackEsc: function (e) {
+    if (e.keyCode === 27) {
+      this.closeWindow();
+    }
+  },
+
   closeWindow: function () {
     $('.navbar').fadeIn('fast');
-    $('.fullscreen').fadeOut('fast');
-    $('.pop-window').slideUp('fast');
     this.remove();
   }
 });

@@ -2,9 +2,6 @@ Pictur.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$root = options.$root;
     this.photos = options.photos;
-
-    $('.close-window').click(this._closeWindow);
-    $('.fullscreen').click(this._closeWindow);
   },
 
   routes: {
@@ -12,15 +9,10 @@ Pictur.Routers.Router = Backbone.Router.extend({
     'user/:id': 'userShow'
   },
 
-  mainNav: function () {
-    var view = new Pictur.Views.MainNav();
-    $('.main-nav').append(view.render().$el);
-  },
-
   photoIndex: function () {
     var photos = new Pictur.Collections.Photos();
     photos.fetch();
-    var view = new Pictur.Views.PhotoIndex({ photos: photos });
+    var view = new Pictur.Views.PhotoIndex({ collection: photos });
     this._swapView(view);
   },
 
@@ -32,15 +24,8 @@ Pictur.Routers.Router = Backbone.Router.extend({
   },
 
   _swapView: function (view) {
-    this._closeWindow();
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$root.html(view.render().$el);
-  },
-
-  _closeWindow: function () {
-    $('.navbar').fadeIn('fast');
-    $('.fullscreen').fadeOut('fast');
-    $('.pop-window').slideUp('fast');
   }
 });
