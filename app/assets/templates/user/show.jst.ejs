@@ -6,4 +6,24 @@
   <% } %>
 </h1>
 
-<div class="photos"></div>
+<div class="user-main row">
+  <ul class="user-tabs nav nav-tabs nav-justified">
+    <li role="presentation" class="active">
+      <a href="#user-photos" aria-controls="user-photos" role="tab" data-toggle="tab"><i class="fa fa-picture-o"></i>Pictures</a>
+    </li>
+    <li role="presentation">
+      <a href="#user-comments" aria-controls="user-comments" role="tab" data-toggle="tab"><i class="fa fa-comments"></i>Comments</a>
+    </li>
+    <li role="presentation">
+      <a href="#user-likes" aria-controls="user-likes" role="tab" data-toggle="tab"><i class="fa fa-thumbs-up"></i>Likes</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="user-photos"></div>
+
+    <div role="tabpanel" class="tab-pane" id="user-comments"></div>
+
+    <div role="tabpanel" class="tab-pane" id="user-likes"></div>
+  </div>
+<div>

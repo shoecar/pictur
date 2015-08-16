@@ -18,7 +18,7 @@
         <h3 class="col-xs-3">posted by:</h3>
 
         <p class='col-xs-9'>
-          <a href="#user/<%= user.get('id') %>">
+          <a class="close-window-user" href="#user/<%= user.get('id') %>">
             <%= user.escape('username') %>
           </a>
         </p>
@@ -42,7 +42,7 @@
       </div>
     <% } %>
 
-    <% if (CURRENTUSER.id === photo.get('user_id') || photo.escape('title').length > 0) { %>
+    <% if (CURRENTUSER.id === photo.get('user_id') || photo.escape('description').length > 0) { %>
       <div class="row">
         <h3 class="col-xs-3">
           description:
@@ -58,5 +58,14 @@
         </p>
       </div>
     <% } %>
+
+
+    <div class="row">
+      <h3 class="col-xs-12">
+        comments:
+      </h3>
+
+      <div class="photo-comments"></div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,17 @@
+<% comments.each(function (comment) { %>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <a class="close-window-user" href="#user/<%= comment.get('user_id') %>">
+            posted by: <%= comment.escape('username') %>
+          </a>
+        </div>
+
+        <div class="panel-body">
+          <%= comment.escape('body') %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% }); %>

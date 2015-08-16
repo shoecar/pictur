@@ -13,7 +13,7 @@
       position: absolute;
       margin-top: 40px;
       z-index: 25;
-      background-color: #2a2a2a;
+      background-color: $white;
       padding: 0;
 
         .pop-content {
@@ -77,7 +77,7 @@
               margin: 0;
               background-color: rgba(255, 255, 255, 0.2);
               outline: none;
-              color: #eee;
+              background-color: $light-gray;
               width: 100%;
               border: none;
               resize: none;

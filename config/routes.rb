@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: :show
     resources :photos, except: [:new, :edit]
+    resources :comments, only: [:create, :destroy]
   end
 end

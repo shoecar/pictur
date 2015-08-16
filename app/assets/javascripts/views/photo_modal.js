@@ -1,17 +1,17 @@
-Pictur.Views.PhotoModal = Backbone.View.extend({
+Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   template: JST['photo/modal'],
   tagName: 'div',
   className: 'photo-modal',
 
   initialize: function (options) {
-    this.user = this.model.user();
-    this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.user, 'sync', this.render);
+    this.photo = new Pictur.Models.Photo({ id: this.model.id });
+    this.photo.fetch();
+    this.listenTo(this.photo, 'sync', this.render);
     $(document).on('keyup', this.trackEsc.bind(this));
   },
 
   events: {
-    'click .close-window, .fullscreen': 'closeWindow',
+    'click .close-window, .fullscreen, .close-window-user': 'closeWindow',
     'click .delete-photo': 'destroyPhoto',
     'click .change-title': 'changeTitle',
     'keypress .photo-title input': 'trackEnter',
@@ -21,13 +21,21 @@ Pictur.Views.PhotoModal = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({ photo: this.model, user: this.user }));
+    user = this.photo.user();
+    this.addCommentView();
+    this.$el.html(this.template({ photo: this.model, user: user }));
     $('.navbar').fadeOut();
     $('.pop-window').imagesLoaded(function () {
       $('.pop-window').css('display', 'block').css('top', $(window).scrollTop() + 'px');
     });
+    this.attachSubviews();
 
     return this;
+  },
+
+  addCommentView: function () {
+    var subView = new Pictur.Views.CommentIndex({ collection: this.photo.comments() });
+    this.addSubview('.photo-comments', subView);
   },
 
   destroyPhoto: function (e) {
@@ -47,6 +55,7 @@ Pictur.Views.PhotoModal = Backbone.View.extend({
   updateTitle: function (e) {
     this.model.set({ title: e.target.value });
     this.model.save();
+    $('.photo-modal .photo-title').html(e.target.value);
   },
 
   changeDescription: function (e) {
@@ -60,6 +69,7 @@ Pictur.Views.PhotoModal = Backbone.View.extend({
   updateDescription: function (e) {
     this.model.set({ description: e.target.value });
     this.model.save();
+    $('.photo-modal .photo-description').html(e.target.value);
   },
 
   trackEnter: function (e) {

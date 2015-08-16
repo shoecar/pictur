@@ -1,5 +1,36 @@
 .user-show {
+  height: 100%;
   .username {
     text-align: center;
+  }
+
+  .user-main {
+    background-color: #fff;
+    height: 100%;
+  }
+
+  .user-tabs {
+    li:not(.active) {
+      background-color: $white;
+      :hover {
+        background-color: #fff;
+        border-bottom: 1px solid #fff;
+      }
+    }
+
+    a:hover {
+      color: $black;
+    }
+
+    .fa {
+      margin-right: 5px;
+      color: $primary;
+    }
+  }
+
+  .user-content {
+    h2 {
+      text-align: center;
+    }
   }
 }

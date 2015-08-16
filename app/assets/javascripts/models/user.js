@@ -6,6 +6,10 @@ Pictur.Models.User = Backbone.Model.extend({
       this.photos().set(response.photos);
       delete response.photos;
     }
+    if (response.comments) {
+      this.comments().set(response.comments);
+      delete response.comments;
+    }
     return response
   },
 
@@ -14,5 +18,12 @@ Pictur.Models.User = Backbone.Model.extend({
       this._photos = new Pictur.Collections.Photos();
     }
     return this._photos;
+  },
+
+  comments: function () {
+    if (!this._comments) {
+      this._comments = new Pictur.Collections.Comments();
+    }
+    return this._comments;
   }
 });

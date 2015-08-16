@@ -32,21 +32,45 @@
 
     .photo-item:hover {
       img {
-        opacity: 0.3;
+        transition: all .3 ease;
+        -webkit-filter: grayscale(100%);
       }
       .info-wrap {
         display: block;
+        .darken-photo {
+          transition: all .3 ease;
+          background-color: rgba(0, 0, 0, .3);
+          -webkit-box-shadow: inset 0px 0px 50px 5px rgba(0,0,0,0.75);
+          -moz-box-shadow: inset 0px 0px 50px 5px rgba(0,0,0,0.75);
+          box-shadow: inset 0px 0px 50px 5px rgba(0,0,0,0.75);
+        }
       }
     }
 
     .info-wrap {
+      color: #eee;
       display: none;
+      height: 100%;
       width: 100%;
-      text-align: center;
-      position: absolute;
-      z-index: 12;
       top: 50%;
       transform: translateY(-50%);
+      position: absolute;
+      z-index: 12;
+
+      .darken-photo {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #333;
+      }
+
+      .photo-info {
+        text-align: center;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+      }
     }
   }
 
