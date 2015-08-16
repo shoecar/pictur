@@ -1,29 +1,34 @@
-Pictur.Views.CommentIndex = Backbone.View.extend({
+Pictur.Views.CommentIndex = Backbone.CompositeView.extend({
   template: JST['comment/index'],
-  className: 'comment-index',
 
   initialize: function (options) {
-    this.listenTo(this.collection, 'sync add remove', this.render.bind(this, true));
+    this.collection.comparator = (function (comment) {
+      return -comment.get('id');
+    });
+    this.collection.sort();
+    this.listenTo(this.collection, 'add', this.addCommentItem);
+    this.listenTo(this.collection, 'remove', this.removeCommentItem);
+    this.listenTo(this.collection, 'sync', this.render);
+    this.collection.each(this.addCommentItem.bind(this));
   },
 
   events: {
     'click .delete-comment': 'deleteComment'
   },
 
-  render: function (rerender) {
-    this.collection.comparator = (function (comment) {
-      return -comment.get('id');
-    });
-    this.collection.sort();
-    this.$el.html(this.template({ comments: this.collection }));
-    if (rerender) {
-      $(".first-comment").css('display', 'none').fadeIn({ duration: 1000, easing: 'easeOutQuad'});
-    }
-    return this;
+  addCommentItem: function (comment) {
+    var subView = new Pictur.Views.CommentItem({ model: comment });
+    this.firstComment = false;
+    this.addSubview('.comment-index', subView);
   },
 
-  deleteComment: function (e) {
-    e.preventDefault();
-    e.currentTarget.blur();
+  removeCommentItem: function (photo) {
+    this.removeModelSubview('.comment-index', photo);
+  },
+
+  render: function () {
+    this.$el.html(this.template());
+    this.attachSubviews();
+    return this;
   }
 });
