@@ -70,7 +70,8 @@ def body
 end
 
 def user
-  User.find(rand(6) + 1)
+  u = User.find(rand(6) + 1)
+  [u.id, u.username]
 end
 
 100.times do
