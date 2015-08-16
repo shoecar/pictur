@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    @photos = Photo.all
+    @photos = Photo.limit(60).order("RANDOM()")
     @toggle = "session"
     render :combo
   end
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:errors] = ["Invalid Username or Password"]
-      @photos = Photo.first(60)
+      @photos = Photo.limit(60).order("RANDOM()")
       @toggle = "session"
       render :combo
     end

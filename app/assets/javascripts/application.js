@@ -3,6 +3,8 @@
 //= require jquery_ujs
 //= require jquery.serializeJSON
 //= require jquery.cursoratend
+//= require jquery.easing
+//= require jquery.scrollTo.min
 //= require masonry/masonry.min
 //= require masonry/imagesloaded.min
 //= require masonry/infinitescroll.min

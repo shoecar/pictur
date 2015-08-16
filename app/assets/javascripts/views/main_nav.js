@@ -37,6 +37,7 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
       photo.save({}, {
         success: function(){
           photos.add(photo);
+          Backbone.history.navigate('/user/' + CURRENTUSER.id, { trigger: true });
           var view = new Pictur.Views.PhotoModal({ model: photo });
           $('body').append(view.render().$el);
         }

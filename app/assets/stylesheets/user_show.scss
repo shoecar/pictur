@@ -12,10 +12,7 @@
   .user-tabs {
     li:not(.active) {
       background-color: $white;
-      :hover {
-        background-color: #fff;
-        border-bottom: 1px solid #fff;
-      }
+      :hover { background-color: #fcfcfc; }
     }
 
     a {

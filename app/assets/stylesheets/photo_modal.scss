@@ -15,6 +15,7 @@
       z-index: 25;
       background-color: #e3e3e3;
       padding: 0;
+      margin-bottom: 200px;
 
         .pop-content {
           padding: 10px;
@@ -51,6 +52,8 @@
               max-width: 100%;
             }
 
+            .fa-pencil { margin-top: -10px; }
+
             .modal-info {
               margin: 10px 0;
               min-height: 120px;
@@ -72,6 +75,31 @@
               p { font-weight: 500; }
             }
 
+            .photo-comment-form {
+              padding: 0;
+              display: none;
+
+              .inner-fa  {
+                color: $teal;
+                position:           absolute;
+                padding:            10px;
+                pointer-events:     none;
+                left:               15px;
+              }
+
+               textarea {
+                padding-left:   30px;
+                margin-bottom:  10px;
+              }
+
+              button {
+                background-color: $teal;
+                border-color: darken($teal, 5%);
+              }
+
+              button:hover { background-color: darken($teal, 10%); }
+            }
+
             h3 {
               font-size: 14px;
               font-weight: 300;
@@ -90,11 +118,12 @@
             input, textarea {
               margin: 0;
               outline: none;
-              background-color: #f4f4f4;
               width: 100%;
               border: none;
               resize: none;
             }
+            input { background-color: #f4f4f4; }
+            textarea { background-color: #fff; }
         }
     }
 }

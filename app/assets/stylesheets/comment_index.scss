@@ -2,4 +2,14 @@
   margin-top: 20px;
 
     .comment-created { float: right; }
+
+    .delete-comment {
+      width: 27px;
+      height: 25px;
+      padding: 0;
+      margin-left: 10px;
+    }
+
+    p { width: 100%;
+        overflow: auto; }
 }

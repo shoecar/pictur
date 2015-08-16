@@ -7,12 +7,14 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     this.photo = new Pictur.Models.Photo({ id: this.model.id });
     this.photo.fetch();
     this.listenTo(this.photo, 'sync', this.render);
+    this.listenTo(this.photo, 'sync', this.addCommentView);
     $(document).on('keyup', this.trackEsc.bind(this));
   },
 
   events: {
     'click .close-window, .fullscreen, .close-window-user': 'closeWindow',
     'click .delete-photo': 'destroyPhoto',
+    'click .comment-photo, .submit-comment': 'toggleCommentForm',
     'click .change-title': 'changeTitle',
     'keypress .photo-title input': 'trackEnter',
     'blur .photo-title': 'updateTitle',
@@ -23,7 +25,6 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   render: function () {
     user = this.photo.user();
     hasComments = this.photo.comments().models.length > 0 ? true : false;
-    this.addCommentView();
     this.$el.html(this.template({ photo: this.model, user: user, hasComments: hasComments }));
     $('.pop-window').imagesLoaded(function () {
       $('.pop-window').css('display', 'block').css('top', $(window).scrollTop() + 'px');
@@ -40,8 +41,18 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
 
   destroyPhoto: function (e) {
     e.preventDefault();
+    e.currentTarget.blur();
     this.model.destroy();
     this.closeWindow();
+  },
+
+  toggleCommentForm: function (e) {
+    e.currentTarget.blur();
+    $('.photo-comment-form').html('');
+    var subView = new Pictur.Views.CommentForm({ collection: this.photo.comments(), photoId: this.model.id });
+    this.addSubview('.photo-comment-form', subView);
+    $('.photo-comment-form').slideToggle({ duration: 500, easing: 'easeOutQuad' });
+    $.scrollTo($('.modal-info'), {duration: 1000, easing: 'easeOutQuad'});
   },
 
   changeTitle: function (e) {
@@ -59,6 +70,8 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
       this.model.save();
       $('.photo-modal .photo-title').html(newTitle);
     } else {
+      this.model.set({ title: null });
+      this.model.save();
       $('.photo-modal .photo-title').html('<span>(no title)</span>');
     }
   },
@@ -78,6 +91,8 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
       this.model.save();
       $('.photo-modal .photo-description').html(newDescription);
     } else {
+      this.model.set({ description: null });
+      this.model.save();
       $('.photo-modal .photo-description').html('<span>(no description)</span>');
     }
   },
