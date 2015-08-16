@@ -24,7 +24,6 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     user = this.photo.user();
     this.addCommentView();
     this.$el.html(this.template({ photo: this.model, user: user }));
-    $('.navbar').fadeOut();
     $('.pop-window').imagesLoaded(function () {
       $('.pop-window').css('display', 'block').css('top', $(window).scrollTop() + 'px');
     });
@@ -85,7 +84,6 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   },
 
   closeWindow: function () {
-    $('.navbar').fadeIn('fast');
     this.remove();
   }
 });

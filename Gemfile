@@ -23,4 +23,5 @@ group :development, :test do
   gem 'better_errors'
   gem 'spring'
   gem 'seed_dump'
+  gem 'faker'
 end

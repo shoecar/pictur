@@ -32,13 +32,19 @@
 
     .photo-item:hover {
       img {
-        transition: all .3 ease;
+        -webkit-transition: all .3 ease;
+           -moz-transition: all .3 ease;
+             -o-transition: all .3 ease;
+                transition: all .3 ease;
         -webkit-filter: grayscale(100%);
       }
       .info-wrap {
         display: block;
         .darken-photo {
-          transition: all .3 ease;
+          -webkit-transition: all .3 ease;
+             -moz-transition: all .3 ease;
+               -o-transition: all .3 ease;
+                  transition: all .3 ease;
           background-color: rgba(0, 0, 0, .3);
           -webkit-box-shadow: inset 0px 0px 50px 5px rgba(0,0,0,0.75);
           -moz-box-shadow: inset 0px 0px 50px 5px rgba(0,0,0,0.75);
@@ -53,7 +59,11 @@
       height: 100%;
       width: 100%;
       top: 50%;
-      transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      -moz-transform:    translateY(-50%);
+      -ms-transform:     translateY(-50%);
+      -o-transform:      translateY(-50%);
+      transform:         translateY(-50%);
       position: absolute;
       z-index: 12;
 
@@ -68,7 +78,11 @@
         text-align: center;
         width: 100%;
         top: 50%;
-        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform:    translateY(-50%);
+        -ms-transform:     translateY(-50%);
+        -o-transform:      translateY(-50%);
+        transform:         translateY(-50%);
         position: absolute;
       }
     }
