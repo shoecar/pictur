@@ -13,7 +13,7 @@
       position: absolute;
       margin-top: 40px;
       z-index: 25;
-      background-color: $white;
+      background-color: #e3e3e3;
       padding: 0;
 
         .pop-content {
@@ -28,40 +28,53 @@
 
             .close-window {
               position: absolute;
-              top: -45px;
+              top: -30px;
               right: 0;
               font-size: 40px;
               font-weight: bold;
               line-height: 18px;
-              color: #eee;
-              text-shadow: 0 0 2px #000;
+              color: $white;
+              text-shadow: 0 0 2px $black;
               text-decoration: none;
               cursor: pointer;
               z-index: 30;
             }
-
             .close-window:hover {
-              color: #aaa;
+              color: $light-gray;
               text-decoration: none;
             }
 
-            .delete-photo {
-              position: absolute;
-              right: 10px;
-              margin-top: 10px;
-            }
-
-            .row {
-              min-height: 40px;
-            }
+            .row { min-height: 40px; }
 
             img {
               position: relative;
               max-width: 100%;
             }
 
+            .modal-info {
+              margin: 10px 0;
+              min-height: 120px;
+              text-align: center;
+
+              .modal-buttons {
+                margin-top: 20px;
+                button { margin-left: 2px; }
+
+                .comment-photo {
+                  background-color: $teal;
+                  color: $white;
+                }
+                .comment-photo:hover {
+                  background-color: darken($teal, 10%);
+                }
+              }
+
+              p { font-weight: 500; }
+            }
+
             h3 {
               font-size: 14px;
+              font-weight: 300;
                 .fa {
                   cursor: pointer;
                   margin-left: 5px;
@@ -69,17 +82,15 @@
                 }
             }
 
-            p, a {
-              margin-top: 15px;
-              font-size: 20px;
+            p {
+              margin: 0;
+              span { font-style: italic; }
             }
 
             input, textarea {
-              padding: 0;
               margin: 0;
-              background-color: rgba(255, 255, 255, 0.2);
               outline: none;
-              background-color: $light-gray;
+              background-color: #f4f4f4;
               width: 100%;
               border: none;
               resize: none;

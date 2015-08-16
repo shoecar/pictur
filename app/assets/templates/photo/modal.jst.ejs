@@ -1,6 +1,6 @@
 <div class="fullscreen"></div>
 
-<div class="pop-window col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+<div class="pop-window col-xs-12 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2">
 
   <div class="pop-content">
     <a class="close-window">&times;</a>
@@ -9,63 +9,83 @@
       <img src="<%= photo.escape('url') %>" class="full-photo"/>
     </a>
 
-    <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-      <button type="button" class="delete-photo btn btn-lrg btn-danger"><i class="fa fa-trash-o"></i></button>
-    <% } %>
-
-    <% if (user.escape('username').length > 0 && photo.escape('user_id') != CURRENTUSER.id) { %>
-      <div class="row">
-        <h3 class="col-xs-3">posted by:</h3>
-
-        <p class='col-xs-9'>
+    <div class="row modal-info well">
+      <div class="col-xs-6 col-sm-3">
+        <h3>posted by</h3>
+        <p>
           <a class="close-window-user" href="#user/<%= user.get('id') %>">
             <%= user.escape('username') %>
           </a>
         </p>
       </div>
-    <% } %>
 
-    <% if (CURRENTUSER.id === photo.get('user_id') || photo.escape('title').length > 0) { %>
-      <div class="row">
-        <h3 class="col-xs-3">
-          title:
+      <div class="col-xs-6 col-sm-3">
+        <h3>submitted</h3>
+        <p>
+          <%= photo.get('created') %> ago
+        </p>
+      </div>
+
+      <div class="col-xs-6 col-sm-3">
+        <h3>
+          title
           <% if (CURRENTUSER.id === photo.get('user_id')) { %>
             <i class="change-title fa fa-pencil"></i>
           <% } %>
         </h3>
 
-        <p class='photo-title col-xs-7'>
+        <p class="photo-title">
           <% if (photo.escape('title').length > 0) { %>
             <%= photo.escape('title') %>
+          <% } else { %>
+            <span>(no title)</span>
           <% } %>
         </p>
       </div>
-    <% } %>
 
-    <% if (CURRENTUSER.id === photo.get('user_id') || photo.escape('description').length > 0) { %>
-      <div class="row">
-        <h3 class="col-xs-3">
-          description:
+      <div class="col-xs-6 col-sm-3">
+        <div class="modal-buttons">
           <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-            <i class="change-description fa fa-pencil"></i>
+            <button type="button" class="delete-photo btn btn-lrg btn-danger"><i class="fa fa-trash-o"></i></button>
           <% } %>
-        </h3>
-
-        <p class='photo-description col-xs-9'>
-          <% if (photo.escape('description').length > 0) { %>
-            <%= photo.escape('description') %>
-          <% } %>
-        </p>
+            <button type="button" class="comment-photo btn btn-lrg btn-default"><i class="fa fa-comment"></i></button>
+            <button type="button" class="like-photo btn btn-lrg btn-primary"><i class="fa fa-thumbs-up"></i></button>
+        </div>
       </div>
-    <% } %>
-
-
-    <div class="row">
-      <h3 class="col-xs-12">
-        comments:
-      </h3>
-
-      <div class="photo-comments"></div>
     </div>
+
+    <h3 class="col-xs-12">
+      description
+      <% if (CURRENTUSER.id === photo.get('user_id')) { %>
+        <i class="change-description fa fa-pencil"></i>
+      <% } %>
+    </h3>
+
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p class="photo-description">
+              <%= photo.escape('description').length > 0 ? photo.escape('description') : '<span>(no description)</span>' %>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    <h3 class="col-xs-12">
+      comments
+    </h3>
+    <% if (hasComments) { %>
+      <div class="photo-comments"></div>
+    <% } else { %>
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>
+              <span>(no comments)</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% } %>
   </div>
 </div>

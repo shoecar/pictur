@@ -53,28 +53,23 @@ Photo.create!([
   {title: nil, description: nil, user_id: 1, url: "http://res.cloudinary.com/dmiidzjtl/image/upload/v1439573659/pae3qn6ccqcqg0tqqsol.jpg", thumb_url: "http://res.cloudinary.com/dmiidzjtl/image/upload/c_scale,w_400/v1439573659/pae3qn6ccqcqg0tqqsol.jpg"},
   {title: nil, description: nil, user_id: 1, url: "http://res.cloudinary.com/dmiidzjtl/image/upload/v1439573673/ippwqlanpolrrgrkobev.jpg", thumb_url: "http://res.cloudinary.com/dmiidzjtl/image/upload/c_scale,w_400/v1439573673/ippwqlanpolrrgrkobev.jpg"},
   {title: nil, description: nil, user_id: 1, url: "http://res.cloudinary.com/dmiidzjtl/image/upload/v1439573703/gps7xunnmxodtof5xtds.jpg", thumb_url: "http://res.cloudinary.com/dmiidzjtl/image/upload/c_scale,w_400/v1439573703/gps7xunnmxodtof5xtds.jpg"},
-  {title: nil, description: "", user_id: 1, url: "http://res.cloudinary.com/dmiidzjtl/image/upload/v1439567825/hbssjxxwoffneuedeysp.jpg", thumb_url: "http://res.cloudinary.com/dmiidzjtl/image/upload/c_scale,w_400/v1439567825/hbssjxxwoffneuedeysp.jpg"},
-  {title: "", description: "", user_id: 6, url: "http://res.cloudinary.com/dmiidzjtl/image/upload/v1439597776/iomxelfkvjzoilrd0gxg.jpg", thumb_url: "http://res.cloudinary.com/dmiidzjtl/image/upload/c_scale,w_400/v1439597776/iomxelfkvjzoilrd0gxg.jpg"}
+  {title: nil, description: nil, user_id: 1, url: "http://res.cloudinary.com/dmiidzjtl/image/upload/v1439567825/hbssjxxwoffneuedeysp.jpg", thumb_url: "http://res.cloudinary.com/dmiidzjtl/image/upload/c_scale,w_400/v1439567825/hbssjxxwoffneuedeysp.jpg"},
+  {title: nil, description: nil, user_id: 6, url: "http://res.cloudinary.com/dmiidzjtl/image/upload/v1439597776/iomxelfkvjzoilrd0gxg.jpg", thumb_url: "http://res.cloudinary.com/dmiidzjtl/image/upload/c_scale,w_400/v1439597776/iomxelfkvjzoilrd0gxg.jpg"}
 ])
 User.create!([
-  {username: "anewuser", password_digest: "$2a$10$bsT3Szp212hhcAMa.8PNX.avY3bWGvuNlIzigozGNEkRRM7W.NGw6", session_token: "O7scfrGYCD5ktfHiZzeSkA"},
-  {username: "fdsfasfs", password_digest: "$2a$10$WI5kuxQ0tXS9Si2vHYrW.enpoXVtkxP/j91yxCpr.km51EuW5iNtO", session_token: "rseP2ZfOyXou9UhV7TgGjQ"},
-  {username: "photo4lyfe", password_digest: "$2a$10$IJu8GpoGrG5kr8b88yKxm.0blFSV3wLeIq2Dxue/5BBS//anIvxaC", session_token: "0zI_VwLTz24fIp7S1F5HcQ"},
-  {username: "newUser", password_digest: "$2a$10$d4Y9l6EVq0ct0VYywJstseTyUR8fOvwB.xSxl6ks1Uuci1DNJNyQe", session_token: "IOOmbticQ3M5e0zknA9ldw"},
   {username: "tad", password_digest: "$2a$10$fUGJM1ZkRi61qZDpGRjmEeVEsZeIulEtF13F1OE1Z25HTz4tGJ4d2", session_token: "IEq7j9j6fmzwVwDZEqxppw"},
-  {username: "test", password_digest: "$2a$10$Y5kConGq8nFsimVYe9XTAunmxdK2Htetpctz8iAnUa0/FPIE6kyyq", session_token: "h3RJAumqJjc6vhVY72RsEw"}
+  {username: "guest", password_digest: "$2a$10$bsT3Szp212hhcAMa.8PNX.avY3bWGvuNlIzigozGNEkRRM7W.NGw6", session_token: "O7scfrGYCD5ktfHiZzeSkA"},
+  {username: "photo4lyfe", password_digest: "$2a$10$IJu8GpoGrG5kr8b88yKxm.0blFSV3wLeIq2Dxue/5BBS//anIvxaC", session_token: "0zI_VwLTz24fIp7S1F5HcQ"},
+  {username: "pointlessComments", password_digest: "$2a$10$d4Y9l6EVq0ct0VYywJstseTyUR8fOvwB.xSxl6ks1Uuci1DNJNyQe", session_token: "IOOmbticQ3M5e0zknA9ldw"},
+  {username: "test", password_digest: "$2a$10$Y5kConGq8nFsimVYe9XTAunmxdK2Htetpctz8iAnUa0/FPIE6kyyq", session_token: "h3RJAumqJjc6vhVY72RsEw"},
+  {username: "i_love_pictur", password_digest: "$2a$10$WI5kuxQ0tXS9Si2vHYrW.enpoXVtkxP/j91yxCpr.km51EuW5iNtO", session_token: "rseP2ZfOyXou9UhV7TgGjQ"}
 ])
 
-def body
-  rand(2) == 0 ? Faker::Lorem.paragraph(length) : Faker::Lorem.sentence(length)
-end
-
-def user
-  u = User.find(rand(6) + 1)
-  [u.id, u.username]
-end
-
 100.times do
-  u = user
-  Photo.find(rand(20) + 1).comment.create(body: body(5), user_id: u[0], username: u[1])
+  u = User.find(rand(6) + 1)
+  Photo.find(rand(20) + 1).comments.create!(
+    body: (rand(2) == 0 ? Faker::Lorem.paragraph(rand(10) + 1) : Faker::Lorem.sentence(rand(10) + 1)),
+    user_id: u.id,
+    username: u.username
+  )
 end

@@ -18,19 +18,18 @@
       }
     }
 
-    a:hover {
-      color: $black;
+    a {
+      text-decoration: none;
+      font-weight: 300;
+
+      :hover{
+        color: $gray;
+      }
     }
 
     .fa {
       margin-right: 5px;
-      color: $primary;
-    }
-  }
-
-  .user-content {
-    h2 {
-      text-align: center;
+      color: darken($primary, 5%);
     }
   }
 }

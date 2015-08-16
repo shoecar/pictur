@@ -1,7 +1,7 @@
-$bgDefault      : #13548C;
-$bgHighlight    : #333333;
-$colDefault     : #ffffff;
-$colHighlight   : #cccccc;
+$bgDefault      : $dark-blue;
+$bgHighlight    : $black;
+$colDefault     : $white;
+$colHighlight   : $light-gray;
 $dropDown       : true;
 .navbar-default {
   background-color: $bgDefault;
@@ -27,7 +27,7 @@ $dropDown       : true;
               color: $colHighlight;
               background-color: $bgHighlight; }}
           .divider {
-            background-color: $bgHighlight;}}}
+            background-color: $colHighlight;}}}
     }
     > .active {
       > a, > a:hover, > a:focus {
@@ -72,40 +72,28 @@ $dropDown       : true;
     top: 5px;
   }
 
-  .btn {
-    padding: 5px;
-  }
+  .btn { padding: 5px; }
 
-  .fa {
-    font-size: 24px;
-  }
+  .fa { font-size: 24px; }
+
+  a { text-decoration: none; }
 
   .dropdown-menu {
     padding: 0;
+    border-top: 1px solid $light-gray;
 
-    .divider {
-      margin: 0;
-    }
+    .divider { margin: 0; }
 
-    a {
-      padding: 7px 10px;
-    }
+    a { padding: 7px 10px; }
 
     .fa {
       float: left;
       margin-right: 10px;
-      color: #fff;
-    }
-
-    a:hover {
-      .fa {
-        color: #ccc;
-      }
     }
 
     .sign-out-button {
-      color: #fff;
-      font-size: 16px;
+      color: $white;
+      font-size: 14px;
       display: block;
       padding: 6px 0 6px 10px;
       clear: both;
@@ -117,11 +105,11 @@ $dropDown       : true;
     }
 
     .sign-out-button:hover {
-      color: #ccc;
-      background-color: #333;
+      color: $light-gray;
+      background-color: $black;
       text-decoration: none;
       .fa {
-        color: #ccc;
+        color: $light-gray;
       }
     }
   }

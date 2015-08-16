@@ -22,8 +22,9 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
 
   render: function () {
     user = this.photo.user();
+    hasComments = this.photo.comments().models.length > 0 ? true : false;
     this.addCommentView();
-    this.$el.html(this.template({ photo: this.model, user: user }));
+    this.$el.html(this.template({ photo: this.model, user: user, hasComments: hasComments }));
     $('.pop-window').imagesLoaded(function () {
       $('.pop-window').css('display', 'block').css('top', $(window).scrollTop() + 'px');
     });
@@ -52,9 +53,14 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   },
 
   updateTitle: function (e) {
-    this.model.set({ title: e.target.value });
-    this.model.save();
-    $('.photo-modal .photo-title').html(e.target.value);
+    var newTitle = e.target.value;
+    if (newTitle.length > 0 && newTitle != '<span>(no title)</span>') {
+      this.model.set({ title: newTitle });
+      this.model.save();
+      $('.photo-modal .photo-title').html(newTitle);
+    } else {
+      $('.photo-modal .photo-title').html('<span>(no title)</span>');
+    }
   },
 
   changeDescription: function (e) {
@@ -66,9 +72,14 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   },
 
   updateDescription: function (e) {
-    this.model.set({ description: e.target.value });
-    this.model.save();
-    $('.photo-modal .photo-description').html(e.target.value);
+    var newDescription = e.target.value;
+    if (newDescription.length > 0 && newDescription != '<span>(no description)</span>') {
+      this.model.set({ description: newDescription });
+      this.model.save();
+      $('.photo-modal .photo-description').html(newDescription);
+    } else {
+      $('.photo-modal .photo-description').html('<span>(no description)</span>');
+    }
   },
 
   trackEnter: function (e) {

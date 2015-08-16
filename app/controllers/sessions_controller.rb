@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:errors] = ["Invalid Username or Password"]
-      @photos = Photo.all
+      @photos = Photo.first(60)
       @toggle = "session"
       render :combo
     end

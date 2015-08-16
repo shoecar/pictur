@@ -26,11 +26,15 @@
           <i class="fa fa-key"></i>
           <input type="password" id="session-pw" class="form-control" placeholder="Password" name="session[password]">
 
-          <div class="col-xs-4 col-xs-offset-1">
+          <div class="col-xs-4">
             <button type="submit" class="submit-button btn btn-primary btn-block" disabled data-toggle="tooltip" data-placement="bottom" title="Sign In"><i class="fa fa-sign-in"></i></button>
           </div>
 
-          <div class="col-xs-4 col-xs-offset-2">
+          <div class="col-xs-4">
+            <button type="button" class="guest-button btn btn-primary btn-block" data-toggle="tooltip" data-placement="bottom" title="Guest Login"><i class="fa fa-user"></i></i></button>
+          </div>
+
+          <div class="col-xs-4">
             <button type="button" class="toggle-form btn btn-primary btn-block" data-toggle="tooltip" data-placement="bottom" title="New User"><i class="fa fa-user-plus"></i></button>
           </div>
         </div>
@@ -106,6 +110,15 @@
       $('.submit-button').prop("disabled", true);
     }
   }
+  $(action());
+
+  // guest login
+  $('.guest-button').click(function (e) {
+    $('#session-name').val('guest');
+    $('#session-pw').val('password');
+    e.currentTarget.blur();
+    action();
+  });
 
   // masonry
   var $grid = $('#session-photos').imagesLoaded(function () {
