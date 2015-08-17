@@ -10,4 +10,5 @@ json.comments @photo.comments do |comment|
   json.user_id comment.user_id
   json.username comment.username
   json.created time_ago_in_words(comment.created_at)
+
 end

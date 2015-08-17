@@ -5,7 +5,7 @@
     <div class="darken-photo"></div>
 
     <div class="photo-info">
-      <% if (photo.escape('title').length > 0) { %>
+      <!-- <% if (photo.escape('title').length > 0) { %>
         <h3 class="photo-title">
           <%= photo.escape('title') %>
         </h3>
@@ -13,11 +13,26 @@
 
       <p class="photo-username">
       <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-        Your Upload
+        your upload
       <% } else if (user.escape('username').length > 0 ) { %>
-        Uploaded By: <%= user.escape('username') %>
+        uploaded by <%= user.escape('username') %>
       <% }; %>
+      </p> -->
+
+      <p class="photo-time">
+        posted <%= photo.get('created') %> ago
       </p>
+
+    </div>
+
+    <div class="count-info">
+      <div class="photo-counts">
+        <p><%= photo.escape('num_comments') %><i class="fa fa-comments"></i></p>
+      </div>
+
+      <div class="photo-counts">
+        <p><i class="fa fa-heart"></i><%= photo.escape('num_likes') %></p>
+      </div>
     </div>
   </div>
 </a>

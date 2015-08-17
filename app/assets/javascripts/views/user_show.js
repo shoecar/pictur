@@ -5,6 +5,7 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
     this.addPhotoView();
+    this.addCommentView();
   },
 
   addPhotoView: function () {
@@ -18,7 +19,6 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.addCommentView();
     this.$el.html(this.template({ user: this.model }));
     this.attachSubviews();
     return this;

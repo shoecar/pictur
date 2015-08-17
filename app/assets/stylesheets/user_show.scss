@@ -31,4 +31,18 @@
       color: darken($primary, 5%);
     }
   }
+
+  .tab-content {
+    .tab-panel {
+      background-color: $white;
+      height: auto;
+    }
+
+    .panel-heading {
+      color: $white;
+      background-color: lighten($teal, 10%);
+
+      a { color: $white; }
+    }
+  }
 }

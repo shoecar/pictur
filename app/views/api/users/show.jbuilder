@@ -8,6 +8,8 @@ json.photos @user.photos do |photo|
   json.url photo.url
   json.thumb_url photo.thumb_url
   json.created time_ago_in_words(photo.created_at)
+  json.num_comments photo.comments.length
+  json.num_likes -1
 end
 
 json.comments @user.comments do |comment|

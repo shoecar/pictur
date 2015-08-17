@@ -1,6 +1,7 @@
 Pictur.Views.CommentItem = Backbone.View.extend({
   template: JST['comment/item'],
-  
+  className: 'comment-wrap col-xs-12 col-sm-10 col-sm-offset-1',
+
   events: {
     'click .delete-comment': 'deleteComment'
   },

@@ -2,13 +2,10 @@ Pictur.Views.CommentIndex = Backbone.CompositeView.extend({
   template: JST['comment/index'],
 
   initialize: function (options) {
-    this.collection.comparator = (function (comment) {
-      return -comment.get('id');
-    });
     this.collection.sort();
-    this.listenTo(this.collection, 'add', this.addCommentItem);
+    this.listenTo(this.collection, 'sync sort', this.render);
     this.listenTo(this.collection, 'remove', this.removeCommentItem);
-    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'add', this.addCommentItem);
     this.collection.each(this.addCommentItem.bind(this));
   },
 
