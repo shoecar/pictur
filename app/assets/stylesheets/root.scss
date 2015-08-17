@@ -45,3 +45,21 @@ h1, h2 {
   margin-top: 70px;
   height: 100%;
 }
+
+.to-top {
+  display: none;
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  bottom: 10px;
+  right: 10px;
+  background-color: $teal;
+  color: $white;
+  text-align: center;
+  font-size: 20px;
+  z-index: 50;
+  cursor: pointer;
+
+  .fa { margin-top: 10px; }
+}
+.to-top:hover { background-color: darken($teal, 10%); }

@@ -25,7 +25,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   },
 
   sortPhotos: function (e) {
-    this.ascend = $("#sort-asc").prop('checked');
+    this.ascend = $("#sort-asc").hasClass('active');
     switch ($('.sort-type').val()) {
       case 'time posted':
         this.sortType = 'id';
@@ -52,7 +52,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
 
   render: function () {
     this.$el.html(this.template());
-    this.ascend ? $('#sort-asc').attr('checked', 'checked') : $('#sort-des').attr('checked', 'checked');
+    this.ascend ? $('#sort-asc').addClass('active') : $('#sort-des').addClass('active');
     $('option.' + this.sortType).attr('selected', 'selected');
     this.attachSubviews();
     this.loadMasonry();

@@ -91,11 +91,11 @@
     $('.errors').remove();
     $('.submit-button').prop("disabled", true);
     if ($('.sign-in').css('display') === "block") {
-      $('.sign-in').slideUp();
-      $('.new-user').slideDown();
+      $('.sign-in').slideUp({ easing: 'easeOutQuad'});
+      $('.new-user').slideDown({ easing: 'easeOutQuad'});
     } else {
-      $('.sign-in').slideDown();
-      $('.new-user').slideUp();
+      $('.sign-in').slideDown({ easing: 'easeOutQuad'});
+      $('.new-user').slideUp({ easing: 'easeOutQuad'});
     }
   });
 

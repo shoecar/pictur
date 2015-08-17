@@ -4,38 +4,66 @@
   .sort-form {
     margin-bottom: 20px;
     height: 60px;
-    padding: 10px 0;
+    padding: 10px 25px;
     background-color: $teal;
     border: 1px solid darken($teal, 5%);
     border-radius: 40px;
+    width: 337px;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform:    translateX(-50%);
+    -ms-transform:     translateX(-50%);
+    -o-transform:      translateX(-50%);
+    transform:         translateX(-50%);
 
-    .col-xs-4, .col-xs-2 {
       position: relative;
 
-      button {
-        width: 100%;
+      select {
+        width: 160px;
+        display: inline;
       }
 
       select, button {
         height: 40px;
       }
 
-      .radio-center {
-        position: absolute;
-        margin: auto;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        -moz-transform:    translateX(-50%);
-        -ms-transform:     translateX(-50%);
-        -o-transform:      translateX(-50%);
-        transform:         translateX(-50%);
+      .sort-buttons {
+        height: 40px;
+        margin: 0 15px;
+
+        label {
+          height: 50%;
+
+          .fa {
+            position: relative;
+          }
+
+          .fa-sort-asc {
+            top: -3px;
+          }
+
+          .fa-sort-desc {
+            top: -10px;
+          }
       }
-      .radio {
-        font-weight: 400;
-        color: $white;
-        margin: 0;
-        margin-left: 15px;
-      }
+
+      // .radio-center {
+      //   position: absolute;
+      //   margin: auto;
+      //   left: 50%;
+      //   -webkit-transform: translateX(-50%);
+      //   -moz-transform:    translateX(-50%);
+      //   -ms-transform:     translateX(-50%);
+      //   -o-transform:      translateX(-50%);
+      //   transform:         translateX(-50%);
+      // }
+      // .radio {
+      //   font-weight: 400;
+      //   color: $white;
+      //   margin: 0;
+      //   margin-left: 15px;
+      // }
     }
 
     .sort-wrap-content {
@@ -71,7 +99,7 @@
       .photo-sizer, .photo-item { width: 25%; }
     }
 
-    .photo-item:hover {
+    .photo-item:hover, .photo-item.hovered {
       img {
         -webkit-transition: all .3 ease;
            -moz-transition: all .3 ease;

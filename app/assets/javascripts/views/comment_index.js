@@ -14,6 +14,7 @@ Pictur.Views.CommentIndex = Backbone.CompositeView.extend({
   },
 
   addCommentItem: function (comment) {
+    $('.no-comments').remove();
     var subView = new Pictur.Views.CommentItem({ model: comment });
     this.firstComment = false;
     this.addSubview('.comment-index', subView);

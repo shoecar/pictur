@@ -17,8 +17,27 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="javascript:void(0)" class="tool home-button" data-toggle="tooltip" data-placement="bottom" title="Home"><i class="fa fa-home"></i></a></li>
-        <li><a href="javascript:void(0)" class="tool photo-form" data-toggle="tooltip" data-placement="bottom" title="Upload Photo"><i class="fa fa-picture-o"></i></a></li>
+        <li>
+          <button type="button" class="btn btn-primary tool info-toggle" data-toggle="tooltip" data-placement="bottom" title="All Photo Info" aria-pressed="false" autocomplete="off">
+            <i class="fa fa-info-circle"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="tool btn btn-primary random-button" data-toggle="tooltip" data-placement="bottom" title="Random Photo">
+            <i class="fa fa-random"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="tool btn btn-primary home-button" data-toggle="tooltip" data-placement="bottom" title="Home">
+            <i class="fa fa-home"></i>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="tool btn btn-primary photo-form" data-toggle="tooltip" data-placement="bottom" title="Upload Photo">
+            <i class="fa fa-picture-o"></i>
+          </button>
+        </li>
+
         <li class="dropdown">
           <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= CURRENTUSER.username %> <span class="caret"></span></a>
           <ul class="dropdown-menu">

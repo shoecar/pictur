@@ -2,8 +2,24 @@
 
 <div class="root"></div>
 
+<div class="img-circle to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+
 <script type="text/javascript">
   <% if current_user %>
     var CURRENTUSER = { id: <%= current_user.id %>, username: '<%= current_user.username %>' };
   <% end %>
+
+  $(window).scroll(function () {
+    if ($(window).scrollTop() > 0) {
+      $('.to-top').fadeIn({ duration: 500, easing: 'easeOutQuad'});
+    } else {
+      $('.to-top').fadeOut({ duration: 500, easing: 'easeOutQuad'});
+    }
+  });
+
+  $('.to-top').click(function () {
+    $.scrollTo(0, {duration: 500, easing: 'easeOutQuad'});
+  });
 </script>

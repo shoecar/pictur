@@ -24,8 +24,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
 
   render: function () {
     user = this.photo.user();
-    hasComments = this.photo.comments().models.length > 0 ? true : false;
-    this.$el.html(this.template({ photo: this.model, user: user, hasComments: hasComments }));
+    this.$el.html(this.template({ photo: this.model, user: user }));
     $('.pop-window').imagesLoaded(function () {
       $('.pop-window').css('display', 'block').css('top', $(window).scrollTop() + 'px');
     });

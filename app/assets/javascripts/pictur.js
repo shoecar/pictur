@@ -5,6 +5,7 @@ window.Pictur = {
   Routers: {},
   initialize: function() {
     var photos = new Pictur.Collections.Photos();
+    photos.fetch();
 
     var router = new Pictur.Routers.Router({ $root: $('.root'), photos: photos });
 

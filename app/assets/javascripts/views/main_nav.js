@@ -9,13 +9,30 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
 
   events: {
     'click .photo-form': 'uploadPhoto',
-    'click .home-button': 'goHome'
+    'click .home-button': 'goHome',
+    'click .random-button': 'randomPhoto',
+    'click .info-toggle': 'infoToggle'
   },
 
   goHome: function (e) {
     e.preventDefault();
     e.currentTarget.blur();
     Backbone.history.navigate('/#', { trigger: true });
+  },
+
+  randomPhoto: function (e) {
+    e.preventDefault();
+    e.currentTarget.blur();
+    var arr = this.photos.pluck("id");
+    var model = this.photos.get(arr[Math.floor(Math.random() * arr.length)]);
+    var view = new Pictur.Views.PhotoModal({ model: model, collection: this.photos });
+    $('body').append(view.render().$el);
+  },
+
+  infoToggle: function (e) {
+    e.preventDefault();
+    e.currentTarget.blur();
+    $('.photo-item').toggleClass('hovered');
   },
 
   render: function () {
