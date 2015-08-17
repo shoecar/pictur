@@ -4,7 +4,7 @@ class Api::CommentsController < ApplicationController
     if @comment.save
       render :show
     else
-      render json: @photo.errors, status: :unprocessable_entity
+      render json: @comment.errors, status: :unprocessable_entity
     end
   end
 
@@ -13,7 +13,7 @@ class Api::CommentsController < ApplicationController
     if @comment.delete
       render :show
     else
-      render json: @photo.errors, status: :unprocessable_entity
+      render json: @comment.errors, status: :unprocessable_entity
     end
   end
 

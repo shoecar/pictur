@@ -70,6 +70,11 @@
                 .comment-photo:hover {
                   background-color: darken($teal, 10%);
                 }
+
+                .voting-photo.is-liked {
+                  background-color: lighten($primary, 15%);
+                  color: $pastel-red;
+                }
               }
 
               p { font-weight: 500; }

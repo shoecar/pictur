@@ -15,6 +15,8 @@ gem 'bootstrap-sass'
 gem 'cloudinary'
 gem 'figaro'
 gem 'masonry-rails'
+gem 'kaminari'
+gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   gem 'pry-rails'

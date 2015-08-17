@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :users, only: :show
     resources :photos, except: [:new, :edit]
     resources :comments, only: [:create, :destroy]
+    resources :votings, only: [:create, :destroy]
   end
 end

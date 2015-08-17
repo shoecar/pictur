@@ -46,10 +46,16 @@
       <div class="col-xs-6 col-sm-3">
         <div class="modal-buttons">
           <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-            <button type="button" class="delete-photo btn btn-lrg btn-danger"><i class="fa fa-trash-o"></i></button>
+            <button type="button" class="delete-photo btn btn-lrg btn-danger">
+              <i class="fa fa-trash-o"></i>
+            </button>
           <% } %>
-            <button type="button" class="comment-photo btn btn-lrg btn-default"><i class="fa fa-comment"></i></button>
-            <button type="button" class="like-photo btn btn-lrg btn-primary"><i class="fa fa-heart"></i></button>
+            <button type="button" class="comment-photo btn btn-lrg btn-default">
+              <i class="fa fa-comment"></i>
+            </button>
+            <button type="button" class="voting-photo btn btn-lrg btn-primary">
+              <i class="fa fa-heart"></i>
+            </button>
         </div>
       </div>
     </div>
@@ -78,7 +84,7 @@
     </h3>
 
     <div class="photo-comments col-xs-12"></div>
-    
+
     <div class="no-comments col-xs-12 col-sm-10 col-sm-offset-1">
       <div class="panel panel-default">
         <div class="panel-body">

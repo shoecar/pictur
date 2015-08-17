@@ -3,4 +3,13 @@ class Photo < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments
+  has_many :votings
+
+  def sum_score
+    sum = 0
+    self.votings.each do |voting|
+      sum += voting.score
+    end
+    sum
+  end
 end

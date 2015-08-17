@@ -3,6 +3,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   className: 'photo-index',
 
   initialize: function (options) {
+    this.loadMasonry();
     this.sortType = 'id';
     this.ascend = false;
     this.listenTo(this.collection, 'add remove sort', this.render);
@@ -18,6 +19,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   addPhotoItem: function (photo) {
     var subView = new Pictur.Views.PhotoItem({ model: photo, collection: this.collection });
     this.addSubview('#masonry-container', subView);
+    // $('#masonry-container').masonry( 'appended', subView );
   },
 
   removePhotoItem: function (photo) {
@@ -34,7 +36,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
         this.sortType = 'num_comments';
         break;
       case 'number of likes':
-        this.sortType = 'num_likes'
+        this.sortType = 'votings_score'
         break;
     }
 
@@ -56,6 +58,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
     $('option.' + this.sortType).attr('selected', 'selected');
     this.attachSubviews();
     this.loadMasonry();
+    this.listenForScroll();
     return this;
   },
 
@@ -68,5 +71,27 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
         columnWidth: '.photo-sizer'
       });
     });
+  },
+
+  listenForScroll: function () {
+    $(window).off("scroll");
+    var throttledCallback = _.throttle(this.nextPage.bind(this), 200);
+    $(window).on("scroll", throttledCallback);
+  },
+
+  nextPage: function () {
+    var view = this;
+    if ($(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+      if(isNaN(view.collection.page_number)) {
+        view.collection.page_number = 1;
+      }
+
+      if (view.collection.page_number < view.collection.total_pages) {
+        view.collection.fetch({
+          data: { page: view.collection.page_number + 1 },
+          remove: false
+        });
+      }
+    }
   }
 });

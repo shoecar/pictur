@@ -9,7 +9,7 @@ json.photos @user.photos do |photo|
   json.thumb_url photo.thumb_url
   json.created time_ago_in_words(photo.created_at)
   json.num_comments photo.comments.length
-  json.num_likes -1
+  json.votings_score photo.sum_score
 end
 
 json.comments @user.comments do |comment|
@@ -20,3 +20,5 @@ json.comments @user.comments do |comment|
   json.username comment.username
   json.created time_ago_in_words(comment.created_at)
 end
+
+json.votings @user.votings, :id, :user_id, :photo_id, :score

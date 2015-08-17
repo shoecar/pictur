@@ -15,6 +15,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     'click .close-window, .fullscreen, .close-window-user': 'closeWindow',
     'click .delete-photo': 'destroyPhoto',
     'click .comment-photo, .submit-comment': 'toggleCommentForm',
+    'click .voting-photo, .submit-comment': 'toggleVoting',
     'click .change-title': 'changeTitle',
     'keypress .photo-title input': 'trackEnter',
     'blur .photo-title': 'updateTitle',
@@ -23,8 +24,12 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    user = this.photo.user();
+    var user = this.photo.user();
     this.$el.html(this.template({ photo: this.model, user: user }));
+    this.likedModel = this.photo.votings().find(function (voting) {
+      return voting.get('user_id') === CURRENTUSER.id
+    });
+    if (this.likedModel) { $('.voting-photo').addClass('is-liked'); }
     $('.pop-window').imagesLoaded(function () {
       $('.pop-window').css('display', 'block').css('top', $(window).scrollTop() + 'px');
     });
@@ -52,6 +57,22 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     this.addSubview('.photo-comment-form', subView);
     $('.photo-comment-form').slideToggle({ duration: 500, easing: 'easeOutQuad' });
     $.scrollTo($('.modal-info'), {duration: 1000, easing: 'easeOutQuad'});
+  },
+
+  toggleVoting: function (e) {
+    e.currentTarget.blur();
+    $(e.currentTarget).toggleClass('is-liked');
+    if (this.likedModel) {
+      this.likedModel.destroy();
+    } else {
+      var voting = new Pictur.Models.Voting()
+      voting.set({
+        user_id: CURRENTUSER.id,
+        photo_id: this.photo.get('id'),
+        score: 1
+      });
+      voting.save();
+    }
   },
 
   changeTitle: function (e) {

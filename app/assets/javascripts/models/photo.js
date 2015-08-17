@@ -10,6 +10,10 @@ Pictur.Models.Photo = Backbone.Model.extend({
       this.comments().set(response.comments);
       delete response.comments;
     }
+    if (response.votings) {
+      this.votings().set(response.votings);
+      delete response.votings;
+    }
     return response
   },
 
@@ -25,5 +29,12 @@ Pictur.Models.Photo = Backbone.Model.extend({
       this._comments = new Pictur.Collections.Comments();
     }
     return this._comments;
+  },
+
+  votings: function () {
+    if (!this._votings) {
+      this._votings = new Pictur.Collections.Votings();
+    }
+    return this._votings;
   }
 });

@@ -1,6 +1,7 @@
 class Api::PhotosController < ApplicationController
   def index
-    @photos = Photo.all.order('id').reverse_order
+    @photos = Photo.page(params[:page])
+    @page = params[:page]
     render :index
   end
 

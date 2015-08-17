@@ -27,11 +27,11 @@
 
     <div class="count-info">
       <div class="photo-counts">
-        <p><%= photo.escape('num_comments') %><i class="fa fa-comments"></i></p>
+        <p><i class="fa fa-comments"></i><%= photo.escape('num_comments') %></p>
       </div>
 
       <div class="photo-counts">
-        <p><i class="fa fa-heart"></i><%= photo.escape('num_likes') %></p>
+        <p><i class="fa fa-heart"></i><%= photo.escape('votings_score') %></p>
       </div>
     </div>
   </div>
