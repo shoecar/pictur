@@ -72,12 +72,24 @@ $dropDown       : true;
     top: 5px;
   }
 
+  .navbar-collapse {
+    background-color: $dark-blue;
+  }
+
+  .navbar-toggle {
+    margin: 0;
+  }
+
   button {
     width: 50px;
     height: 50px;
     background-color: $dark-blue;
     border: none;
    }
+
+   li button { float: left; }
+
+   li.dropdown { float: right}
 
   .fa { font-size: 24px; }
 
@@ -107,6 +119,7 @@ $dropDown       : true;
       white-space: nowrap;
       text-align: left;
       width: 100%;
+      height: 34px;
     }
 
     .sign-out-button:hover {

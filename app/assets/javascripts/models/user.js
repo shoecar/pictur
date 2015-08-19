@@ -33,7 +33,7 @@ Pictur.Models.User = Backbone.Model.extend({
 
   votings: function () {
     if (!this._votings) {
-      this._votings = new Pictur.Collections.Votings();
+      this._votings = new Pictur.Collections.Photos();
     }
     return this._votings;
   }

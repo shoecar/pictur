@@ -1,28 +1,17 @@
 <a href="javascript:void(0)" class="photo-thumb">
   <img src="<%= photo.escape('thumb_url') %>" alt="" />
 
+
+
+  <h1 style="position: absolute; color: white; font-weight: 900; top: 40px; left: 180px; background-color: black;"><%= photo.get('id') %></h1>
+
+
+
   <div class="info-wrap">
-    <div class="darken-photo"></div>
-
     <div class="photo-info">
-      <!-- <% if (photo.escape('title').length > 0) { %>
-        <h3 class="photo-title">
-          <%= photo.escape('title') %>
-        </h3>
-      <% } %>
-
-      <p class="photo-username">
-      <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-        your upload
-      <% } else if (user.escape('username').length > 0 ) { %>
-        uploaded by <%= user.escape('username') %>
-      <% }; %>
-      </p> -->
-
       <p class="photo-time">
         posted <%= photo.get('created') %> ago
       </p>
-
     </div>
 
     <div class="count-info">

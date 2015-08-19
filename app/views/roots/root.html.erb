@@ -11,11 +11,11 @@
     var CURRENTUSER = { id: <%= current_user.id %>, username: '<%= current_user.username %>' };
   <% end %>
 
-  $(window).scroll(function () {
+  $(document).scroll(function () {
     if ($(window).scrollTop() > 0) {
-      $('.to-top').fadeIn({ duration: 500, easing: 'easeOutQuad'});
+      $('.to-top').fadeIn({ duration: 1000, easing: 'easeOutQuad'});
     } else {
-      $('.to-top').fadeOut({ duration: 500, easing: 'easeOutQuad'});
+      $('.to-top').fadeOut({ duration: 700, easing: 'easeOutQuad'});
     }
   });
 

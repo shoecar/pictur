@@ -30,11 +30,15 @@
         <h3>
           title
           <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-            <i class="change-title fa fa-pencil"></i>
+            <i class="tool change-title fa fa-pencil" data-toggle="tooltip" data-placement="top" title="Edit Title" aria-pressed="false" autocomplete="off"></i>
           <% } %>
         </h3>
 
-        <p class="photo-title">
+        <% if (CURRENTUSER.id === photo.get('user_id')) { %>
+          <p class="photo-title can-edit">
+        <% } else { %>
+          <p class="photo-title">
+        <% } %>
           <% if (photo.escape('title').length > 0) { %>
             <%= photo.escape('title') %>
           <% } else { %>
@@ -46,14 +50,14 @@
       <div class="col-xs-6 col-sm-3">
         <div class="modal-buttons">
           <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-            <button type="button" class="delete-photo btn btn-lrg btn-danger">
+            <button type="button" class="tool delete-photo btn btn-lrg btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete Photo" aria-pressed="false" autocomplete="off">
               <i class="fa fa-trash-o"></i>
             </button>
           <% } %>
-            <button type="button" class="comment-photo btn btn-lrg btn-default">
+            <button type="button" class="tool comment-photo btn btn-lrg btn-default" data-toggle="tooltip" data-placement="bottom" title="Leave Comment" aria-pressed="false" autocomplete="off">
               <i class="fa fa-comment"></i>
             </button>
-            <button type="button" class="voting-photo btn btn-lrg btn-primary">
+            <button type="button" class="tool voting-photo btn btn-lrg btn-primary" data-toggle="tooltip" data-placement="bottom" title="Like Photo" aria-pressed="false" autocomplete="off">
               <i class="fa fa-heart"></i>
             </button>
         </div>
@@ -65,14 +69,18 @@
     <h3 class="col-xs-12">
       description
       <% if (CURRENTUSER.id === photo.get('user_id')) { %>
-        <i class="change-description fa fa-pencil"></i>
+        <i class="tool change-description fa fa-pencil"  data-toggle="tooltip" data-placement="top" title="Edit Description" aria-pressed="false" autocomplete="off"></i>
       <% } %>
     </h3>
 
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
         <div class="panel panel-default">
           <div class="panel-body">
-            <p class="photo-description">
+            <% if (CURRENTUSER.id === photo.get('user_id')) { %>
+              <p class="photo-description can-edit">
+            <% } else { %>
+              <p class="photo-description">
+            <% } %>
               <%= photo.escape('description').length > 0 ? photo.escape('description') : '<span>(no description)</span>' %>
             </p>
           </div>
@@ -96,3 +104,7 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('.tool').tooltip({ container: 'body' });
+</script>

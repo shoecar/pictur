@@ -2,9 +2,9 @@
   <div class="col-xs-12">
     <form class="sort-form" action="index.html" method="post">
       <select class="form-control sort-type">
-        <option class="id">time posted</option>
-        <option class="votings_score">number of likes</option>
-        <option class="num_comments">number of comments</option>
+        <option class="time">time</option>
+        <option class="votings_score">votings_score</option>
+        <option class="num_comments">num_comments</option>
       </select>
 
       <div class="btn-group-vertical sort-buttons" data-toggle="buttons">
@@ -21,4 +21,13 @@
   </div>
 </div>
 
-<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix"></div>
+<div id="masonry-container" class="clearfix"></div>
+
+
+<script type="text/javascript">
+  new AnimOnScroll( document.getElementById( 'masonry-container' ), {
+  		minDuration : 0.4,
+  		maxDuration : 0.7,
+  		viewportFactor : 0.2
+  } );
+</script>

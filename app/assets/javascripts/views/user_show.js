@@ -3,7 +3,6 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
   className: 'user-show col-xs-12',
 
   initialize: function () {
-    this.photos = this.model.photos();
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.addPhotoView);
     this.listenTo(this.model, 'sync', this.addCommentView);
@@ -11,23 +10,17 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   addPhotoView: function () {
-    var subView = new Pictur.Views.PhotoIndex({ collection: this.photos });
+    var subView = new Pictur.Views.PhotoIndex({ collection: this.model.photos() });
     this.addSubview('#user-photos', subView);
   },
 
   addCommentView: function () {
-    var subView = new Pictur.Views.CommentIndex({ collection: this.model.comments() });
+    var subView = new Pictur.Views.CommentIndex({ collection: this.model.comments(), forPhoto: false });
     this.addSubview('#user-comments', subView);
   },
 
   addVotingView: function () {
-    var likedPhotos = new Pictur.Collections.Photos();
-    this.model.votings().each(function (voting){
-      if (voting.get('score') > 0) {
-        likedPhotos.add({ id: voting.get('photo_id') });
-      }
-    });
-    var subView = new Pictur.Views.PhotoIndex({ collection: likedPhotos });
+    var subView = new Pictur.Views.PhotoIndex({ collection: this.model.votings(), userId: this.model.get('id') });
     this.addSubview('#user-votings', subView);
   },
 

@@ -17,6 +17,7 @@ gem 'figaro'
 gem 'masonry-rails'
 gem 'kaminari'
 gem 'friendly_id', '~> 5.1.0'
+gem 'modernizr-rails'
 
 group :development, :test do
   gem 'pry-rails'

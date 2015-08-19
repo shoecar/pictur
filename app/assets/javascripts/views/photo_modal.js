@@ -16,10 +16,10 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     'click .delete-photo': 'destroyPhoto',
     'click .comment-photo, .submit-comment': 'toggleCommentForm',
     'click .voting-photo, .submit-comment': 'toggleVoting',
-    'click .change-title': 'changeTitle',
+    'click .change-title, .photo-title.can-edit': 'changeTitle',
     'keypress .photo-title input': 'trackEnter',
     'blur .photo-title': 'updateTitle',
-    'click .change-description': 'changeDescription',
+    'click .change-description, .photo-description.can-edit': 'changeDescription',
     'blur .photo-description': 'updateDescription'
   },
 
@@ -39,15 +39,19 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   },
 
   addCommentView: function () {
-    var subView = new Pictur.Views.CommentIndex({ collection: this.photo.comments() });
+    var subView = new Pictur.Views.CommentIndex({ collection: this.photo.comments(), forPhoto: true });
     this.addSubview('.photo-comments', subView);
   },
 
   destroyPhoto: function (e) {
     e.preventDefault();
     e.currentTarget.blur();
-    this.model.destroy();
-    this.closeWindow();
+    bootbox.confirm("Are you sure you want to delete this photo?", function(result) {
+      if (result) {
+        this.model.destroy();
+        this.closeWindow();
+      }
+    }.bind(this));
   },
 
   toggleCommentForm: function (e) {
@@ -64,6 +68,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     $(e.currentTarget).toggleClass('is-liked');
     if (this.likedModel) {
       this.likedModel.destroy();
+      this.likedModel = undefined;
     } else {
       var voting = new Pictur.Models.Voting()
       voting.set({
@@ -72,6 +77,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
         score: 1
       });
       voting.save();
+      this.likedModel = voting;
     }
   },
 

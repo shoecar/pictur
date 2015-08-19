@@ -2,6 +2,7 @@ Pictur.Views.CommentIndex = Backbone.CompositeView.extend({
   template: JST['comment/index'],
 
   initialize: function (options) {
+    this.forPhoto = options.forPhoto
     this.collection.sort();
     this.listenTo(this.collection, 'sync sort', this.render);
     this.listenTo(this.collection, 'remove', this.removeCommentItem);
@@ -15,9 +16,9 @@ Pictur.Views.CommentIndex = Backbone.CompositeView.extend({
 
   addCommentItem: function (comment) {
     $('.no-comments').remove();
-    var subView = new Pictur.Views.CommentItem({ model: comment });
+    var subView = new Pictur.Views.CommentItem({ model: comment, forPhoto: this.forPhoto });
     this.firstComment = false;
-    this.addSubview('.comment-index', subView);
+    this.addSubview('.comment-index', subView, true);
   },
 
   removeCommentItem: function (photo) {

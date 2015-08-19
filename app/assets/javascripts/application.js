@@ -5,9 +5,12 @@
 //= require jquery.cursoratend
 //= require jquery.easing
 //= require jquery.scrollTo.min
+//= require bootbox.min
 //= require masonry/masonry.min
 //= require masonry/imagesloaded.min
 //= require masonry/infinitescroll.min
+//= require AnimOnScroll
+//= require classie.js
 //= require underscore
 //= require backbone
 //= require pictur

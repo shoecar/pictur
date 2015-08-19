@@ -11,8 +11,12 @@ Pictur.Routers.Router = Backbone.Router.extend({
 
   photoIndex: function () {
     var photos = new Pictur.Collections.Photos();
-    photos.fetch();
     var view = new Pictur.Views.PhotoIndex({ collection: photos });
+    photos.fetch({
+      success: function () {
+        view.render();
+      }
+    });
     this._swapView(view);
   },
 
@@ -27,5 +31,16 @@ Pictur.Routers.Router = Backbone.Router.extend({
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$root.html(view.render().$el);
-  }
+  },
+
+  _loadMasonry: function () {
+    var $grid = $('#masonry-container').imagesLoaded(function () {
+      $grid.prepend($('<div class="photo-sizer"></div>'));
+      $grid.masonry({
+        itemSelector: '.photo-item',
+        percentPosition: true,
+        columnWidth: '.photo-sizer'
+      });
+    });
+  },
 });

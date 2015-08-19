@@ -3,13 +3,18 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   className: 'photo-index',
 
   initialize: function (options) {
-    this.loadMasonry();
-    this.sortType = 'id';
+    this.sortType = 'time';
+    this.userId = options.userId;
     this.ascend = false;
-    this.listenTo(this.collection, 'add remove sort', this.render);
+    this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addPhotoItem);
     this.listenTo(this.collection, 'remove', this.removePhotoItem);
+    this.listenTo(this.collection, 'reset', this.sortSetup);
     this.collection.each(this.addPhotoItem.bind(this));
+    this.$el.html(this.template());
+    this.attachSubviews();
+    this.loadMasonry();
+    this.listenForScroll();
   },
 
   events: {
@@ -19,7 +24,6 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   addPhotoItem: function (photo) {
     var subView = new Pictur.Views.PhotoItem({ model: photo, collection: this.collection });
     this.addSubview('#masonry-container', subView);
-    // $('#masonry-container').masonry( 'appended', subView );
   },
 
   removePhotoItem: function (photo) {
@@ -27,44 +31,61 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   },
 
   sortPhotos: function (e) {
+    $('.photo-item').css('display','none');
     this.ascend = $("#sort-asc").hasClass('active');
-    switch ($('.sort-type').val()) {
-      case 'time posted':
-        this.sortType = 'id';
-        break;
-      case 'number of comments':
-        this.sortType = 'num_comments';
-        break;
-      case 'number of likes':
-        this.sortType = 'votings_score'
-        break;
-    }
-
-    this.collection.comparator = function (photo) {
-      return this.ascend ? photo.get(this.sortType) : -photo.get(this.sortType);
-    }.bind(this)
-
-
-    this.collection.sort();
-    this.eachSubview(function (subview) {
-      subview.remove();
+    this.sortType = $('.sort-type').val();
+    // this.eachSubview(function (subview) { this.removePhotoItem(subview.model); }.bind(this));
+    this.collection.fetch({
+      data: {
+        ascend: this.ascend,
+        sort_type: this.sortType,
+        user_id: this.userId
+      },
+      success: function(data) {
+        console.log(data);
+      },
+      reset: true
     });
+  },
+
+  sortSetup: function () {
+    $(window).off("scroll");
+    console.log(this.subviews());
+    // this.eachSubview(function (subview) { this.removePhotoItem(subview.model); }.bind(this));
+    this.eachSubview(function (subview) { subview.remove(); });
+    console.log(this.subviews());
+
+    $('#masonry-container').masonry('destroy');
     this.collection.each(this.addPhotoItem.bind(this));
+    this.loadMasonry();
+    this.listenForScroll();
   },
 
   render: function () {
     this.$el.html(this.template());
     this.ascend ? $('#sort-asc').addClass('active') : $('#sort-des').addClass('active');
-    $('option.' + this.sortType).attr('selected', 'selected');
+    switch (this.sortType) {
+      case 'time':
+        this.sortType = 'time';
+        break;
+      case 'num_comments':
+        this.sortType = 'num_comments'
+        break;
+      case 'votings_score':
+      this.sortType = 'votings_score'
+      break;
+    }
+    this.$el.find('option.' + this.sortType).attr('selected', 'selected');
     this.attachSubviews();
     this.loadMasonry();
     this.listenForScroll();
+    $('.photo-item').removeClass('active');
     return this;
   },
 
   loadMasonry: function () {
     var $grid = $('#masonry-container').imagesLoaded(function () {
-      $('#masonry-container').prepend($('<div class="photo-sizer"></div>'));
+      $grid.prepend($('<div class="photo-sizer"></div>'));
       $grid.masonry({
         itemSelector: '.photo-item',
         percentPosition: true,
@@ -75,7 +96,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
 
   listenForScroll: function () {
     $(window).off("scroll");
-    var throttledCallback = _.throttle(this.nextPage.bind(this), 200);
+    var throttledCallback = _.throttle(this.nextPage.bind(this), 0);
     $(window).on("scroll", throttledCallback);
   },
 
@@ -88,7 +109,11 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
 
       if (view.collection.page_number < view.collection.total_pages) {
         view.collection.fetch({
-          data: { page: view.collection.page_number + 1 },
+          data: { page: view.collection.page_number + 1,
+            ascend: this.ascend,
+            sort_type: this.sortType,
+            // user_id: this.userId
+          },
           remove: false
         });
       }

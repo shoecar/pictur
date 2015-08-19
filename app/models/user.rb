@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :photos
   has_many :comments
-  has_many :votings
+  has_many :votings, dependent: :destroy
 
   def self.find_by_creds(username, password)
     user = User.find_by_username(username)
