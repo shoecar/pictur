@@ -3,6 +3,7 @@ Pictur.Views.CommentItem = Backbone.View.extend({
   className: 'comment-wrap col-xs-12 col-sm-10 col-sm-offset-1',
 
   initialize: function (options) {
+    this.photo = options.photo
     this.forPhoto = options.forPhoto
   },
 
@@ -20,9 +21,12 @@ Pictur.Views.CommentItem = Backbone.View.extend({
     e.currentTarget.blur();
     bootbox.confirm("Are you sure you want to delete this comment?", function(result) {
       if (result) {
-        this.$el.fadeOut({ duration: 1000, easing: 'easeOutQuad'}, function () {
-          this.model.destroy();
-        }.bind(this));
+        this.$el.fadeOut({ duration: 1000, easing: 'easeOutQuad', complete: function () {
+            this.photo.set({ num_comments: this.photo.attributes.num_comments -= 1 });
+            this.photo.trigger('change');
+            this.model.destroy();
+          }.bind(this)
+        });
       }
     }.bind(this));
   }

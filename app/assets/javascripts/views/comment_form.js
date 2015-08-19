@@ -4,6 +4,7 @@ Pictur.Views.CommentForm = Backbone.View.extend({
 
   initialize: function (options) {
     this.photoId = options.photoId;
+    this.itemViewModel = options.itemViewModel;
   },
 
   events: {
@@ -25,5 +26,7 @@ Pictur.Views.CommentForm = Backbone.View.extend({
                   });
     comment.save();
     this.collection.add(comment);
+    this.itemViewModel.set({ num_comments: this.itemViewModel.attributes.num_comments += 1 });
+    this.itemViewModel.trigger('change');
   }
 });

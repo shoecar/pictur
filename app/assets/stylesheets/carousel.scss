@@ -1,0 +1,9 @@
+#likes-carousel {
+    max-height: 100%;
+    img {
+      width: auto;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+}

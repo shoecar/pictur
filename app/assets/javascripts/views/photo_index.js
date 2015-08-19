@@ -9,12 +9,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addPhotoItem);
     this.listenTo(this.collection, 'remove', this.removePhotoItem);
-    this.listenTo(this.collection, 'reset', this.sortSetup);
     this.collection.each(this.addPhotoItem.bind(this));
-    this.$el.html(this.template());
-    this.attachSubviews();
-    this.loadMasonry();
-    this.listenForScroll();
   },
 
   events: {
@@ -31,34 +26,16 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   },
 
   sortPhotos: function (e) {
-    $('.photo-item').css('display','none');
     this.ascend = $("#sort-asc").hasClass('active');
     this.sortType = $('.sort-type').val();
-    // this.eachSubview(function (subview) { this.removePhotoItem(subview.model); }.bind(this));
+    this.collection.remove(this.collection.models);
     this.collection.fetch({
       data: {
         ascend: this.ascend,
         sort_type: this.sortType,
         user_id: this.userId
-      },
-      success: function(data) {
-        console.log(data);
-      },
-      reset: true
+      }
     });
-  },
-
-  sortSetup: function () {
-    $(window).off("scroll");
-    console.log(this.subviews());
-    // this.eachSubview(function (subview) { this.removePhotoItem(subview.model); }.bind(this));
-    this.eachSubview(function (subview) { subview.remove(); });
-    console.log(this.subviews());
-
-    $('#masonry-container').masonry('destroy');
-    this.collection.each(this.addPhotoItem.bind(this));
-    this.loadMasonry();
-    this.listenForScroll();
   },
 
   render: function () {
@@ -79,7 +56,6 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
     this.attachSubviews();
     this.loadMasonry();
     this.listenForScroll();
-    $('.photo-item').removeClass('active');
     return this;
   },
 
@@ -96,7 +72,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
 
   listenForScroll: function () {
     $(window).off("scroll");
-    var throttledCallback = _.throttle(this.nextPage.bind(this), 0);
+    var throttledCallback = _.throttle(this.nextPage.bind(this), 200);
     $(window).on("scroll", throttledCallback);
   },
 
@@ -112,7 +88,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
           data: { page: view.collection.page_number + 1,
             ascend: this.ascend,
             sort_type: this.sortType,
-            // user_id: this.userId
+            user_id: this.userId
           },
           remove: false
         });

@@ -11,12 +11,8 @@ Pictur.Routers.Router = Backbone.Router.extend({
 
   photoIndex: function () {
     var photos = new Pictur.Collections.Photos();
-    var view = new Pictur.Views.PhotoIndex({ collection: photos });
-    photos.fetch({
-      success: function () {
-        view.render();
-      }
-    });
+    var view = new Pictur.Views.PhotoIndex({ collection: photos, userId: 0 });
+    photos.fetch();
     this._swapView(view);
   },
 

@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817175004) do
+ActiveRecord::Schema.define(version: 20150819230818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "albumings", force: :cascade do |t|
+    t.integer  "album_id",   null: false
+    t.integer  "photo_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "albumings", ["album_id", "photo_id"], name: "index_albumings_on_album_id_and_photo_id", unique: true, using: :btree
+
+  create_table "albums", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.integer  "user_id",     null: false
+    t.integer  "albuming_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "albums", ["albuming_id"], name: "index_albums_on_albuming_id", using: :btree
+  add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "body",       null: false
@@ -36,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150817175004) do
     t.datetime "updated_at",  null: false
     t.string   "url",         null: false
     t.string   "thumb_url",   null: false
+    t.integer  "albuming_id"
   end
 
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
@@ -59,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150817175004) do
   end
 
   add_index "votings", ["photo_id"], name: "index_votings_on_photo_id", using: :btree
+  add_index "votings", ["user_id", "photo_id"], name: "index_votings_on_user_id_and_photo_id", unique: true, using: :btree
   add_index "votings", ["user_id"], name: "index_votings_on_user_id", using: :btree
 
 end

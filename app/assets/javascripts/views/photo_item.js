@@ -5,7 +5,7 @@ Pictur.Views.PhotoItem = Backbone.View.extend({
 
   initialize: function () {
     this.user = this.model.user();
-    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'sync change', this.render);
   },
 
   events: {

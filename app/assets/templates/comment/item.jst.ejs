@@ -7,7 +7,7 @@
       </a>
     <% } else { %>
       <% if (comment.get('photo_url')) { %>
-        <a class="close-window-user" href="#user/<%= comment.get('photo_url') %>">
+        <a href="<%= comment.escape('photo_url') %>" target="_blank">
           <% if (comment.escape('photo_title').length === 0) { %>
             <span>(no title)</span>
           <% } else { %>

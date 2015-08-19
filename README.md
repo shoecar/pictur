@@ -10,11 +10,11 @@ Pictur is a clone of Imgur built on Rails and Backbone. Users can:
 - [x] Create accounts
 - [x] Create sessions (log in)
 - [x] Create photos
-- [ ] Create comments
+- [X] Create comments
 - [x] View user account
 - [x] View photos
-- [ ] Like/Dislike Photos
-- [ ] Comment on photos
+- [X] Like Photos
+- [X] Comment on photos
 
 ## Design Docs
 * [View Wireframes][views]
@@ -63,9 +63,11 @@ infinite scrolling.
 [Details][phase-five]
 
 ### Bonus Features (TBD)
-- [ ] Add comments to User show page
+- [x] Add comments to User show page
 - [ ] Implement Albums to hold pictures
 - [ ] User profile pictures
+- [x] infinite scroll
+- [x] Picture sorting
 - [ ] Tags on photos
 - [ ] Nested comments
 - [ ] Search functionality

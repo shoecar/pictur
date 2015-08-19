@@ -29,13 +29,15 @@ json.comments @comments do |comment|
 end
 
 json.votings @votings do |voting|
-  json.id voting.photo.id
+  json.id voting.id
+  json.voting_created time_ago_in_words(voting.created_at)
+  json.photo_id voting.photo.id
   json.title voting.photo.title
   json.description voting.photo.description
   json.user_id voting.photo.user_id
   json.url voting.photo.url
   json.thumb_url voting.photo.thumb_url
-  json.created time_ago_in_words(voting.photo.created_at)
+  json.photo_created time_ago_in_words(voting.photo.created_at)
   json.num_comments voting.photo.comments.length
   json.votings_score voting.photo.sum_score
 end

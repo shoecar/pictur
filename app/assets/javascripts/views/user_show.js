@@ -9,8 +9,12 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, 'sync', this.addVotingView);
   },
 
+  events: {
+    'click .scrollBottom': 'scrollBottom'
+  },
+
   addPhotoView: function () {
-    var subView = new Pictur.Views.PhotoIndex({ collection: this.model.photos() });
+    var subView = new Pictur.Views.PhotoIndex({ collection: this.model.photos(), userId: this.model.get('id') });
     this.addSubview('#user-photos', subView);
   },
 
@@ -20,7 +24,7 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   addVotingView: function () {
-    var subView = new Pictur.Views.PhotoIndex({ collection: this.model.votings(), userId: this.model.get('id') });
+    var subView = new Pictur.Views.PhotoLikes({ collection: this.model.votings() });
     this.addSubview('#user-votings', subView);
   },
 
@@ -28,5 +32,13 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
     this.$el.html(this.template({ user: this.model }));
     this.attachSubviews();
     return this;
+  },
+
+  scrollBottom: function (e) {
+    e.preventDefault();
+    window.setTimeout(function() {
+      $.scrollTo($('.carousel-inner'), {duration: 1000, easing: 'easeOutQuad'}),
+      500
+    });
   }
 });

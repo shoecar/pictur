@@ -2,24 +2,31 @@ class Api::PhotosController < ApplicationController
   def index
     order = params[:ascend] == "true" ? "ASC" : "DESC"
     sort_type = params[:sort_type] ? params[:sort_type] : "time"
-    # user_id = params[:user_id] ? params[:sort_type] : "ALL (SELECT users.id FROM users)".where("user_id = ?", user_id)
+    if params[:user_id] != "0" && params[:user_id]
+      user_id = "photos.user_id = #{params[:user_id]}"
+    else
+      user_id = "photos.user_id > 0"
+    end
 
     case sort_type
     when 'time'
-      @photos = Photo.order("created_at #{order}").page(params[:page]).per(2)
+      @photos = Photo.order("created_at #{order}").where(user_id).page(params[:page]).per(25)
     when 'num_comments'
       @photos = Photo.select("photos.*, count(comments.id) AS comments_count").
         joins("LEFT OUTER JOIN comments ON photos.id = comments.photo_id").
         group("photos.id").
         order("comments_count #{order}").
-        page(params[:page]).per(2)
+        where(user_id).
+        page(params[:page]).per(25)
     when 'votings_score'
       @photos = Photo.select("photos.*, count(votings.id) AS votings_count").
         joins("LEFT OUTER JOIN votings ON photos.id = votings.photo_id").
         group("photos.id").
         order("votings_count #{order}").
-        page(params[:page]).per(2)
+        where(user_id).
+        page(params[:page]).per(25)
     end
+
     @page = params[:page]
     render :index
   end
