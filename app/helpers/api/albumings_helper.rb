@@ -1,0 +1,2 @@
+module Api::AlbumingsHelper
+end

@@ -1,0 +1,28 @@
+.album-index {
+  .album-item {
+    .album-left-arrow, .album-right-arrow {
+      font-size: 30px;
+      position: absolute;
+      margin-top: 250px;
+      cursor: pointer;
+      color: $dark-blue;
+      :hover { color: $gray }
+    }
+
+    .album-left-arrow { left: 10px; }
+    .album-right-arrow { right: 10px; }
+
+    h1 {
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .slick-carousel {
+
+      img {
+        height: 200px;
+        margin: 10px;
+      }
+    }
+  }
+}

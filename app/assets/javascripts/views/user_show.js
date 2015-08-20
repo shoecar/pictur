@@ -5,17 +5,24 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.addPhotoView);
+    this.listenTo(this.model, 'sync', this.addAlbumView);
     this.listenTo(this.model, 'sync', this.addCommentView);
     this.listenTo(this.model, 'sync', this.addVotingView);
   },
 
   events: {
-    'click .scrollBottom': 'scrollBottom'
+    'click .scrollBottom': 'scrollBottom',
+    'click #user-albums': 'startCarousel'
   },
 
   addPhotoView: function () {
     var subView = new Pictur.Views.PhotoIndex({ collection: this.model.photos(), userId: this.model.get('id') });
     this.addSubview('#user-photos', subView);
+  },
+
+  addAlbumView: function () {
+    var subView = new Pictur.Views.AlbumIndex({ collection: this.model.albums() });
+    this.addSubview('#user-albums', subView);
   },
 
   addCommentView: function () {
@@ -31,6 +38,7 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
   render: function () {
     this.$el.html(this.template({ user: this.model }));
     this.attachSubviews();
+    this.setBG();
     return this;
   },
 
@@ -40,5 +48,9 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
       $.scrollTo($('.carousel-inner'), {duration: 1000, easing: 'easeOutQuad'}),
       500
     });
+  },
+
+  setBG: function () {
+    this.$el.find('.user-main').css('min-height', $(window).height() - this.$el.find('.user-main').offset().top + 'px');
   }
 });

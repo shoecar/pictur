@@ -52,9 +52,9 @@
     clear: both;
     z-index: 2;
 
-    .item-wrap {
-      margin: 3px;
-    }
+    .pop-window { display: none; }
+
+    .item-wrap { margin: 3px; }
 
     .photo-item {
       float: left;

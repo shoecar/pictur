@@ -43,6 +43,8 @@
           <ul class="dropdown-menu">
             <li><a href="#user/<%= CURRENTUSER.id %>"><i class="fa fa-user"></i>Profile</a></li>
             <li role="separator" class="divider"></li>
+            <li><a href="#album/new"><i class="fa fa-object-group"></i>New Album</a></li>
+            <li role="separator" class="divider"></li>
             <li>
               <form class="sign-out" action="/session" method="post">
                 <input type="hidden" name="authenticity_token" value="<%= authToken %>">

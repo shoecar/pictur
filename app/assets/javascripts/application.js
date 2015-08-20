@@ -7,6 +7,7 @@
 //= require jquery.scrollTo.min
 //= require bootbox.min
 //= require masonry/masonry.min
+//= require jquery.slick
 //= require masonry/imagesloaded.min
 //= require masonry/infinitescroll.min
 //= require AnimOnScroll

@@ -17,7 +17,7 @@ json.comments @comments do |comment|
   json.body comment.body
   json.photo_id comment.photo_id
   json.user_id comment.user_id
-  json.username comment.username
+  json.username @user.username
   json.created time_ago_in_words(comment.created_at)
   if comment.photo
     json.photo_url comment.photo.url
@@ -40,4 +40,13 @@ json.votings @votings do |voting|
   json.photo_created time_ago_in_words(voting.photo.created_at)
   json.num_comments voting.photo.comments.length
   json.votings_score voting.photo.sum_score
+end
+
+json.albums @albums do |album|
+  json.id album.id
+  json.name album.name
+  json.created time_ago_in_words(album.created_at)
+  json.photos album.photos do |photo|
+    json.(photo, :id, :title, :description, :url, :thumb_url)
+  end
 end

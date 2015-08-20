@@ -1,0 +1,10 @@
+<div class="album-left-arrow"><i class="fa fa-long-arrow-left"></i></div>
+<div class="album-right-arrow"><i class="fa fa-long-arrow-right"></i></div>
+
+<h1><%= album.get('name') %></h1>
+
+<div class="slick-carousel">
+  <% photos.each(function (photo) { %>
+    <div><img src="<%= photo.escape('thumb_url') %>"></div>
+  <% }); %>
+</div>

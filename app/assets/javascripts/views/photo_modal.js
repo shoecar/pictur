@@ -8,7 +8,6 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     this.photo.fetch();
     this.listenTo(this.photo, 'sync', this.render);
     this.listenTo(this.photo, 'sync', this.addCommentView);
-    $(document).on('keyup', this.trackEsc.bind(this));
   },
 
   events: {
@@ -24,9 +23,9 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    $('#spinner-load').stop(true, true).fadeIn(300);
     var user = this.photo.user();
     this.$el.html(this.template({ photo: this.photo, user: user }));
+    $('#spinner-load').stop(true, true).fadeIn(300);
     this.likedModel = this.photo.votings().find(function (voting) {
       return voting.get('user_id') === CURRENTUSER.id
     });
@@ -50,9 +49,12 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     e.currentTarget.blur();
     bootbox.confirm("Are you sure you want to delete this photo?", function(result) {
       if (result) {
-        this.model.destroy();
-        this.closeWindow();
-        this.model.trigger('remove');
+        this.$el.fadeOut({ duration: 500, easing: 'easeOutQuad',
+          complete: function () {
+            this.model.destroy();
+            this.closeWindow();
+          }.bind(this)
+        });
       }
     }.bind(this));
   },
@@ -99,11 +101,9 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     var newTitle = e.target.value;
     if (newTitle.length > 0 && newTitle != '<span>(no title)</span>') {
       this.photo.set({ title: newTitle });
-      this.photo.save();
       $('.photo-modal .photo-title').html(newTitle);
     } else {
       this.photo.set({ title: null });
-      this.photo.save();
       $('.photo-modal .photo-title').html('<span>(no title)</span>');
     }
   },
@@ -120,11 +120,9 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     var newDescription = e.target.value;
     if (newDescription.length > 0 && newDescription != '<span>(no description)</span>') {
       this.photo.set({ description: newDescription });
-      this.photo.save();
       $('.photo-modal .photo-description').html(newDescription);
     } else {
       this.photo.set({ description: null });
-      this.photo.save();
       $('.photo-modal .photo-description').html('<span>(no description)</span>');
     }
   },
@@ -135,13 +133,8 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     }
   },
 
-  trackEsc: function (e) {
-    if (e.keyCode === 27) {
-      this.closeWindow();
-    }
-  },
-
   closeWindow: function () {
+    this.photo.save();
     this.remove();
   }
 });

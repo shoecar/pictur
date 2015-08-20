@@ -18,6 +18,7 @@ gem 'masonry-rails'
 gem 'kaminari'
 gem 'friendly_id', '~> 5.1.0'
 gem 'modernizr-rails'
+gem "jquery-slick-rails"
 
 group :development, :test do
   gem 'pry-rails'

@@ -1,5 +1,18 @@
 <div id="likes-carousel" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner" role="listbox"></div>
+  <div class="carousel-inner" role="listbox">
+    <% photos.each(function (photo) { %>
+      <% if (isFirst) { %>
+        <div class="item active">
+        <% isFirst = false; %>
+      <% } else { %>
+        <div class="item">
+      <% } %>
+        <a href="<%= photo.escape('url') %>" target="_blank">
+          <img src="<%= photo.escape('url') %>" alt="" />
+        </a>
+      </div>
+    <% }) %>
+  </div>
 
   <a class="left carousel-control" href="#likes-carousel" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left"></span>
@@ -12,6 +25,7 @@
 <script type="text/javascript">
   $(function () {
     var height = $(window).height() - $('.carousel-inner').offset().top;
-    $('.carousel-inner').css('height', height + 'px');
+    $('.carousel-inner').css('height', height + 20 + 'px');
+    $('.carousel-inner img').css('max-height', height + 20 + 'px');
   });
 </script>

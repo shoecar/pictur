@@ -1,17 +1,15 @@
 .user-show {
-  min-height: 100%;
-  height: auto;
-
   .username {
     text-align: center;
   }
 
   .user-main {
     background-color: #fff;
-    height: 100%;
   }
 
   .user-tabs {
+    margin-bottom: 20px;
+
     li:not(.active) {
       background-color: $white;
       :hover { background-color: #fcfcfc; }

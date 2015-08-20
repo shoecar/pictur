@@ -1,0 +1,33 @@
+<div class="row col-xs-12">
+  <div class="col-xs-6 clearfix">
+    <h1>New Album</h1>
+
+    <ul id="album-masonry-container" class="sortable-connect">
+      <% albumPhotos.each(function (photo) { %>
+        <li>
+          <img src="<%= photo.escape('thumb_url') %>">
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <div class="col-xs-6 clearfix">
+    <h1>Your Photos</h1>
+
+    <ul id="other-masonry-container" class="sortable-connect">
+      <% otherPhotos.each(function (photo) { %>
+        <li>
+          <img src="<%= photo.escape('thumb_url') %>">
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+</div>
+
+<<script type="text/javascript">
+  $(function() {
+    $( "#album-masonry-container, #other-masonry-container" ).sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
+  });
+</script>

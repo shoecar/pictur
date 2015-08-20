@@ -3,6 +3,8 @@ class Photo < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments
+  has_many :albumings
+  has_many :albums, through: :albumings
   has_many :votings, dependent: :destroy
 
   def sum_score
