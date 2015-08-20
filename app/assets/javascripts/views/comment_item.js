@@ -22,8 +22,10 @@ Pictur.Views.CommentItem = Backbone.View.extend({
     bootbox.confirm("Are you sure you want to delete this comment?", function(result) {
       if (result) {
         this.$el.fadeOut({ duration: 1000, easing: 'easeOutQuad', complete: function () {
-            this.photo.set({ num_comments: this.photo.attributes.num_comments -= 1 });
-            this.photo.trigger('change');
+            if (this.photo) {
+              this.photo.set({ num_comments: this.photo.attributes.num_comments -= 1 });
+              this.photo.trigger('change');
+            }
             this.model.destroy();
           }.bind(this)
         });

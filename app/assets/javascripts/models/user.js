@@ -3,7 +3,7 @@ Pictur.Models.User = Backbone.Model.extend({
 
   parse: function (response) {
     if (response.photos) {
-      this.photos().set(response.photos);
+      this.photos().set(response.photos.reverse());
       delete response.photos;
     }
     if (response.comments) {

@@ -15,7 +15,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     'click .close-window, .fullscreen, .close-window-user': 'closeWindow',
     'click .delete-photo': 'destroyPhoto',
     'click .comment-photo, .submit-comment': 'toggleCommentForm',
-    'click .voting-photo, .submit-comment': 'toggleVoting',
+    'click .voting-photo': 'toggleVoting',
     'click .change-title, .photo-title.can-edit': 'changeTitle',
     'keypress .photo-title input': 'trackEnter',
     'blur .photo-title': 'updateTitle',
@@ -49,10 +49,10 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     e.preventDefault();
     e.currentTarget.blur();
     bootbox.confirm("Are you sure you want to delete this photo?", function(result) {
-      debugger
       if (result) {
         this.model.destroy();
         this.closeWindow();
+        this.model.trigger('remove');
       }
     }.bind(this));
   },
