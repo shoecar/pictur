@@ -1,27 +1,61 @@
 .album-index {
   .album-item {
-    .album-left-arrow, .album-right-arrow {
-      font-size: 30px;
-      position: absolute;
-      margin-top: 250px;
-      cursor: pointer;
-      color: $dark-blue;
-      :hover { color: $gray }
-    }
-
-    .album-left-arrow { left: 10px; }
-    .album-right-arrow { right: 10px; }
-
     h1 {
       font-size: 30px;
-      text-align: center;
+      margin-left: 10px;
+    }
+
+    h4 {
+      font-weight: 100;
+      margin-left: 10px;
+    }
+
+    a {
+      font-weight: 200;
+    }
+
+    .album-left-arrow {
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+      position: absolute;
+      left: 0;
+      width: 50px;
+      margin: 3px 0;
+      height: 200px;
+      z-index: 5;
+      cursor: pointer;
+      .fa {
+        position: relative;
+        font-size: 30px;
+        left: 3px;
+        top: 90px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .fa:hover { color: rgba(190, 190, 190, 0.5); }
+    }
+
+    .album-right-arrow {
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.4) 100%);
+      position: absolute;
+      right: 0;
+      width: 50px;
+      margin: 3px 0;
+      height: 200px;
+      z-index: 5;
+      cursor: pointer;
+      .fa {
+        position: relative;
+        font-size: 30px;
+        right: -20px;
+        top: 90px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .fa:hover { color: rgba(190, 190, 190, 0.4); }
     }
 
     .slick-carousel {
-
       img {
         height: 200px;
-        margin: 10px;
+        margin: 3px;
       }
     }
   }

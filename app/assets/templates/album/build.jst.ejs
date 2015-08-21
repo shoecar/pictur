@@ -1,33 +1,25 @@
 <div class="row col-xs-12">
-  <div class="col-xs-6 clearfix">
-    <h1>New Album</h1>
+  <button type="button" class="save-album btn btn-primary btn-lrg" name="button">Save Album</button>
 
-    <ul id="album-masonry-container" class="sortable-connect">
+  <div class="col-xs-6 clearfix">
+    <h1><%= album.escape('name') %></h1>
+
+    <div id="album-container" class="sortable-connect">
+      <div class='photo-sizer'></div>
       <% albumPhotos.each(function (photo) { %>
-        <li>
-          <img src="<%= photo.escape('thumb_url') %>">
-        </li>
+        <div class="photo-wrap"  style="background-image: url('<%= photo.escape('thumb_url') %>'); background-size: cover; background-position: center center;" data-id="<%= photo.get('id') %>"></div>
       <% }); %>
-    </ul>
+    </div>
   </div>
 
   <div class="col-xs-6 clearfix">
     <h1>Your Photos</h1>
 
-    <ul id="other-masonry-container" class="sortable-connect">
+    <div id="other-container" class="sortable-connect">
+      <div class='photo-sizer'></div>
       <% otherPhotos.each(function (photo) { %>
-        <li>
-          <img src="<%= photo.escape('thumb_url') %>">
-        </li>
+        <div class="photo-wrap"  style="background-image: url('<%= photo.escape('thumb_url') %>'); background-size: cover; background-position: center center;" data-id="<%= photo.get('id') %>"></div>
       <% }); %>
     </ul>
   </div>
 </div>
-
-<<script type="text/javascript">
-  $(function() {
-    $( "#album-masonry-container, #other-masonry-container" ).sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
-  });
-</script>

@@ -19,6 +19,6 @@ class Api::AlbumingsController < ApplicationController
 
   private
   def albuming_params
-    params.require(:voting).permit(:album_id, :photo_id)
+    params.require(:albuming).permit(:album_id, :photo_id)
   end
 end

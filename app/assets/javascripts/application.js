@@ -5,6 +5,7 @@
 //= require jquery.cursoratend
 //= require jquery.easing
 //= require jquery.scrollTo.min
+//= require jquery-ui.min
 //= require bootbox.min
 //= require masonry/masonry.min
 //= require jquery.slick

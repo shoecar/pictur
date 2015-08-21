@@ -11,6 +11,7 @@ Pictur.Views.AlbumItem = Backbone.View.extend({
   loadCarousel: function () {
     this.$el.find('.slick-carousel').imagesLoaded(function () {
       this.$el.find('.slick-carousel').slick({
+        infinite: true,
         variableWidth: true,
         centerMode: true,
         prevArrow: this.$el.find('.album-left-arrow'),

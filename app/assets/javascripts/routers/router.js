@@ -26,9 +26,16 @@ Pictur.Routers.Router = Backbone.Router.extend({
   },
 
   albumNew: function () {
-    var album = new Pictur.Models.Album();
-    var view = new Pictur.Views.AlbumBuild({ model: album });
-    this._swapView(view);
+    bootbox.prompt("Give your album a name", function(result) {
+      if (result === null || result === '') {
+        return;
+      } else {
+        var album = new Pictur.Models.Album({ user_id: CURRENTUSER.id, name: result });
+        album.save();
+        var view = new Pictur.Views.AlbumBuild({ model: album });
+        this._swapView(view);
+      }
+    }.bind(this));
   },
 
   albumEdit: function (id) {

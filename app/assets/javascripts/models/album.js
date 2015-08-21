@@ -6,6 +6,10 @@ Pictur.Models.Album = Backbone.Model.extend({
       this.photos().set(response.photos);
       delete response.photos;
     }
+    if (response.albumings) {
+      this.albumings().set(response.albumings);
+      delete response.albumings;
+    }
     return response
   },
 
@@ -14,5 +18,12 @@ Pictur.Models.Album = Backbone.Model.extend({
       this._photos = new Pictur.Collections.Photos();
     }
     return this._photos;
+  },
+
+  albumings: function () {
+    if (!this._albumings) {
+      this._albumings = new Pictur.Collections.Albumings();
+    }
+    return this._albumings;
   }
 });

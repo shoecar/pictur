@@ -12,6 +12,6 @@ json.comments @photo.comments do |comment|
   json.body comment.body
   json.photo_id comment.photo_id
   json.user_id comment.user_id
-  json.username @photo.user.username
+  json.username comment.user.username
   json.created time_ago_in_words(comment.created_at)
 end
