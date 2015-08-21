@@ -1,0 +1,35 @@
+<div class="row">
+  <img id="filter-img" class="col-xs-8" src="<%= photo.escape('url') %>"/>
+
+  <div class="filters col-xs-4">
+    <p>
+    <b>Blur</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="0" data-slider-id="blur" id="blur" data-slider-tooltip="hide" data-slider-handle="round" />
+    </p>
+    <p>
+    <b>Brightness</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="200" data-slider-step="1" data-slider-value="100" data-slider-id="brightness" id="brightness" data-slider-tooltip="hide" data-slider-handle="round" />
+    </p>
+    <p>
+    <b>Contrast</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="200" data-slider-step="1" data-slider-value="100" data-slider-id="contrast" id="contrast" data-slider-tooltip="hide" data-slider-handle="round" />
+    </p>
+    <p>
+    <b>Grayscale</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="grayscale" id="grayscale" data-slider-tooltip="hide" data-slider-handle="round" />
+    </p>
+    <p>
+    <b>Hue-Rotate</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="360" data-slider-step="1" data-slider-value="0" data-slider-id="hue" id="hue" data-slider-tooltip="hide" data-slider-handle="round" />
+    </p>
+    <p>
+    <b>Invert</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="invert" id="invert" data-slider-tooltip="hide" data-slider-handle="round" />
+    </p>
+    <p>
+    <b>Saturate</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="100" data-slider-id="saturate" id="saturate" data-slider-tooltip="hide" data-slider-handle="round" />
+    </p>
+    <p>
+    <b>Sepia</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-id="sepia" id="sepia" data-slider-tooltip="hide" data-slider-handle="round" />
+    </p>
+    <p>
+
+    <button type="button" class="remove-filter btn btn-info" name="button">Remove</button>
+    <button type="button" class="reset-filter btn btn-danger" name="button">Reset</button>
+    <button type="button" class="save-filter btn btn-primary" name="button">Save</button>
+  </div>
+</div>

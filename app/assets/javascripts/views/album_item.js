@@ -5,6 +5,7 @@ Pictur.Views.AlbumItem = Backbone.View.extend({
   render: function () {
     this.$el.html(this.template({ album: this.model, photos: this.model.photos() }));
     this.loadCarousel();
+    this.applyFilters();
     return this;
   },
 
@@ -19,5 +20,15 @@ Pictur.Views.AlbumItem = Backbone.View.extend({
         focusOnSelect: false
       });
     }.bind(this));
+  },
+
+  applyFilters: function () {
+    var photos = this.$el.find('img')
+    for (var i = 0; i < photos.length; i++) {
+      filters = $(photos[i]).data('filters');
+      if (filters) {
+        window.filterImage(filters, $(photos[i]));
+      }
+    };
   }
 });

@@ -20,6 +20,24 @@
     text-align: center;
   }
 
+  input {
+    border: none;
+    outline: none;
+    padding: 0;
+    background-color: $white;
+    position: relative;
+    resize: none;
+  }
+
+  .album-name {
+    cursor: pointer;
+    i {
+      font-size: 14px;
+      font-style: normal;
+      text-decoration: underline;
+    }
+  }
+
   .photo-wrap:hover {
     cursor: move;
   }

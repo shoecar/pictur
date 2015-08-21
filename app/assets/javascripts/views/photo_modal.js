@@ -35,7 +35,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
       $('#spinner-load').stop(true, true).css('display', 'none');
       $('.pop-window').fadeIn(600).css('top', $(window).scrollTop() + 'px');
     });
-
+    this.applyFilters();
     return this;
   },
 
@@ -136,5 +136,12 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   closeWindow: function () {
     this.photo.save();
     this.remove();
+  },
+
+  applyFilters: function () {
+    filters = this.model.get('filters');
+    if (filters) {
+      window.filterImage(JSON.parse(filters), this.$el.find('img'));
+    }
   }
 });

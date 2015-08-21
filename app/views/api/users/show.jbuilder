@@ -7,6 +7,7 @@ json.photos @photos do |photo|
   json.user_id photo.user_id
   json.url photo.url
   json.thumb_url photo.thumb_url
+  json.filters photo.filters
   json.created time_ago_in_words(photo.created_at)
   json.num_comments photo.comments.length
   json.votings_score photo.sum_score
@@ -37,6 +38,7 @@ json.votings @votings do |voting|
   json.user_id voting.photo.user_id
   json.url voting.photo.url
   json.thumb_url voting.photo.thumb_url
+  json.filters voting.photo.filters
   json.photo_created time_ago_in_words(voting.photo.created_at)
   json.num_comments voting.photo.comments.length
   json.votings_score voting.photo.sum_score
@@ -47,6 +49,6 @@ json.albums @albums do |album|
   json.name album.name
   json.created time_ago_in_words(album.created_at)
   json.photos album.photos do |photo|
-    json.(photo, :id, :title, :description, :url, :thumb_url)
+    json.(photo, :id, :title, :description, :url, :thumb_url, :filters)
   end
 end

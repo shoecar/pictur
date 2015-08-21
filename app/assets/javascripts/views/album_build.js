@@ -11,7 +11,10 @@ Pictur.Views.AlbumBuild = Backbone.View.extend({
   },
 
   events: {
-    'click .save-album': 'saveAlbum'
+    'click .save-album': 'saveAlbum',
+    'click .change-name, .album-name': 'changeName',
+    'keypress .album-name input': 'trackEnter',
+    'blur .album-name': 'updateName',
   },
 
   render: function () {
@@ -19,7 +22,24 @@ Pictur.Views.AlbumBuild = Backbone.View.extend({
     this.$el.html(this.template({ album: this.model, albumPhotos: this.albumPhotos, otherPhotos: this.otherPhotos }));
     // this.setUpMasonry();
     this.setUpSortable();
+    this.applyFilters();
     return this;
+  },
+
+  changeName: function (e) {
+    e.preventDefault();
+    var text = this.model.escape('name');
+    $('.album-name').html('<input type="text" value="' + text + '">');
+    $('.album-name').find('input').putCursorAtEnd();
+  },
+
+  updateName: function (e) {
+    e.preventDefault();
+    var newName = e.target.value;
+    if (newName.length > 0) {
+      this.model.set({ name: newName });
+      $('.album-name').html(newName + ' <i>edit</i>');
+    }
   },
 
   saveAlbum: function (e) {
@@ -35,6 +55,7 @@ Pictur.Views.AlbumBuild = Backbone.View.extend({
         newAlbuming.save();
       }
     }.bind(this));
+    this.model.save();
     Backbone.history.navigate('user/' + CURRENTUSER.id, { trigger: true });
   },
 
@@ -93,5 +114,21 @@ Pictur.Views.AlbumBuild = Backbone.View.extend({
         // }, 500);
       }
     });
+  },
+
+  applyFilters: function () {
+    var photos = this.$el.find('.photo-wrap')
+    for (var i = 0; i < photos.length; i++) {
+      filters = $(photos[i]).data('filters');
+      if (filters) {
+        window.filterImage(filters, $(photos[i]));
+      }
+    };
+  },
+
+  trackEnter: function (e) {
+    if (e.keyCode === 13) {
+      e.currentTarget.blur();
+    }
   }
 });

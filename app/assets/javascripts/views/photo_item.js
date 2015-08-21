@@ -9,11 +9,14 @@ Pictur.Views.PhotoItem = Backbone.View.extend({
   },
 
   events: {
-    'click .photo-thumb': 'createModal'
+    'click .photo-thumb': 'createModal',
+    'mouseover .photo-thumb': 'removeFilters',
+    'mouseout .photo-thumb': 'applyFilters'
   },
 
   render: function () {
     this.$el.html(this.template({ photo: this.model, user: this.user }));
+    this.applyFilters();
     return this;
   },
 
@@ -21,5 +24,16 @@ Pictur.Views.PhotoItem = Backbone.View.extend({
     e.preventDefault();
     var view = new Pictur.Views.PhotoModal({ model: this.model, collection: this.collection });
     $('body').append(view.render().$el);
+  },
+
+  applyFilters: function () {
+    filters = this.model.get('filters');
+    if (filters) {
+      window.filterImage(JSON.parse(filters), this.$el.find('img'));
+    }
+  },
+
+  removeFilters: function () {
+    this.$el.find('img').css('-webkit-filter','');
   }
 });

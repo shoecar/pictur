@@ -7,6 +7,7 @@
 //= require jquery.scrollTo.min
 //= require jquery-ui.min
 //= require bootbox.min
+//= require bootstrap-slider
 //= require masonry/masonry.min
 //= require jquery.slick
 //= require masonry/imagesloaded.min

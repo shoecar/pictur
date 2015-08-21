@@ -5,6 +5,6 @@ json.albums @albums do |album|
   json.user_id album.user.id
   json.username album.user.username
   json.photos album.photos do |photo|
-    json.(photo, :id, :title, :description, :url, :thumb_url)
+    json.(photo, :id, :title, :description, :url, :thumb_url, :filters)
   end
 end
