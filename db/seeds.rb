@@ -252,8 +252,8 @@ User.create!([
   {username: "photo4lyfe", password_digest: "$2a$10$IJu8GpoGrG5kr8b88yKxm.0blFSV3wLeIq2Dxue/5BBS//anIvxaC", session_token: "evXk6caoTEgl8RtBrH5qkA"},
   {username: "anewuser", password_digest: "$2a$10$bsT3Szp212hhcAMa.8PNX.avY3bWGvuNlIzigozGNEkRRM7W.NGw6", session_token: "vgtnG2GkfdsMI1ISHKi_fw"},
   {username: "test", password_digest: "$2a$10$Y5kConGq8nFsimVYe9XTAunmxdK2Htetpctz8iAnUa0/FPIE6kyyq", session_token: "aQPljq6hsHunAGiCBEXhvg"},
-  {username: "guest", password_digest: "$2a$10$dHHLYl8fA/6hLHt/xaAh6eOQ9JRCE7N2J9XQpP6yjZ3hMcLrQfd5m", session_token: "vGKpJS2ROouFGb7tvCItDg"}
-  {username: "inactive_user", password_digest: "$2a$10$j6EtiYgaAYYDralGUnIsguTiHMpGiEka28xRyfNdD4z3Br/em0D9a", session_token: "Xj2kXWeLvdKWJwJY_Y9VGQ"},
+  {username: "guest", password_digest: "$2a$10$dHHLYl8fA/6hLHt/xaAh6eOQ9JRCE7N2J9XQpP6yjZ3hMcLrQfd5m", session_token: "vGKpJS2ROouFGb7tvCItDg"},
+  {username: "inactive_user", password_digest: "$2a$10$j6EtiYgaAYYDralGUnIsguTiHMpGiEka28xRyfNdD4z3Br/em0D9a", session_token: "Xj2kXWeLvdKWJwJY_Y9VGQ"}
 ])
 Voting.create!([
   {user_id: 1, photo_id: 1, score: 1},
