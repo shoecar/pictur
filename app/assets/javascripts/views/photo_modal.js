@@ -15,6 +15,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     'click .delete-photo': 'destroyPhoto',
     'click .comment-photo, .submit-comment': 'toggleCommentForm',
     'click .voting-photo': 'toggleVoting',
+    'click .filter-photo': 'filterPhoto',
     'click .change-title, .photo-title.can-edit': 'changeTitle',
     'keypress .photo-title input': 'trackEnter',
     'blur .photo-title': 'updateTitle',
@@ -29,7 +30,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     this.likedModel = this.photo.votings().find(function (voting) {
       return voting.get('user_id') === CURRENTUSER.id
     });
-    if (this.likedModel) { $('.voting-photo').addClass('is-liked'); }
+    if (this.likedModel) { $('.voting-photo').addClass('is-liked').attr('data-original-title', 'Unlike Photo'); }
     this.attachSubviews();
     $('.pop-window').imagesLoaded(function () {
       $('#spinner-load').stop(true, true).css('display', 'none');
@@ -68,12 +69,20 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     $.scrollTo($('.modal-info'), {duration: 1000, easing: 'easeOutQuad'});
   },
 
+  filterPhoto: function (e) {
+    e.preventDefault();
+    this.closeWindow();
+    $.scrollTo(0, 500);
+    Backbone.history.navigate('photo/filter/' + this.model.get('id'), { trigger: true });
+  },
+
   toggleVoting: function (e) {
     e.currentTarget.blur();
     $(e.currentTarget).toggleClass('is-liked');
     if (this.likedModel) {
       this.likedModel.destroy();
       this.likedModel = undefined;
+      $('.voting-photo').attr('data-original-title', 'Like Photo')
       this.model.set({ votings_score: this.model.attributes.votings_score -= 1 });
     } else {
       var voting = new Pictur.Models.Voting()
@@ -84,6 +93,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
       });
       voting.save();
       this.likedModel = voting;
+      $('.voting-photo').attr('data-original-title', 'Unlike Photo')
       this.model.set({ votings_score: this.model.attributes.votings_score += 1 });
     }
     this.model.trigger('change');
@@ -135,6 +145,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
 
   closeWindow: function () {
     this.photo.save();
+    $('.tool').tooltip('hide');
     this.remove();
   },
 

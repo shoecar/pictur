@@ -6,10 +6,16 @@
   #filter-img {
     max-width: 100%;
     display: inline;
+    float:left;
   }
 
   .filters {
-    display: inline;
+    // position: absolute;
+    // left: 50%;
+    // transform: translateX(-50%);
+    .slider {
+      width: 100%;
+    }
   }
 
   b {
@@ -20,15 +26,16 @@
   }
 
   button {
-    width: 200px;
     margin: 5px;
   }
 
-  .reset-filter {
+  .btn-default {
+    color: $white;
+    font-weight: 400;
     background-color: $teal;
     border-color: darken($teal, 10%);
   }
-  .reset-filter:hover {
+  .btn-default:hover {
     background-color: darken($teal, 10%);
   }
 }

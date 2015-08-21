@@ -8,6 +8,7 @@ Pictur.Views.PhotoFilter = Backbone.View.extend({
 
   events: {
     'click .save-filter': 'saveFilter',
+    'click .update-filter': 'updateFilter',
     'click .reset-filter': 'scrapeFilters',
     'click .remove-filter': 'removeFilter'
   },
@@ -16,10 +17,14 @@ Pictur.Views.PhotoFilter = Backbone.View.extend({
     this.$el.html(this.template({ photo: this.model }));
     this.setUpSliders();
     this.scrapeFilters();
+    if (this.model.get('user_id') !== CURRENTUSER.id) {
+      this.$el.find('.update-filter').addClass('disabled');
+    }
     return this;
   },
 
-  scrapeFilters: function () {
+  scrapeFilters: function (e) {
+    e && e.currentTarget.blur();
     filtersString = this.model.get('filters');
     if (filtersString) {
       this.filters = JSON.parse(filtersString);
@@ -75,6 +80,7 @@ Pictur.Views.PhotoFilter = Backbone.View.extend({
 
   saveFilter: function (e) {
     e.preventDefault();
+    e.currentTarget.blur();
     var filters = JSON.stringify ({
       bl: this.bl.getValue(),
       br: this.br.getValue(),
@@ -96,8 +102,29 @@ Pictur.Views.PhotoFilter = Backbone.View.extend({
     Backbone.history.navigate('/#user/' + CURRENTUSER.id, { trigger: true });
   },
 
+  updateFilter: function (e) {
+    e.preventDefault();
+    e.currentTarget.blur();
+    if (this.$el.find('.update-filter').hasClass('disabled')) { return; }
+    var filters = JSON.stringify ({
+      bl: this.bl.getValue(),
+      br: this.br.getValue(),
+      co: this.co.getValue(),
+      gr: this.gr.getValue(),
+      hu: this.hu.getValue(),
+      iv: this.iv.getValue(),
+      sa: this.sa.getValue(),
+      se: this.se.getValue()
+    });
+
+    this.model.set({ filters: filters });
+    this.model.save();
+    Backbone.history.navigate('/#user/' + CURRENTUSER.id, { trigger: true });
+  },
+
   removeFilter: function (e) {
     e.preventDefault();
+    e.currentTarget.blur();
     this.bl.refresh();
     this.br.refresh();
     this.co.refresh();

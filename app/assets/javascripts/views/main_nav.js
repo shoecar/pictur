@@ -10,8 +10,7 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
   events: {
     'click .photo-form': 'uploadPhoto',
     'click .home-button': 'goHome',
-    'click .random-button': 'randomPhoto',
-    'click .info-toggle': 'infoToggle'
+    'click .random-button': 'randomPhoto'
   },
 
   goHome: function (e) {
@@ -27,12 +26,6 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
     var model = this.photos.get(arr[Math.floor(Math.random() * arr.length)]);
     var view = new Pictur.Views.PhotoModal({ model: model, collection: this.photos });
     $('body').append(view.render().$el);
-  },
-
-  infoToggle: function (e) {
-    e.preventDefault();
-    e.currentTarget.blur();
-    $('.photo-item').toggleClass('hovered');
   },
 
   render: function () {
