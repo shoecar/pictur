@@ -246,14 +246,14 @@ Photo.create!([
   {title: nil, description: nil, user_id: 7, url: "http://res.cloudinary.com/dmiidzjtl/image/upload/v1439787363/bddc59vjalhxpwpoppzy.jpg", thumb_url: "http://res.cloudinary.com/dmiidzjtl/image/upload/c_scale,w_400/v1439787363/bddc59vjalhxpwpoppzy.jpg", albuming_id: nil, filters: "{\"bl\":0,\"br\":100,\"co\":100,\"gr\":0,\"hu\":0,\"iv\":0,\"sa\":100,\"se\":0}"}
 ])
 User.create!([
-  {username: "tad", password_digest: "$2a$10$fUGJM1ZkRi61qZDpGRjmEeVEsZeIulEtF13F1OE1Z25HTz4tGJ4d2", session_token: "PbxUEg3OcH5bV3YsyPsOZg"},
   {username: "pointlessComments", password_digest: "$2a$10$d4Y9l6EVq0ct0VYywJstseTyUR8fOvwB.xSxl6ks1Uuci1DNJNyQe", session_token: "IOOmbticQ3M5e0zknA9ldw"},
   {username: "i_love_pictur", password_digest: "$2a$10$WI5kuxQ0tXS9Si2vHYrW.enpoXVtkxP/j91yxCpr.km51EuW5iNtO", session_token: "rseP2ZfOyXou9UhV7TgGjQ"},
   {username: "photo4lyfe", password_digest: "$2a$10$IJu8GpoGrG5kr8b88yKxm.0blFSV3wLeIq2Dxue/5BBS//anIvxaC", session_token: "evXk6caoTEgl8RtBrH5qkA"},
   {username: "anewuser", password_digest: "$2a$10$bsT3Szp212hhcAMa.8PNX.avY3bWGvuNlIzigozGNEkRRM7W.NGw6", session_token: "vgtnG2GkfdsMI1ISHKi_fw"},
   {username: "test", password_digest: "$2a$10$Y5kConGq8nFsimVYe9XTAunmxdK2Htetpctz8iAnUa0/FPIE6kyyq", session_token: "aQPljq6hsHunAGiCBEXhvg"},
-  {username: "guest", password_digest: "$2a$10$dHHLYl8fA/6hLHt/xaAh6eOQ9JRCE7N2J9XQpP6yjZ3hMcLrQfd5m", session_token: "vGKpJS2ROouFGb7tvCItDg"},
-  {username: "inactive_user", password_digest: "$2a$10$j6EtiYgaAYYDralGUnIsguTiHMpGiEka28xRyfNdD4z3Br/em0D9a", session_token: "Xj2kXWeLvdKWJwJY_Y9VGQ"}
+  {username: "inactive_user", password_digest: "$2a$10$j6EtiYgaAYYDralGUnIsguTiHMpGiEka28xRyfNdD4z3Br/em0D9a", session_token: "Xj2kXWeLvdKWJwJY_Y9VGQ"},
+  {username: "tad", password_digest: "$2a$10$fUGJM1ZkRi61qZDpGRjmEeVEsZeIulEtF13F1OE1Z25HTz4tGJ4d2", session_token: "PbxUEg3OcH5bV3YsyPsOZg"},
+  {username: "guest", password_digest: "$2a$10$dHHLYl8fA/6hLHt/xaAh6eOQ9JRCE7N2J9XQpP6yjZ3hMcLrQfd5m", session_token: "MVEyHWhC9W_gH9_89h1J1w"}
 ])
 Voting.create!([
   {user_id: 1, photo_id: 1, score: 1},
