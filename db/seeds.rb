@@ -246,6 +246,13 @@ active_users = User.create!([
   {username: "msPic", password_digest: "$2a$10$j6EtiYgaAYYDralGUnIsguTiHMpGiEka28xRyfNdD4z3Br/em0D9a", session_token: "Xj2kXWeLvdKWJwJY_Y9VGQ"}
 ])
 
+p Faker::Time.between(DateTime.now - 10, DateTime.now)
+p Faker::App.name
+p Faker::Hacker.say_something_smart
+p Faker::Lorem.paragraph(rand(10) + 1)
+p Faker::Lorem.sentence(rand(10) + 1)
+p Faker::Internet.user_name
+
 def generateTime(start)
   time = Faker::Time.between(start, DateTime.now)
   while time > DateTime.now
@@ -254,7 +261,7 @@ def generateTime(start)
   return time
 end
 
-32.times do |num|
+32.times do
   User.create({ username: Faker::Internet.user_name, password: 'redfred' });
 end
 

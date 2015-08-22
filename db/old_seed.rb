@@ -246,6 +246,14 @@ active_users = User.create!([
   {username: "msPic", password_digest: "$2a$10$j6EtiYgaAYYDralGUnIsguTiHMpGiEka28xRyfNdD4z3Br/em0D9a", session_token: "Xj2kXWeLvdKWJwJY_Y9VGQ"}
 ])
 
+def generateTime(start)
+  time = Faker::Time.between(start, DateTime.now)
+  while time > DateTime.now
+    time = Faker::Time.between(start, DateTime.now)
+  end
+  return time
+end
+
 32.times do |num|
   User.create({ username: Faker::Internet.user_name, password: 'redfred' });
 end
@@ -254,16 +262,16 @@ Photo.all.each do |photo|
   photo.user_id = rand(8) + 1
   photo.title = Faker::App.name if rand(2) == 0
   photo.description = Faker::Hacker.say_something_smart if rand(3) == 0
-  photo.created_at = Faker::Time.between(10.days.ago, Time.now)
+  photo.created_at = generateTime(DateTime.now - 14)
   photo.save
 end
 
 active_users.each do |user|
   3.times do
-    a = user.albums.create({ name: Faker::App.name, created_at: Faker::Time.between(10.days.ago, Time.now) })
+    a = user.albums.create( name: Faker::App.name, created_at: generateTime(DateTime.now - 14) )
     user.photos.each do |photo|
       if rand(3) == 0
-        photo.albumings.create({ album_id: a.id, photo_id: photo.id })
+        photo.albumings.create( album_id: a.id, photo_id: photo.id )
       end
     end
   end
@@ -279,7 +287,7 @@ User.all.each do |user|
     comment = photo.comments.create!(
       body: (rand(2) == 0 ? Faker::Lorem.paragraph(rand(10) + 1) : Faker::Lorem.sentence(rand(10) + 1)),
       user_id: user.id,
-      created_at: Faker::Time.between(photo.created_at, Time.now)
+      created_at: generateTime(photo.created_at)
     )
 
     comment.save
