@@ -1,33 +1,28 @@
-<div class="row">
-  <div class="col-xs-12">
-    <form class="sort-form" action="index.html" method="post">
-      <select class="form-control sort-type">
-        <option class="time">time</option>
-        <option class="votings_score">votings_score</option>
-        <option class="num_comments">num_comments</option>
-      </select>
+<% if (arePhotos) { %>
+  <div class="row">
+    <div class="col-xs-12">
+      <form class="sort-form" action="index.html" method="post">
+        <select class="form-control sort-type">
+          <option class="time">Time</option>
+          <option class="likes">Likes</option>
+          <option class="comments">Comments</option>
+        </select>
 
-      <div class="btn-group-vertical sort-buttons" data-toggle="buttons">
-        <label class="btn btn-primary" id="sort-asc">
-          <input type="radio" id="ascend" name="sort-order" autocomplete="off" checked><i class="fa fa-sort-asc"></i>
-        </label>
-        <label class="btn btn-primary" id="sort-des">
-          <input type="radio" id="descend" name="sort-order" autocomplete="off"><i class="fa fa-sort-desc"></i>
-        </label>
-      </div>
+        <div class="btn-group-vertical sort-buttons" data-toggle="buttons">
+          <label class="btn btn-primary" id="sort-asc">
+            <input type="radio" id="ascend" name="sort-order" autocomplete="off" checked><i class="fa fa-sort-asc"></i>
+          </label>
+          <label class="btn btn-primary" id="sort-des">
+            <input type="radio" id="descend" name="sort-order" autocomplete="off"><i class="fa fa-sort-desc"></i>
+          </label>
+        </div>
 
-      <button type="button" name="button" class="sort-submit btn btn-default">Sort</button>
-    </form>
+        <button type="button" name="button" class="sort-submit btn btn-default">Sort</button>
+      </form>
+    </div>
   </div>
-</div>
 
-<div id="masonry-container" class="clearfix"></div>
-
-
-<script type="text/javascript">
-  new AnimOnScroll( document.getElementById( 'masonry-container' ), {
-  		minDuration : 0.4,
-  		maxDuration : 0.7,
-  		viewportFactor : 0.2
-  } );
-</script>
+  <div id="masonry-container" class="clearfix"></div>
+<% } else { %>
+  <div class="nothing-here">there are no photos here</div>
+<% } %>

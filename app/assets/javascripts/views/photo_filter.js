@@ -99,7 +99,7 @@ Pictur.Views.PhotoFilter = Backbone.View.extend({
       filters: filters
     });
     newPhoto.save();
-    Backbone.history.navigate('/#user/' + CURRENTUSER.id, { trigger: true });
+    Backbone.history.navigate('/user/' + CURRENTUSER.id +'/photos', { trigger: true });
   },
 
   updateFilter: function (e) {
@@ -119,7 +119,7 @@ Pictur.Views.PhotoFilter = Backbone.View.extend({
 
     this.model.set({ filters: filters });
     this.model.save();
-    Backbone.history.navigate('/#user/' + CURRENTUSER.id, { trigger: true });
+    Backbone.history.navigate('/user/' + CURRENTUSER.id + '/photos', { trigger: true });
   },
 
   removeFilter: function (e) {

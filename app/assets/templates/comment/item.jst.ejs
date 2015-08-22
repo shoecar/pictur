@@ -2,7 +2,7 @@
   <div class="panel-heading">
     <% if (forPhoto) { %>
       posted by:
-      <a class="close-window-user" href="#user/<%= comment.get('user_id') %>">
+      <a class="close-window-user" href="#user/<%= comment.get('user_id') %>/photos">
         <%= comment.escape('username') %>
       </a>
     <% } else { %>

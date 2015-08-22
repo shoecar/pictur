@@ -3,7 +3,7 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   className: 'photo-index',
 
   initialize: function (options) {
-    this.sortType = 'time';
+    this.sortType = 'Time';
     this.userId = options.userId;
     this.ascend = false;
     this.listenTo(this.collection, 'sync', this.render);
@@ -39,20 +39,21 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html(this.template());
+    var arePhotos = this.collection.models.length > 0;
+    this.$el.html(this.template({ arePhotos: arePhotos }));
     this.ascend ? $('#sort-asc').addClass('active') : $('#sort-des').addClass('active');
     switch (this.sortType) {
-      case 'time':
-        this.sortType = 'time';
+      case 'Time':
+        this.sortType = 'Time';
         break;
-      case 'num_comments':
-        this.sortType = 'num_comments'
+      case 'Comments':
+        this.sortType = 'Comments'
         break;
-      case 'votings_score':
-      this.sortType = 'votings_score'
+      case 'Likes':
+      this.sortType = 'Likes'
       break;
     }
-    this.$el.find('option.' + this.sortType).attr('selected', 'selected');
+    arePhotos && this.$el.find('option.' + this.sortType.toLowerCase()).attr('selected', 'selected');
     this.attachSubviews();
     this.loadMasonry();
     this.listenForScroll();

@@ -1,31 +1,35 @@
-<div id="likes-carousel" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner" role="listbox">
-    <% photos.each(function (photo) { %>
-      <% if (isFirst) { %>
-        <div class="item active">
-        <% isFirst = false; %>
-      <% } else { %>
-        <div class="item">
-      <% } %>
-        <a href="<%= photo.escape('url') %>" target="_blank">
-          <img src="<%= photo.escape('url') %>" data-filters=<%= photo.get('filters') %>>
-        </a>
-      </div>
-    <% }) %>
+<% if (this.collection.models.length > 0) { %>
+  <div id="likes-carousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <% photos.each(function (photo) { %>
+        <% if (isFirst) { %>
+          <div class="item active">
+          <% isFirst = false; %>
+        <% } else { %>
+          <div class="item">
+        <% } %>
+          <a href="<%= photo.escape('url') %>" target="_blank">
+            <img src="<%= photo.escape('url') %>" data-filters=<%= photo.get('filters') %>>
+          </a>
+        </div>
+      <% }) %>
+    </div>
+
+    <a class="left carousel-control" href="#likes-carousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#likes-carousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
   </div>
 
-  <a class="left carousel-control" href="#likes-carousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#likes-carousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-</div>
-
-<script type="text/javascript">
-  $(function () {
-    var height = $(window).height() - 70;
-    $('.carousel-inner').css('height', height + 20 + 'px');
-    $('.carousel-inner img').css('max-height', height + 20 + 'px');
-  });
-</script>
+  <script type="text/javascript">
+    $(function () {
+      var height = $(window).height() - 70;
+      $('.carousel-inner').css('height', height + 20 + 'px');
+      $('.carousel-inner img').css('max-height', height + 20 + 'px');
+    });
+  </script>
+<% } else { %>
+  <div class="nothing-here">there are no likes here</div>
+<% } %>

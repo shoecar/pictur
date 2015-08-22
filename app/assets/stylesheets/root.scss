@@ -81,3 +81,17 @@ h1, h2 {
   top: 45%;
   display: none;
 }
+
+.nothing-here {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform:    translateX(-50%) translateY(-50%);
+  -ms-transform:     translateX(-50%) translateY(-50%);
+  -o-transform:      translateX(-50%) translateY(-50%);
+  transform:         translateX(-50%) translateY(-50%);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+}

@@ -18,7 +18,8 @@ Pictur.Views.AlbumIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html(this.template());
+    var areAlbums = this.collection.length > 0;
+    this.$el.html(this.template({ areAlbums: areAlbums }));
     this.attachSubviews();
     return this;
   }

@@ -1,7 +1,7 @@
 class Api::PhotosController < ApplicationController
   def index
     order = params[:ascend] == "true" ? "ASC" : "DESC"
-    sort_type = params[:sort_type] ? params[:sort_type] : "time"
+    sort_type = params[:sort_type] ? params[:sort_type] : "Time"
     if params[:user_id] != "0" && params[:user_id]
       user_id = "photos.user_id = #{params[:user_id]}"
     else
@@ -9,16 +9,16 @@ class Api::PhotosController < ApplicationController
     end
 
     case sort_type
-    when 'time'
+    when 'Time'
       @photos = Photo.order("created_at #{order}").where(user_id).page(params[:page]).per(25)
-    when 'num_comments'
+    when 'Comments'
       @photos = Photo.select("photos.*, count(comments.id) AS comments_count").
         joins("LEFT OUTER JOIN comments ON photos.id = comments.photo_id").
         group("photos.id").
         order("comments_count #{order}").
         where(user_id).
         page(params[:page]).per(25)
-    when 'votings_score'
+    when 'Likes'
       @photos = Photo.select("photos.*, count(votings.id) AS votings_count").
         joins("LEFT OUTER JOIN votings ON photos.id = votings.photo_id").
         group("photos.id").

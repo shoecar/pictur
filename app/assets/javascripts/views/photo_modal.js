@@ -90,7 +90,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
       this.likedModel.destroy();
       this.likedModel = undefined;
       $('.voting-photo').attr('data-original-title', 'Like Photo')
-      this.model.set({ votings_score: this.model.attributes.votings_score -= 1 });
+      this.model.set({ Likes: this.model.attributes.Likes -= 1 });
     } else {
       var voting = new Pictur.Models.Voting()
       voting.set({
@@ -101,7 +101,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
       voting.save();
       this.likedModel = voting;
       $('.voting-photo').attr('data-original-title', 'Unlike Photo')
-      this.model.set({ votings_score: this.model.attributes.votings_score += 1 });
+      this.model.set({ Likes: this.model.attributes.Likes += 1 });
     }
     this.model.trigger('change');
   },

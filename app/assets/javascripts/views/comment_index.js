@@ -23,7 +23,8 @@ Pictur.Views.CommentIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html(this.template());
+    areComments = this.collection.models.length > 0;
+    this.$el.html(this.template({ areComments: areComments }));
     this.attachSubviews();
     return this;
   }
