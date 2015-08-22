@@ -80,5 +80,4 @@ ActiveRecord::Schema.define(version: 20150821182303) do
   add_index "votings", ["photo_id"], name: "index_votings_on_photo_id", using: :btree
   add_index "votings", ["user_id", "photo_id"], name: "index_votings_on_user_id_and_photo_id", unique: true, using: :btree
   add_index "votings", ["user_id"], name: "index_votings_on_user_id", using: :btree
-
 end
