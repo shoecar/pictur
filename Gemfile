@@ -19,6 +19,7 @@ gem 'kaminari'
 gem 'friendly_id', '~> 5.1.0'
 gem 'modernizr-rails'
 gem "jquery-slick-rails"
+gem 'faker'
 
 group :development, :test do
   gem 'pry-rails'
@@ -27,5 +28,4 @@ group :development, :test do
   gem 'better_errors'
   gem 'spring'
   gem 'seed_dump'
-  gem 'faker'
 end
