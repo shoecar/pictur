@@ -20,7 +20,6 @@ Pictur.Views.AlbumBuild = Backbone.View.extend({
   render: function () {
     this.generateCollections();
     this.$el.html(this.template({ album: this.model, albumPhotos: this.albumPhotos, otherPhotos: this.otherPhotos }));
-    // this.setUpMasonry();
     this.setUpSortable();
     this.applyFilters();
     return this;
@@ -56,7 +55,7 @@ Pictur.Views.AlbumBuild = Backbone.View.extend({
       }
     }.bind(this));
     this.model.save();
-    Backbone.history.navigate('user/' + CURRENTUSER.id, { trigger: true });
+    Backbone.history.navigate('user/' + CURRENTUSER.id + '/albums', { trigger: true });
   },
 
   generateCollections: function () {
@@ -65,53 +64,11 @@ Pictur.Views.AlbumBuild = Backbone.View.extend({
     this.otherPhotos.remove(this.albumPhotos.models);
   },
 
-  setUpMasonry: function () {
-    var $albumGrid = $('#album-container').imagesLoaded(function () {
-      $albumGrid.masonry({
-        itemSelector: '.album-item',
-        percentPosition: true,
-        columnWidth: '.photo-sizer'
-      });
-    });
-
-    var $otherGrid = $('#other-container').imagesLoaded(function () {
-      $otherGrid.masonry({
-        itemSelector: '.other-item',
-        percentPosition: true,
-        columnWidth: '.photo-sizer'
-      });
-    });
-  },
-
-  updateGrid: function (e) {
-    var $toGrid = $('#' + e.target.id);
-    var $fromGrid = e.target.id === 'other-masonry-container' ? $('#other-masonry-container') : $('#album-masonry-container')
-    var $movedItem = e.toElement.parentElement
-
-
-    // $toGrid.masonry('destroy');
-    // $fromGrid.masonry('destroy');
-    // this.setUpMasonry();
-  },
-
   setUpSortable: function () {
     var that = this;
     $("#album-container, #other-container").sortable({
       connectWith: ".sortable-connect",
       update: function (e) {
-        // var $toGrid = $('#' + e.target.id);
-        // var $fromGrid = e.target.id === 'other-masonry-container' ? $('#other-masonry-container') : $('#album-masonry-container')
-        // var $movedItem = e.toElement
-
-        // $toGrid.masonry('prepended', $movedItem);
-        // $fromGrid.masonry('remove', $movedItem);
-        // debugger
-        // window.setTimeout(function () {
-        //   $toGrid.masonry('destroy');
-        //   $fromGrid.masonry('destroy');
-        //   that.setUpMasonry();
-        //   $toGrid.masonry('appended', $movedItem);
-        // }, 500);
       }
     });
   },

@@ -3,6 +3,6 @@ Pictur.Collections.Comments = Backbone.Collection.extend({
   model: Pictur.Models.Comment,
 
   comparator: function(comment) {
-    return comment.get('id');
+    return comment.get('created_at');
   }
 });

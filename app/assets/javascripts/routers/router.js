@@ -6,7 +6,7 @@ Pictur.Routers.Router = Backbone.Router.extend({
 
   routes: {
     '': 'photoIndex',
-    'user/:id': 'userShow',
+    'user/:id/:target': 'userShow',
     'photo/filter/:id': 'photoFilter',
     'album/new': 'albumNew',
     'album/edit/:id': 'albumEdit'
@@ -19,10 +19,10 @@ Pictur.Routers.Router = Backbone.Router.extend({
     this._swapView(view);
   },
 
-  userShow: function (id) {
+  userShow: function (id, target) {
     var user = new Pictur.Models.User({ id: id });
     user.fetch();
-    var view = new Pictur.Views.UserShow({ model: user });
+    var view = new Pictur.Views.UserShow({ model: user, target: target });
     this._swapView(view);
   },
 

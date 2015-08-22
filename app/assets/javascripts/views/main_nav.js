@@ -25,7 +25,7 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
     var arr = this.photos.pluck("id");
     var model = this.photos.get(arr[Math.floor(Math.random() * arr.length)]);
     var view = new Pictur.Views.PhotoModal({ model: model, collection: this.photos });
-    $('body').append(view.render().$el);
+    $('body').append(view.$el);
   },
 
   render: function () {
@@ -41,8 +41,8 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
       if(!result) { return; }
       var data = result[0];
       photo.set({
-        url: data.url,
-        thumb_url: data.eager[0]['url'],
+        url: data.secure_url,
+        thumb_url: data.eager[0].secure_url,
         user_id: CURRENTUSER.id
       });
       photo.save({}, {
@@ -50,7 +50,7 @@ Pictur.Views.MainNav = Backbone.CompositeView.extend({
           Backbone.history.navigate('temp', {trigger : false});
           Backbone.history.navigate('/user/' + CURRENTUSER.id, { trigger: true, replace: true });
           var view = new Pictur.Views.PhotoModal({ model: photo });
-          $('body').append(view.render().$el);
+          $('body').append(view.$el);
         }
       });
     });

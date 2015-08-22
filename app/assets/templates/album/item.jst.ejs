@@ -1,6 +1,6 @@
 <h1>
   <%= album.get('name') %>
-  <% if (album.user_id = CURRENTUSER.id) { %>
+  <% if (album.get('user_id') === CURRENTUSER.id) { %>
     <a href="/#album/edit/<%= album.get('id') %>">edit</a>
   <% } %>
 </h1>

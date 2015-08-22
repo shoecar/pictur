@@ -4,14 +4,22 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   className: 'photo-modal',
 
   initialize: function (options) {
-    this.photo = new Pictur.Models.Photo({ id: this.model.id });
+    $('#spinner-load').stop(true, true).fadeIn(300);
+    $('body').append('<div class="fullscreen"></div>');
+    this.photo = new Pictur.Models.Photo({
+      id: this.model.id,
+      success: function () {
+
+      }.bind(this)
+    });
     this.photo.fetch();
     this.listenTo(this.photo, 'sync', this.render);
     this.listenTo(this.photo, 'sync', this.addCommentView);
+    $('.fullscreen').click(this.closeWindow.bind(this));
   },
 
   events: {
-    'click .close-window, .fullscreen, .close-window-user': 'closeWindow',
+    'click .close-window, .close-window-user': 'closeWindow',
     'click .delete-photo': 'destroyPhoto',
     'click .comment-photo, .submit-comment': 'toggleCommentForm',
     'click .voting-photo': 'toggleVoting',
@@ -26,16 +34,15 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   render: function () {
     var user = this.photo.user();
     this.$el.html(this.template({ photo: this.photo, user: user }));
-    $('#spinner-load').stop(true, true).fadeIn(300);
     this.likedModel = this.photo.votings().find(function (voting) {
       return voting.get('user_id') === CURRENTUSER.id
     });
     if (this.likedModel) { $('.voting-photo').addClass('is-liked').attr('data-original-title', 'Unlike Photo'); }
     this.attachSubviews();
-    $('.pop-window').imagesLoaded(function () {
+    this.$el.find('.pop-window').imagesLoaded(function () {
       $('#spinner-load').stop(true, true).css('display', 'none');
-      $('.pop-window').fadeIn(600).css('top', $(window).scrollTop() + 'px');
-    });
+      this.$el.find('.pop-window').fadeIn(600).css('top', $(window).scrollTop() + 'px');
+    }.bind(this));
     this.applyFilters();
     return this;
   },
@@ -144,6 +151,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   },
 
   closeWindow: function () {
+    $('.fullscreen').remove();
     this.photo.save();
     $('.tool').tooltip('hide');
     this.remove();

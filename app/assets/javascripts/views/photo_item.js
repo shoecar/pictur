@@ -23,7 +23,7 @@ Pictur.Views.PhotoItem = Backbone.View.extend({
   createModal: function (e) {
     e.preventDefault();
     var view = new Pictur.Views.PhotoModal({ model: this.model, collection: this.collection });
-    $('body').append(view.render().$el);
+    $('body').append(view.$el);
   },
 
   applyFilters: function () {
