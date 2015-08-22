@@ -1,11 +1,14 @@
 <div class="row col-xs-12">
-  <button type="button" class="save-album btn btn-primary btn-lrg" name="button">Save Album</button>
+  <div class="build-buttons">
+    <button type="button" class="save-album btn btn-primary btn-lrg" name="button">Save Album</button>
+    <button type="button" class="cancel-build btn btn-danger btn-lrg" name="button">Cancel</button>
+  </div>
 
   <div class="col-xs-6 clearfix">
     <h1 class="album-name"><%= album.escape('name') %> <i>edit</i></h1>
 
     <div id="album-container" class="sortable-connect">
-      <div class='photo-sizer'></div>
+      <div class="photo-sizer"></div>
       <% albumPhotos.each(function (photo) { %>
         <div class="photo-wrap" style="background-image: url('<%= photo.escape('thumb_url') %>'); background-size: cover; background-position: center center;" data-id="<%= photo.get('id') %>" data-filters=<%= photo.get('filters') %>></div>
       <% }); %>
@@ -16,7 +19,7 @@
     <h1>Your Photos</h1>
 
     <div id="other-container" class="sortable-connect">
-      <div class='photo-sizer'></div>
+      <div class="photo-sizer"></div>
       <% otherPhotos.each(function (photo) { %>
         <div class="photo-wrap" style="background-image: url('<%= photo.escape('thumb_url') %>'); background-size: cover; background-position: center center;" data-id="<%= photo.get('id') %>" data-filters=<%= photo.get('filters') %>></div>
       <% }); %>

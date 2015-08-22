@@ -72,6 +72,10 @@
   </div>
 </div>
 
+<div class="col-xs-12">
+
+</div>
+
 <div id="session-photos" class="transitions-enabled clearfix">
   <div class="photo-sizer"></div>
   <% @photos.each do |photo| %>
@@ -100,7 +104,12 @@
   });
 
   // submit button toggle
+  $(function () {
+    action();
+  });
+
   $('#session-name, #session-pw, #user-name, #user-pw, #user-pw-con').on("keyup", action);
+
   function action() {
     if($('#session-name').val().length > 0 && $('#session-pw').val().length > 0) {
       $('.submit-button').prop("disabled", false);
@@ -110,7 +119,6 @@
       $('.submit-button').prop("disabled", true);
     }
   }
-  $(action);
 
   // guest login
   $('.guest-button').click(function (e) {
@@ -118,6 +126,9 @@
     $('#session-pw').val('password');
     e.currentTarget.blur();
     action();
+    window.setTimeout(function () {
+      $($('.submit-button')[0]).trigger('click');
+    }, 500);
   });
 
   // masonry
@@ -129,6 +140,7 @@
       isAnimated: false
     });
   });
+
   var windowHeight = $(window).height();
   $('#session-photos').css('max-height', windowHeight)
 </script>

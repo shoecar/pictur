@@ -80,7 +80,12 @@
     border: none;
     background-color: rgba(235, 204, 209, 0.8);
 
-    button { max-width: 10px; }
+    button {
+      max-width: 10px;
+      position: absolute;
+      right: 20px;
+      top: 15px;
+    }
   }
 }
 
@@ -88,6 +93,7 @@
   overflow: hidden;
   clear: both;
   z-index: 1;
+  background-color: #000;
 
   .photo-item {
     float: left;
@@ -96,11 +102,20 @@
   img {
     display: block;
     max-width: 100%;
-    -webkit-filter: blur(2px) sepia(1);
-    filter:         blur(2px) sepia(1);
+    -webkit-filter: blur(2px);
+    filter:         blur(2px);
+    opacity: 0.8;
   }
 
-  .photo-item, .photo-sizer { width: 12.5%; }
+  .photo-sizer, .photo-item { width: 25%; }
+
+  @media screen and (min-width: 600px) {
+    .photo-sizer, .photo-item { width: 20%; }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .photo-item, .photo-sizer { width: 12.5%; }
+  }
 }
 
 .clearfix:before, .clearfix:after { content: ""; display: table; }

@@ -7,6 +7,7 @@ json.photos @photos do |photo|
   json.user_id photo.user_id
   json.url photo.url
   json.thumb_url photo.thumb_url
+  json.filters photo.filters
   json.created time_ago_in_words(photo.created_at)
   json.num_comments photo.comments.length
   json.votings_score photo.sum_score

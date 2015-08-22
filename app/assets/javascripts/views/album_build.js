@@ -12,6 +12,7 @@ Pictur.Views.AlbumBuild = Backbone.View.extend({
 
   events: {
     'click .save-album': 'saveAlbum',
+    'click .cancel-build': 'cancel',
     'click .change-name, .album-name': 'changeName',
     'keypress .album-name input': 'trackEnter',
     'blur .album-name': 'updateName',
@@ -41,11 +42,16 @@ Pictur.Views.AlbumBuild = Backbone.View.extend({
     }
   },
 
+  cancel: function (e) {
+    e.preventDefault();
+    Backbone.history.navigate('user/' + CURRENTUSER.id + '/albums', { trigger: true });
+  },
+
   saveAlbum: function (e) {
     e.preventDefault();
     var albumings = [];
-    for (var i = this.albumings.models.length - 1; i > -1; i--) {
-      this.albumings.models[i].destroy();
+    while (this.albumings.models.length > 0) {
+      this.albumings.models[0].destroy();
     }
     this.$el.find('#album-container').find('.photo-wrap').each(function (div) {
       var photo_id = $(this.$el.find('#album-container').find('.photo-wrap')[div]).data('id');
@@ -75,7 +81,7 @@ Pictur.Views.AlbumBuild = Backbone.View.extend({
 
   applyFilters: function () {
     var photos = this.$el.find('.photo-wrap')
-    for (var i = 0; i < photos.length; i++) {
+    for (var i = 1; i <= photos.length; i++) {
       filters = $(photos[i]).data('filters');
       if (filters) {
         window.filterImage(filters, $(photos[i]));
