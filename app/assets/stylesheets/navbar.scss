@@ -1,5 +1,5 @@
 $bgDefault      : $dark-blue;
-$bgHighlight    : $black;
+$bgHighlight    : $dark-blue;
 $colDefault     : $white;
 $colHighlight   : $light-gray;
 $dropDown       : true;
@@ -87,6 +87,8 @@ $dropDown       : true;
     border: none;
    }
 
+   button:hover { background-color: $dark-blue; }
+
    li button { float: left; }
 
    li.dropdown { float: right}
@@ -104,7 +106,8 @@ $dropDown       : true;
 
     a {
       padding: 7px 10px;
-      font-size: 18px;
+      font-size: 16px;
+      font-weight: 300;
     }
 
     .fa {
@@ -114,9 +117,10 @@ $dropDown       : true;
 
     .sign-out-button {
       color: $white;
-      font-size: 18px;
+      font-size: 16px;
       display: block;
       padding: 6px 0 6px 10px;
+      margin-bottom: 8px;
       clear: both;
       font-weight: normal;
       line-height: 1.42857143;
@@ -124,15 +128,12 @@ $dropDown       : true;
       text-align: left;
       width: 100%;
       height: 34px;
+      font-weight: 300;
     }
 
     .sign-out-button:hover {
       color: $light-gray;
-      background-color: $black;
       text-decoration: none;
-      .fa {
-        color: $light-gray;
-      }
     }
   }
 }

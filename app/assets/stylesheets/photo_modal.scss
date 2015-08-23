@@ -52,12 +52,12 @@
               min-height: 120px;
               text-align: center;
 
-              > div:nth-of-type(3) { padding-right: 0 }
-              > div:nth-of-type(4) { padding-left: 0 }
+              > div:nth-of-type(3) { padding-right: 0; }
+              > div:nth-of-type(4) { padding-left: 0; padding-right: 0; }
 
               .modal-buttons {
                 margin-top: 20px;
-                button { margin-left: 2px; }
+                button { margin: 0 2px 5px 0;  }
 
                 .comment-photo {
                   background-color: $teal;
