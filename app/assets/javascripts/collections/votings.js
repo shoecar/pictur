@@ -3,6 +3,6 @@ Pictur.Collections.Votings = Backbone.Collection.extend({
   model: Pictur.Models.Voting,
 
   comparator: function(comment) {
-    return comment.get('id');
+    return comment.get('created_at');
   }
 });

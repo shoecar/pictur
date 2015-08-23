@@ -8,6 +8,7 @@ Pictur.Routers.Router = Backbone.Router.extend({
     '': 'photoIndex',
     'user/:id/:target': 'userShow',
     'photo/filter/:id': 'photoFilter',
+    'photo/:id': 'photoShow',
     'album/new': 'albumNew',
     'album/edit/:id': 'albumEdit'
   },
@@ -30,6 +31,13 @@ Pictur.Routers.Router = Backbone.Router.extend({
     var photo = new Pictur.Models.Photo({ id: id });
     photo.fetch();
     var view = new Pictur.Views.PhotoFilter({ model: photo });
+    this._swapView(view);
+  },
+
+  photoShow: function (id) {
+    var photo = new Pictur.Models.Photo({ id: id });
+    photo.fetch();
+    var view = new Pictur.Views.PhotoShow({ model: photo });
     this._swapView(view);
   },
 
@@ -57,16 +65,6 @@ Pictur.Routers.Router = Backbone.Router.extend({
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$root.html(view.render().$el);
-  },
-
-  _loadMasonry: function () {
-    var $grid = $('#masonry-container').imagesLoaded(function () {
-      $grid.prepend($('<div class="photo-sizer"></div>'));
-      $grid.masonry({
-        itemSelector: '.photo-item',
-        percentPosition: true,
-        columnWidth: '.photo-sizer'
-      });
-    });
-  },
+    $.scrollTo(0, 500);
+  }
 });

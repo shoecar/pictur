@@ -8,7 +8,7 @@
         <% } else { %>
           <div class="item">
         <% } %>
-          <a href="<%= photo.escape('url') %>" target="_blank">
+          <a href="#photo/<%= photo.get('photo_id') %>">
             <img src="<%= photo.escape('url') %>" data-filters=<%= photo.get('filters') %>>
           </a>
         </div>

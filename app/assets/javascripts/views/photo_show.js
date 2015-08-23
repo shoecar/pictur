@@ -1,24 +1,14 @@
-Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
-  template: JST['photo/modal'],
-  className: 'photo-modal',
+Pictur.Views.PhotoShow = Backbone.CompositeView.extend({
+  template: JST['photo/show'],
+  className: 'photo-show',
 
-  initialize: function (options) {
-    $('#spinner-load').stop(true, true).fadeIn(300);
-    $('body').append('<div class="fullscreen"></div>');
-    this.photo = new Pictur.Models.Photo({
-      id: this.model.id,
-      success: function () {
-
-      }.bind(this)
-    });
-    this.photo.fetch();
-    this.listenTo(this.photo, 'sync', this.render);
-    this.listenTo(this.photo, 'sync', this.addCommentView);
-    $('.fullscreen').click(this.closeWindow.bind(this));
+  initialize: function () {
+    this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'sync', this.addCommentView);
   },
 
   events: {
-    'click .close-window, .close-window-user, .close-navigate': 'closeWindow',
+    'click .full-photo': 'toggleSize',
     'click .delete-photo': 'destroyPhoto',
     'click .comment-photo, .submit-comment': 'toggleCommentForm',
     'click .voting-photo': 'toggleVoting',
@@ -31,23 +21,19 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var user = this.photo.user();
-    this.$el.html(this.template({ photo: this.photo, user: user }));
-    this.likedModel = this.photo.votings().find(function (voting) {
+    var user = this.model.user();
+    this.$el.html(this.template({ photo: this.model, user: user }));
+    this.likedModel = this.model.votings().find(function (voting) {
       return voting.get('user_id') === CURRENTUSER.id
     });
     if (this.likedModel) { $('.voting-photo').addClass('is-liked').attr('data-original-title', 'Unlike Photo'); }
     this.attachSubviews();
-    this.$el.find('.pop-window').imagesLoaded(function () {
-      $('#spinner-load').stop(true, true).css('display', 'none');
-      this.$el.find('.pop-window').fadeIn(600).css('top', $(window).scrollTop() + 'px');
-    }.bind(this));
     this.applyFilters();
     return this;
   },
 
   addCommentView: function () {
-    var subView = new Pictur.Views.CommentIndex({ collection: this.photo.comments(), photo: this.model, forPhoto: true });
+    var subView = new Pictur.Views.CommentIndex({ collection: this.model.comments(), photo: this.model, forPhoto: true });
     this.addSubview('.photo-comments', subView);
   },
 
@@ -56,20 +42,29 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     e.currentTarget.blur();
     bootbox.confirm("Are you sure you want to delete this photo?", function(result) {
       if (result) {
-        this.$el.fadeOut({ duration: 500, easing: 'easeOutQuad',
-          complete: function () {
-            this.model.destroy();
-            this.closeWindow();
-          }.bind(this)
-        });
+        this.model.destroy();
+        $('.tool').tooltip('hide');
+        Backbone.history.navigate('user/' + CURRENTUSER.id + '/photos', { trigger: true });
       }
     }.bind(this));
+  },
+
+  toggleSize: function (e) {
+    e.preventDefault();
+    var $photo = this.$el.find('.full-photo');
+    if ($photo.css('cursor') === 'zoom-out') {
+      $photo.css('cursor', 'zoom-in')
+        .css('height', $(window).height() - 50 + 'px')
+        .css('width', 'auto');
+    } else {
+      $photo.css('cursor', '').css('height', '').css('width', '');
+    }
   },
 
   toggleCommentForm: function (e) {
     e.currentTarget.blur();
     $('.photo-comment-form').html('');
-    var subView = new Pictur.Views.CommentForm({ collection: this.photo.comments(), photoId: this.photo.id, itemViewModel: this.model });
+    var subView = new Pictur.Views.CommentForm({ collection: this.model.comments(), photoId: this.model.id, itemViewModel: this.model });
     this.addSubview('.photo-comment-form', subView);
     $('.photo-comment-form').slideToggle({ duration: 500, easing: 'easeOutQuad' });
     $.scrollTo($('.modal-info'), {duration: 1000, easing: 'easeOutQuad'});
@@ -77,8 +72,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
 
   filterPhoto: function (e) {
     e.preventDefault();
-    this.closeWindow();
-    $.scrollTo(0, 500);
+    $('.tool').tooltip('hide');
     Backbone.history.navigate('photo/filter/' + this.model.get('id'), { trigger: true });
   },
 
@@ -94,7 +88,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
       var voting = new Pictur.Models.Voting()
       voting.set({
         user_id: CURRENTUSER.id,
-        photo_id: this.photo.get('id'),
+        photo_id: this.model.get('id'),
         score: 1
       });
       voting.save();
@@ -106,8 +100,8 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   },
 
   changeTitle: function (e) {
-    if (CURRENTUSER.id === this.photo.get('user_id')) {
-      var text = this.photo.escape('title');
+    if (CURRENTUSER.id === this.model.get('user_id')) {
+      var text = this.model.escape('title');
       $('.photo-modal .photo-title').html('<input type="text" value="' + text + '">');
       $('.photo-modal .photo-title').find('input').putCursorAtEnd();
     }
@@ -116,17 +110,17 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   updateTitle: function (e) {
     var newTitle = e.target.value;
     if (newTitle.length > 0 && newTitle != '<span>(no title)</span>') {
-      this.photo.set({ title: newTitle });
+      this.model.set({ title: newTitle });
       $('.photo-modal .photo-title').html(newTitle);
     } else {
-      this.photo.set({ title: null });
+      this.model.set({ title: null });
       $('.photo-modal .photo-title').html('<span>(no title)</span>');
     }
   },
 
   changeDescription: function (e) {
-    if (CURRENTUSER.id === this.photo.get('user_id')) {
-      var text = this.photo.escape('description');
+    if (CURRENTUSER.id === this.model.get('user_id')) {
+      var text = this.model.escape('description');
       $('.photo-modal .photo-description').html('<textarea rows="4">' + text + '</textarea>');
       $('.photo-modal .photo-description').find('textarea').putCursorAtEnd();
     }
@@ -135,10 +129,10 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   updateDescription: function (e) {
     var newDescription = e.target.value;
     if (newDescription.length > 0 && newDescription != '<span>(no description)</span>') {
-      this.photo.set({ description: newDescription });
+      this.model.set({ description: newDescription });
       $('.photo-modal .photo-description').html(newDescription);
     } else {
-      this.photo.set({ description: null });
+      this.model.set({ description: null });
       $('.photo-modal .photo-description').html('<span>(no description)</span>');
     }
   },
@@ -147,14 +141,6 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     if (e.keyCode === 13) {
       e.currentTarget.blur();
     }
-  },
-
-  closeWindow: function () {
-    $('.fullscreen').remove();
-    $('#spinner-load').stop(true, true).css('display', 'none');
-    $('.tool').tooltip('hide');
-    this.photo.save();
-    this.remove();
   },
 
   applyFilters: function () {

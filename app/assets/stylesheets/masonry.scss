@@ -59,10 +59,6 @@
     .photo-item {
       float: left;
       z-index: 13;
-      -webkit-transition: all 3 ease;
-         -moz-transition: all 3 ease;
-           -o-transition: all 3 ease;
-              transition: all 3 ease;
 
       img {
         display: block;
@@ -87,10 +83,10 @@
 
     .photo-item:hover, .photo-item.hovered {
       img {
-        -webkit-transition: all .3 ease;
-           -moz-transition: all .3 ease;
-             -o-transition: all .3 ease;
-                transition: all .3 ease;
+        -webkit-transition: all 0.2s ease;
+           -moz-transition: all 0.2s ease;
+             -o-transition: all 0.2s ease;
+                transition: all 0.2s ease;
             -webkit-filter: blur(1px) brightness(50%) grayscale(100%);
                     filter: blur(1px) brightness(50%) grayscale(100%);
       }

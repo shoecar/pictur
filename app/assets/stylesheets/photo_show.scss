@@ -1,0 +1,104 @@
+.photo-show {
+  img {
+    max-width: 100%;
+    margin-top: -20px;
+    position: relative;
+    cursor: zoom-out;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform:    translateX(-50%);
+    -ms-transform:     translateX(-50%);
+    -o-transform:      translateX(-50%);
+    transform:         translateX(-50%);
+  }
+
+  .fa-pencil { margin-top: -10px; }
+
+  .can-edit { cursor: pointer; }
+
+  .photo-info {
+    margin-bottom: 10px;
+    min-height: 120px;
+    text-align: center;
+    background-color: #fff;
+
+    > div:nth-of-type(3) { padding-right: 0 }
+    > div:nth-of-type(4) { padding-left: 0 }
+
+    .photo-buttons {
+      margin-top: 20px;
+      button { margin-left: 2px; }
+
+      .comment-photo {
+        background-color: $teal;
+        color: $white;
+      }
+      .comment-photo:hover {
+        background-color: darken($teal, 10%);
+      }
+
+      .voting-photo.is-liked {
+        background-color: lighten($primary, 15%);
+        color: #E55451;
+      }
+    }
+
+    p { font-weight: 500; }
+  }
+
+  .comment-index, .comment-wrap {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .photo-comment-form {
+    padding: 0;
+    display: none;
+
+    .inner-fa  {
+      color: $teal;
+      position:           absolute;
+      padding:            10px;
+      pointer-events:     none;
+      left:               15px;
+    }
+
+     textarea {
+      padding-left:   30px;
+      margin-bottom:  10px;
+    }
+
+    button {
+      background-color: $teal;
+      border-color: darken($teal, 5%);
+    }
+
+    button:hover { background-color: darken($teal, 10%); }
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 300;
+      .fa {
+        cursor: pointer;
+        margin-left: 5px;
+        font-size: 20px;
+      }
+  }
+
+  p {
+    margin: 0;
+    span { font-style: italic; }
+  }
+
+  input, textarea {
+    margin: 0;
+    outline: none;
+    width: 100%;
+    border: none;
+    resize: none;
+  }
+  input { background-color: #f4f4f4; text-align: center; }
+  textarea { background-color: #fff; }
+}

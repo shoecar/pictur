@@ -18,6 +18,6 @@
 
 <div class="slick-carousel">
   <% photos.each(function (photo) { %>
-    <div><img src="<%= photo.escape('thumb_url') %>" data-filters=<%= photo.get('filters') %>></div>
+    <a href="#photo/<%= photo.get('id') %>"><img src="<%= photo.escape('thumb_url') %>" data-filters=<%= photo.get('filters') %>></a>
   <% }); %>
 </div>
