@@ -3,7 +3,6 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
   className: 'photo-index',
 
   initialize: function (options) {
-    $('#spinner-load').stop(true, true).fadeIn(300);
     this.sortType = 'Time';
     this.userId = options.userId;
     this.ascend = false;
@@ -63,7 +62,6 @@ Pictur.Views.PhotoIndex = Backbone.CompositeView.extend({
 
   loadMasonry: function () {
     var $grid = $('#masonry-container').imagesLoaded(function () {
-      $('#spinner-load').stop(true, true).css('display', 'none');
       $grid.prepend($('<div class="photo-sizer"></div>'));
       $grid.masonry({
         itemSelector: '.photo-item',

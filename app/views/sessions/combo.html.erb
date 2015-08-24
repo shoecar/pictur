@@ -87,6 +87,7 @@
 </div>
 
 <script type="text/javascript">
+  var CURRENTUSER;
   // tooltips
   $('button').tooltip({ container: 'body' });
 
@@ -106,7 +107,13 @@
 
   // submit button toggle
   $(function () {
-    action();
+    var $logo = $('.session-logo');
+    $logo.imagesLoaded(function () {
+      $logo.css('display', 'block');
+    });
+    window.setTimeout(function () {
+      action();
+    }, 100);
   });
 
   $('#session-name, #session-pw, #user-name, #user-pw, #user-pw-con').on("keyup", action);
@@ -140,6 +147,7 @@
       columnWidth: '.photo-sizer',
       isAnimated: false
     });
+    $grid.css('opacity', '1')
   });
 
   var windowHeight = $(window).height();

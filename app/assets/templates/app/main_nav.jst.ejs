@@ -33,20 +33,22 @@
           </button>
         </li>
 
-        <li class="dropdown">
-          <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= CURRENTUSER.username %> <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#user/<%= CURRENTUSER.id %>/photos"></i>Profile</a></li>
-            <li><a href="#album/new"></i>New Album</a></li>
-            <li>
-              <form class="sign-out" action="/session" method="post">
-                <input type="hidden" name="authenticity_token" value="<%= authToken %>">
-                <input type="hidden" name="_method" value="delete">
-                <button class="btn btn-link sign-out-button" type="submit"></i>Sign Out</button>
-              </form>
-            </li>
-          </ul>
-        </li>
+        <% if (CURRENTUSER) { %>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= CURRENTUSER.username %> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#user/<%= CURRENTUSER.id %>/photos"></i>Profile</a></li>
+              <li><a href="#album/new"></i>New Album</a></li>
+              <li>
+                <form class="sign-out" action="/session" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= authToken %>">
+                  <input type="hidden" name="_method" value="delete">
+                  <button class="btn btn-link sign-out-button" type="submit"></i>Sign Out</button>
+                </form>
+              </li>
+            </ul>
+          </li>
+        <% } %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

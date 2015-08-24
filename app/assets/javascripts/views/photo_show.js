@@ -52,9 +52,10 @@ Pictur.Views.PhotoShow = Backbone.CompositeView.extend({
   toggleSize: function (e) {
     e.preventDefault();
     var $photo = this.$el.find('.full-photo');
-    if ($photo.css('cursor') === 'zoom-out') {
+    var fullHeight = $(window).height() - 50;
+    if ($photo.css('cursor') === 'zoom-out' && fullHeight < $photo.height()) {
       $photo.css('cursor', 'zoom-in')
-        .css('height', $(window).height() - 50 + 'px')
+        .css('height',  fullHeight + 'px')
         .css('width', 'auto');
     } else {
       $photo.css('cursor', '').css('height', '').css('width', '');
