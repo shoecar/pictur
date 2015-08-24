@@ -2,7 +2,7 @@
   .user-info {
     background-color: #fff;
     width: 360px;
-    padding: 10px 10px 10px 0;
+    padding: 15px 10px 15px 0;
     margin-bottom: 20px;
     position: relative;
     left: 50%;
@@ -23,7 +23,7 @@
       width: 130px;
       height: 130px;
       float: left;
-      margin: -20px 20px 20px -30px;
+      margin: -25px 20px 20px -30px;
       border: 10px solid $white;
     }
 
@@ -35,6 +35,8 @@
       font-size: 28px;
       max-width: 100%;
       overflow: hidden;
+      margin: 0;
+      padding: 10px 0;
     }
 
     p {

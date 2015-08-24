@@ -16,7 +16,7 @@ body {
   background-color: $white;
   color: $black;
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
   height: auto;
 
   .fullscreen {
@@ -48,6 +48,36 @@ h1, h2 {
   color: $black;
   font-weight: 100;
   text-shadow: 0 1px 1px rgba(0,0,0,.3);
+}
+
+.tooltip-inner {
+    background-color: $dark-blue;
+}
+.tooltip-arrow {
+      border-top-color: $dark-blue;
+}
+
+.bootbox {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+
+  .modal-dialog, h4 {
+    width: 100%;
+    height: 100%;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+
+    .modal-content {
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      -moz-transform:    translateX(-50%) translateY(-50%);
+      -ms-transform:     translateX(-50%) translateY(-50%);
+      -o-transform:      translateX(-50%) translateY(-50%);
+      transform:         translateX(-50%) translateY(-50%);
+      width: 400px;
+    }
+  }
 }
 
 .root {

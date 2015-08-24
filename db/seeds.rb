@@ -338,11 +338,11 @@ User.all.each do |user|
   user.created_at = Faker::Time.between(DateTime.now - 800, DateTime.now - 14)
   user.save
 
-  50.times do
+  70.times do
     user.votings.create({ user_id: user.id, photo_id: rand(Photo.all.length - 40) + 1, score: 1 })
   end
 
-  15.times do
+  25.times do
     photo = Photo.find(rand(Photo.all.length - 40) + 1)
     comment = photo.comments.create!(
       body: (rand(2) == 0 ? Faker::Lorem.paragraph(rand(10) + 1) : Faker::Lorem.sentence(rand(10) + 1)),
