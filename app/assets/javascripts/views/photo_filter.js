@@ -48,7 +48,15 @@ Pictur.Views.PhotoFilter = Backbone.View.extend({
                                            ' hue-rotate('+this.hu.getValue()+'deg)' +
                                            ' invert('+this.iv.getValue()+'%)' +
                                            ' saturate('+this.sa.getValue()+'%)' +
-                                           ' sepia('+this.se.getValue()+'%)')
+                                           ' sepia('+this.se.getValue()+'%)');
+   $('#filter-img').css('filter', 'blur('+this.bl.getValue()+'px)' +
+                                          ' brightness('+this.br.getValue()+'%)' +
+                                          ' contrast('+this.co.getValue()+'%)' +
+                                          ' grayscale('+this.gr.getValue()+'%)' +
+                                          ' hue-rotate('+this.hu.getValue()+'deg)' +
+                                          ' invert('+this.iv.getValue()+'%)' +
+                                          ' saturate('+this.sa.getValue()+'%)' +
+                                          ' sepia('+this.se.getValue()+'%)');
   },
 
   setUpSliders: function () {

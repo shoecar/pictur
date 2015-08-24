@@ -35,5 +35,6 @@ Pictur.Views.PhotoItem = Backbone.View.extend({
 
   removeFilters: function () {
     this.$el.find('img').css('-webkit-filter','');
+    this.$el.find('img').css('filter','');
   }
 });

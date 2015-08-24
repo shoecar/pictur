@@ -51,10 +51,10 @@ h1, h2 {
 }
 
 .tooltip-inner {
-    background-color: $dark-blue;
+    background-color: $dark-blue !important;
 }
 .tooltip-arrow {
-      border-top-color: $dark-blue;
+      border-top-color: $dark-blue !important;
 }
 
 .bootbox {

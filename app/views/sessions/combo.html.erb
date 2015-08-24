@@ -8,16 +8,17 @@
   <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
   <p>
-    Pictur is a mock photo sharing web application. Inspiration for design came from websites
-    like Imgur, Pinterest, and Instagram. These websites were referenced for general
+    Pictur is a mock photo sharing web application built in its entirety over a fifteen
+    day stretch in August 2015. Inspiration for design came from websites such as
+    Imgur, Pinterest, and Instagram. These websites were referenced for general
     design, organization, and functionality. The style of Pictur, however, was entirely
     manufactured, not copied or mimicked.
   </p>
 
   <p>
-    This project was built in its entirety over a fifteen day stretch in August 2015. Pictur
-    runs a Postgres database inside Ruby on Rails. The front end is handled by Backbone
-    and jQuery. HTML5 and CSS3 were also extensively used as well as Bootstrap. Source code can be found on
+    Pictur runs a Postgres database inside Ruby on Rails. The front end is handled
+    by Backbone and jQuery. HTML5 and CSS3 were extensively used in combination
+    with Bootstrap. Source code can be found on
     <a href="https://github.com/shoecar/pictur" target="_blank">github</a>.
   </p>
 
@@ -203,11 +204,19 @@
 
   // info toggle
   $('.info-toggle').click(function (e) {
-    $('.info-panel').css('top', '5%');
+    $('.info-panel').css('-webkit-transform', 'translate3d(0, 20px, 0) translateX(-50%)');
+    $('.info-panel').css('-moz-transform', 'translate3d(0, 20px, 0) translateX(-50%)');
+    $('.info-panel').css('-ms-transform', 'translate3d(0, 20px, 0) translateX(-50%)');
+    $('.info-panel').css('-o-transform', 'translate3d(0, 20px, 0) translateX(-50%)');
+    $('.info-panel').css('transform', 'translate3d(0, 20px, 0) translateX(-50%)');
     $('.info-toggle').fadeOut();
   });
   $('.close, .border-shadow').click(function (e) {
-    $('.info-panel').css('top', '');
+    $('.info-panel').css('-webkit-transform', '');
+    $('.info-panel').css('-moz-transform', '');
+    $('.info-panel').css('-ms-transform', '');
+    $('.info-panel').css('-o-transform', '');
+    $('.info-panel').css('transform', '');
     $('.info-toggle').fadeIn();
   });
 </script>
