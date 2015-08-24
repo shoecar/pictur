@@ -1,4 +1,5 @@
-json.(@user, :id, :username)
+json.(@user, :id, :username, :portrait_url)
+json.member_since "#{I18n.t("date.month_names")[@user.created_at.month]} #{@user.created_at.year}"
 
 json.photos @photos do |photo|
   json.id photo.id
@@ -31,6 +32,7 @@ json.comments @comments do |comment|
 end
 
 json.votings @votings do |voting|
+  next unless voting.photo
   json.id voting.id
   json.voting_created time_ago_in_words(voting.created_at)
   json.photo_id voting.photo.id
@@ -41,8 +43,8 @@ json.votings @votings do |voting|
   json.thumb_url voting.photo.thumb_url
   json.filters voting.photo.filters
   json.photo_created time_ago_in_words(voting.photo.created_at)
-  json.comments voting.photo.comments.length
-  json.likes voting.photo.sum_score
+  # json.comments voting.photo.comments.length
+  # json.likes voting.photo.sum_score
 end
 
 json.albums @albums do |album|

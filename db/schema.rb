@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821182303) do
+ActiveRecord::Schema.define(version: 20150824010802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150821182303) do
     t.string   "session_token",   null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "portrait_url"
   end
 
   add_index "users", ["session_token"], name: "index_users_on_session_token", using: :btree
@@ -80,4 +81,5 @@ ActiveRecord::Schema.define(version: 20150821182303) do
   add_index "votings", ["photo_id"], name: "index_votings_on_photo_id", using: :btree
   add_index "votings", ["user_id", "photo_id"], name: "index_votings_on_user_id_and_photo_id", unique: true, using: :btree
   add_index "votings", ["user_id"], name: "index_votings_on_user_id", using: :btree
+
 end

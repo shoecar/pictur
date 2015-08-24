@@ -14,6 +14,7 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
   },
 
   events: {
+    'click .portrait-change': 'uploadPortrait',
     'click .scrollBottom': 'scrollBottom',
     'click #user-albums': 'startCarousel',
     'mouseover #likes-carousel': 'controlIn',
@@ -46,6 +47,7 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
 
   render: function () {
     this.$el.html(this.template({ user: this.model }));
+    if (CURRENTUSER.id === this.model.get('id')) { this.$el.find('.portrait').addClass('portrait-change') }
     this.showTab();
     this.attachSubviews();
     this.setBG();
@@ -97,5 +99,17 @@ Pictur.Views.UserShow = Backbone.CompositeView.extend({
 
   setBG: function () {
     this.$el.find('.user-main').css('min-height', $(window).height() - this.$el.find('.user-main').offset().top + 'px');
+  },
+
+  uploadPortrait: function (e) {
+    e.preventDefault();
+    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS_PORTRAIT, function(error, result){
+      if(!result) { return; }
+      var data = result[0];
+      this.model.set({
+        portrait_url: data.eager[1].secure_url
+      });
+      this.model.save();
+    }.bind(this));
   }
 });

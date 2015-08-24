@@ -18,6 +18,14 @@
       upload_preset: "<%= ENV['UPLOAD_PRESET'] %>",
       theme: 'minimal'
     };
+
+    window.CLOUDINARY_OPTIONS_PORTRAIT = {
+      cloud_name: "<%=ENV['CLOUD_NAME']%>",
+      upload_preset: "<%= ENV['UPLOAD_PRESET'] %>",
+      theme: 'minimal',
+      cropping: 'server',
+      cropping_aspect_ratio: 1
+    };
   </script>
 
   <%= yield %>

@@ -335,6 +335,8 @@ User.where(id: (1..8)).each do |user|
 end
 
 User.all.each do |user|
+  photo.created_at = Faker::Time.between(3.years.ago, 2.weeks.ago)
+
   50.times do
     user.votings.create({ user_id: user.id, photo_id: rand(Photo.all.length - 40) + 1, score: 1 })
   end

@@ -1,10 +1,18 @@
-<h1 class="username">
-  <% if (CURRENTUSER.id === user.get('id')) { %>
-    Your Profile
-  <% } else { %>
-    <%= user.escape('username') %>'s Profile
-  <% } %>
-</h1>
+<div class="row">
+  <div class="user-info">
+    <% if (user.get('portrait_url')) { %>
+      <img src="<%= user.get('portrait_url') %>" class="portrait img-circle">
+    <% } else { %>
+      <img src="/assets/no-portrait.png" class="portrait img-circle">
+    <% } %>
+    <h1 class="username">
+      <%= user.escape('username') %>
+    </h1>
+    <p>
+      member since <span><%= user.escape('member_since') %></span>
+    </p>
+  </div>
+</div>
 
 <div class="user-main row">
   <ul class="user-tabs nav nav-tabs nav-justified">

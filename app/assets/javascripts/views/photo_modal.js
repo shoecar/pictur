@@ -5,12 +5,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
   initialize: function (options) {
     $('#spinner-load').stop(true, true).fadeIn(300);
     $('body').append('<div class="fullscreen"></div>');
-    this.photo = new Pictur.Models.Photo({
-      id: this.model.id,
-      success: function () {
-
-      }.bind(this)
-    });
+    this.photo = new Pictur.Models.Photo({ id: this.model.id });
     this.photo.fetch();
     this.listenTo(this.photo, 'sync', this.render);
     this.listenTo(this.photo, 'sync', this.addCommentView);
@@ -58,8 +53,10 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
       if (result) {
         this.$el.fadeOut({ duration: 500, easing: 'easeOutQuad',
           complete: function () {
-            this.model.destroy();
             this.closeWindow();
+            Backbone.history.navigate('temp', {trigger : false});
+            Backbone.history.navigate('/user/' + CURRENTUSER.id +'/photos', { trigger: true, replace: true });
+            this.model.destroy();
           }.bind(this)
         });
       }
@@ -89,7 +86,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
       this.likedModel.destroy();
       this.likedModel = undefined;
       $('.voting-photo').attr('data-original-title', 'Like Photo')
-      this.model.set({ likes: this.model.attributes.likes -= 1 });
+      this.model.set({ likes: this.model.attributes.num_likes -= 1 });
     } else {
       var voting = new Pictur.Models.Voting()
       voting.set({
@@ -100,7 +97,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
       voting.save();
       this.likedModel = voting;
       $('.voting-photo').attr('data-original-title', 'Unlike Photo')
-      this.model.set({ likes: this.model.attributes.likes += 1 });
+      this.model.set({ likes: this.model.attributes.num_likes += 1 });
     }
     this.model.trigger('change');
   },

@@ -26,7 +26,7 @@ Pictur.Views.CommentForm = Backbone.View.extend({
                   });
     comment.save();
     this.collection.add(comment);
-    this.itemViewModel.set({ comments: this.itemViewModel.attributes.comments += 1 });
+    this.itemViewModel.set({ comments: this.itemViewModel.attributes.num_comments += 1 });
     this.itemViewModel.trigger('change');
   }
 });

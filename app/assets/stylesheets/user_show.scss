@@ -1,6 +1,50 @@
 .user-show {
-  .username {
-    text-align: center;
+  .user-info {
+    background-color: #fff;
+    width: 300px;
+    padding: 10px 10px 10px 0;
+    margin-bottom: 20px;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform:    translateX(-50%);
+    -ms-transform:     translateX(-50%);
+    -o-transform:      translateX(-50%);
+    transform:         translateX(-50%);
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border: 0px solid #000000;
+    -webkit-box-shadow: 5px 5px 20px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 20px -15px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 20px -15px rgba(0,0,0,0.75);
+
+    .portrait {
+      width: 100px;
+      height: 100px;
+      float: left;
+      margin: -20px 20px 20px -10px;
+      border: 5px solid $white;
+    }
+
+    .portrait-change {
+      cursor: pointer;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      font-weight: 200;
+      font-style: italic;
+      font-size: 12px;
+      span {
+        margin-left: 10px;
+        font-size: 14px;
+        font-style: normal;
+      }
+    }
   }
 
   .user-main {
@@ -8,6 +52,7 @@
   }
 
   .user-tabs {
+    background-color: $white;
     margin-bottom: 20px;
 
     li:not(.active) {

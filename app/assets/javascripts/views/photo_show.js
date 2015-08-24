@@ -67,7 +67,6 @@ Pictur.Views.PhotoShow = Backbone.CompositeView.extend({
     var subView = new Pictur.Views.CommentForm({ collection: this.model.comments(), photoId: this.model.id, itemViewModel: this.model });
     this.addSubview('.photo-comment-form', subView);
     $('.photo-comment-form').slideToggle({ duration: 500, easing: 'easeOutQuad' });
-    $.scrollTo($('.modal-info'), {duration: 1000, easing: 'easeOutQuad'});
   },
 
   filterPhoto: function (e) {
@@ -102,8 +101,8 @@ Pictur.Views.PhotoShow = Backbone.CompositeView.extend({
   changeTitle: function (e) {
     if (CURRENTUSER.id === this.model.get('user_id')) {
       var text = this.model.escape('title');
-      $('.photo-modal .photo-title').html('<input type="text" value="' + text + '">');
-      $('.photo-modal .photo-title').find('input').putCursorAtEnd();
+      $('.photo-title').html('<input type="text" value="' + text + '">');
+      $('.photo-title').find('input').putCursorAtEnd();
     }
   },
 
@@ -111,18 +110,18 @@ Pictur.Views.PhotoShow = Backbone.CompositeView.extend({
     var newTitle = e.target.value;
     if (newTitle.length > 0 && newTitle != '<span>(no title)</span>') {
       this.model.set({ title: newTitle });
-      $('.photo-modal .photo-title').html(newTitle);
+      $('.photo-title').html(newTitle);
     } else {
       this.model.set({ title: null });
-      $('.photo-modal .photo-title').html('<span>(no title)</span>');
+      $('.photo-title').html('<span>(no title)</span>');
     }
   },
 
   changeDescription: function (e) {
     if (CURRENTUSER.id === this.model.get('user_id')) {
       var text = this.model.escape('description');
-      $('.photo-modal .photo-description').html('<textarea rows="4">' + text + '</textarea>');
-      $('.photo-modal .photo-description').find('textarea').putCursorAtEnd();
+      $('.photo-description').html('<textarea rows="4">' + text + '</textarea>');
+      $('.photo-description').find('textarea').putCursorAtEnd();
     }
   },
 
@@ -130,10 +129,10 @@ Pictur.Views.PhotoShow = Backbone.CompositeView.extend({
     var newDescription = e.target.value;
     if (newDescription.length > 0 && newDescription != '<span>(no description)</span>') {
       this.model.set({ description: newDescription });
-      $('.photo-modal .photo-description').html(newDescription);
+      $('.photo-description').html(newDescription);
     } else {
       this.model.set({ description: null });
-      $('.photo-modal .photo-description').html('<span>(no description)</span>');
+      $('.photo-description').html('<span>(no description)</span>');
     }
   },
 

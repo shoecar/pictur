@@ -23,7 +23,7 @@ Pictur.Views.CommentItem = Backbone.View.extend({
       if (result) {
         this.$el.fadeOut({ duration: 1000, easing: 'easeOutQuad', complete: function () {
             if (this.photo) {
-              this.photo.set({ comments: this.photo.attributes.comments -= 1 });
+              this.photo.set({ comments: this.photo.attributes.num_comments -= 1 });
               this.photo.trigger('change');
             }
             this.model.destroy();
