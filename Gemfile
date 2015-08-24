@@ -20,6 +20,8 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'modernizr-rails'
 gem "jquery-slick-rails"
 gem 'faker'
+gem 'seed_dump'
+gem 'puma'
 
 group :development, :test do
   gem 'pry-rails'
@@ -27,5 +29,4 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
   gem 'spring'
-  gem 'seed_dump'
 end
