@@ -9,6 +9,141 @@
   box-shadow: inset 0px 0px 100px 0 rgba(0,0,0,0.75);
 }
 
+.info-toggle {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 30px;
+  z-index: 20;
+  color: $white;
+  cursor: pointer;
+  -webkit-animation: size_toggle 0.6s infinite alternate ease-out;
+  -moz-animation: size_toggle 0.6s infinite alternate ease-out;
+  -ms-animation: size_toggle 0.6s infinite alternate ease-out;
+  -o-animation: size_toggle 0.6s infinite alternate ease-out;
+  animation: size_toggle 0.6s infinite alternate ease-out;
+
+  @-webkit-keyframes size_toggle {
+   from {  -webkit-transform: scale(1.0);
+           -moz-transform:    scale(1.0);
+           -ms-transform:     scale(1.0);
+           -o-transform:      scale(1.0);
+           transform:         scale(1.0); }
+   to {    -webkit-transform: scale(1.2);
+           -moz-transform:    scale(1.2);
+           -ms-transform:     scale(1.2);
+           -o-transform:      scale(1.2);
+           transform:         scale(1.2); }
+  }
+  @-moz-keyframes size_toggle {
+    from {  -webkit-transform: scale(1.0);
+            -moz-transform:    scale(1.0);
+            -ms-transform:     scale(1.0);
+            -o-transform:      scale(1.0);
+            transform:         scale(1.0); }
+    to {    -webkit-transform: scale(1.2);
+            -moz-transform:    scale(1.2);
+            -ms-transform:     scale(1.2);
+            -o-transform:      scale(1.2);
+            transform:         scale(1.2); }
+  }
+  @-ms-keyframes size_toggle {
+    from {  -webkit-transform: scale(1.0);
+            -moz-transform:    scale(1.0);
+            -ms-transform:     scale(1.0);
+            -o-transform:      scale(1.0);
+            transform:         scale(1.0); }
+    to {    -webkit-transform: scale(1.2);
+            -moz-transform:    scale(1.2);
+            -ms-transform:     scale(1.2);
+            -o-transform:      scale(1.2);
+            transform:         scale(1.2); }
+  }
+  @-o-keyframes size_toggle {
+    from {  -webkit-transform: scale(1.0);
+            -moz-transform:    scale(1.0);
+            -ms-transform:     scale(1.0);
+            -o-transform:      scale(1.0);
+            transform:         scale(1.0); }
+    to {    -webkit-transform: scale(1.2);
+            -moz-transform:    scale(1.2);
+            -ms-transform:     scale(1.2);
+            -o-transform:      scale(1.2);
+            transform:         scale(1.2); }
+  }
+  @keyframes size_toggle {
+    from {  -webkit-transform: scale(1.0);
+            -moz-transform:    scale(1.0);
+            -ms-transform:     scale(1.0);
+            -o-transform:      scale(1.0);
+            transform:         scale(1.0); }
+    to {    -webkit-transform: scale(1.2);
+            -moz-transform:    scale(1.2);
+            -ms-transform:     scale(1.2);
+            -o-transform:      scale(1.2);
+            transform:         scale(1.2); }
+  }
+}
+.info-toggle:hover {
+  color: $light-gray;
+}
+
+.info-panel {
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 20;
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform:    translateX(-50%);
+  -ms-transform:     translateX(-50%);
+  -o-transform:      translateX(-50%);
+  transform:         translateX(-50%);
+  width: 620px;
+  height: 520px;
+  padding: 30px;
+  -webkit-transition: all 1.5s ease-out;
+     -moz-transition: all 1.5s ease-out;
+       -o-transition: all 1.5s ease-out;
+          transition: all 1.5s ease-out;
+
+  button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+
+  p {
+    text-align: justify;
+    font-weight: 300;
+  }
+
+  a { font-weight: 400; }
+
+  .all-logos {
+    .logo-wrap {
+      display: inline;
+      height: 100px;
+      width: 130px;
+      margin: 10px 20px;
+
+      img {
+        height: 100px;
+        margin-top: 20px;
+      }
+    }
+    .logo-wrap:nth-of-type(5) { margin-left: 100px;}
+  }
+
+  h3 {
+    margin-top: 30px;
+    font-size: 12px;
+    font-weight: 300;
+    text-align: center;
+    a { font-size: 14px; }
+  }
+}
+
 .session-window {
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.8);;
@@ -122,6 +257,7 @@
 
   .photo-item {
     float: left;
+    overflow: hidden;
    }
 
   img {
@@ -130,6 +266,10 @@
     -webkit-filter: blur(2px);
     filter:         blur(2px);
     opacity: 0.8;
+    -webkit-transition: all 5s ease-in-out;
+       -moz-transition: all 5s ease-in-out;
+         -o-transition: all 5s ease-in-out;
+            transition: all 5s ease-in-out;
   }
 
   .photo-sizer, .photo-item { width: 25%; }

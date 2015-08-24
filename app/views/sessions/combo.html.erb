@@ -1,5 +1,55 @@
 <div class="border-shadow"></div>
 
+<div class="info-toggle">
+  <i class="fa fa-info-circle"></i>
+</div>
+
+<div class="info-panel">
+  <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+  <p>
+    Pictur is a mock photo sharing web application. Inspiration for design came from websites
+    like Imgur, Pinterest, and Instagram. These websites were referenced for general
+    design, organization, and functionality. The style of Pictur, however, was entirely
+    manufactured, not copied or mimicked.
+  </p>
+
+  <p>
+    This project was built in its entirety over a fifteen day stretch in August 2015. Pictur
+    runs a Postgres database inside Ruby on Rails. The front end is handled by Backbone
+    and jQuery. HTML5 and CSS3 were also extensively used as well as Bootstrap. Source code can be found on
+    <a href="https://github.com/shoecar/pictur" target="_blank">github</a>.
+  </p>
+
+  <div class="all-logos">
+    <div class="logo-wrap">
+      <img src="/assets/Pg_logo.png" alt="" />
+    </div>
+    <div class="logo-wrap">
+      <img src="/assets/Ruby_on_Rails.svg.png" alt="" />
+    </div>
+    <div class="logo-wrap">
+      <img src="/assets/backbone-logo.png" alt="" />
+    </div>
+    <div class="logo-wrap">
+      <img src="/assets/jQurery.gif" alt="" />
+    </div>
+    <div class="logo-wrap">
+      <img src="/assets/HTML5_Logo_512" alt="" />
+    </div>
+    <div class="logo-wrap">
+      <img src="/assets/CSS3_logo" alt="" />
+    </div>
+    <div class="logo-wrap">
+      <img src="/assets/bootstrap-logo.png" alt="" />
+    </div>
+  </div>
+
+  <h3>designed, built, and authored by
+    <a href="http://shoecar.github.io/" target="_blank">Tad Schukar</a>
+  </h3>
+</div>
+
 <div class="session-window">
   <img class="session-logo img-circle" src="/assets/logo3.png">
   <% if flash[:errors] %>
@@ -73,10 +123,6 @@
   </div>
 </div>
 
-<div class="col-xs-12">
-
-</div>
-
 <div id="session-photos" class="transitions-enabled clearfix">
   <div class="photo-sizer"></div>
   <% @photos.each do |photo| %>
@@ -88,6 +134,7 @@
 
 <script type="text/javascript">
   var CURRENTUSER;
+
   // tooltips
   $('button').tooltip({ container: 'body' });
 
@@ -114,6 +161,7 @@
     window.setTimeout(function () {
       action();
     }, 100);
+    // photoAnimation();
   });
 
   $('#session-name, #session-pw, #user-name, #user-pw, #user-pw-con').on("keyup", action);
@@ -152,4 +200,14 @@
 
   var windowHeight = $(window).height();
   $('#session-photos').css('max-height', windowHeight)
+
+  // info toggle
+  $('.info-toggle').click(function (e) {
+    $('.info-panel').css('top', '5%');
+    $('.info-toggle').fadeOut();
+  });
+  $('.close, .border-shadow').click(function (e) {
+    $('.info-panel').css('top', '');
+    $('.info-toggle').fadeIn();
+  });
 </script>
