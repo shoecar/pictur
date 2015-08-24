@@ -1,7 +1,7 @@
 .user-show {
   .user-info {
     background-color: #fff;
-    width: 300px;
+    width: 360px;
     padding: 10px 10px 10px 0;
     margin-bottom: 20px;
     position: relative;
@@ -20,11 +20,11 @@
     box-shadow: 5px 5px 20px -15px rgba(0,0,0,0.75);
 
     .portrait {
-      width: 100px;
-      height: 100px;
+      width: 130px;
+      height: 130px;
       float: left;
-      margin: -20px 20px 20px -10px;
-      border: 5px solid $white;
+      margin: -20px 20px 20px -30px;
+      border: 10px solid $white;
     }
 
     .portrait-change {
@@ -33,6 +33,8 @@
 
     h1 {
       font-size: 28px;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     p {
