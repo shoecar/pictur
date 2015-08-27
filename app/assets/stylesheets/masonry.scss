@@ -5,8 +5,8 @@
     margin-bottom: 20px;
     height: 60px;
     padding: 10px 25px;
-    background-color: $teal;
-    border: 1px solid darken($teal, 5%);
+    background-color: $dark-blue;
+    border: 1px solid darken($dark-blue, 5%);
     border-radius: 40px;
     width: 337px;
     position: relative;
@@ -24,6 +24,10 @@
 
       select, button {
         height: 40px;
+      }
+
+      .sort-submit {
+        float: right;
       }
 
       .sort-buttons {
@@ -79,6 +83,14 @@
 
     @media screen and (min-width: 1000px) {
       .photo-sizer, .photo-item { width: 25%; }
+    }
+
+    @media screen and (min-width: 1500px) {
+      .photo-sizer, .photo-item { width: 20%; }
+    }
+
+    @media screen and (min-width: 2000px) {
+      .photo-sizer, .photo-item { width: 12.5%; }
     }
 
     .photo-item:hover, .photo-item.hovered {
