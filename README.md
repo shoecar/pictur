@@ -2,9 +2,11 @@
 
 <a href="http://pictur.xyz">Live Site</a>
 
-## Minimum Viable Product
-Pictur is a clone of Imgur built on Rails and Backbone. Users can:
+Pictur is a mock photo sharing web application built in its entirety over a fifteen day stretch in August 2015. Inspiration for design came from websites such as Imgur, Pinterest, and Instagram. These websites were referenced for general design, organization, and functionality. The style of Pictur, however, was entirely manufactured, not copied or mimicked.
 
+Pictur runs a Postgres database inside Ruby on Rails. The front end is handled by Backbone and jQuery. HTML5 and CSS3 were extensively used in combination with Bootstrap. Source code can be found on github.
+
+## Minimum Viable Product
 - [x] Create accounts
 - [x] Create sessions (log in)
 - [x] Create photos
