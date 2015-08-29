@@ -36,7 +36,7 @@ Pictur.Views.PhotoModal = Backbone.CompositeView.extend({
     this.$el.find('.pop-window').imagesLoaded(function () {
       $('#spinner-load').stop(true, true).css('display', 'none');
       this.$el.find('.pop-window').fadeIn(600).css('top', $(window).scrollTop() + 'px');
-      this.$el.find('img').css('max-height', $(window).height() - 60 + 'px');
+      this.$el.find('img').css('max-height', $(window).height() - 190 + 'px');
     }.bind(this));
     this.applyFilters();
     return this;
